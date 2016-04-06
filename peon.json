@@ -19,8 +19,7 @@
           "angular-aria/angular-aria.js",
           "angular-material/angular-material.js",
           "angular-route/angular-route.js",
-          "angular-sanitize/angular-sanitize.js",
-          "angular-local-storage/dist/angular-local-storage.js"
+          "angular-sanitize/angular-sanitize.js"
         ],
         "cwd":"bower_components",
         "dest":"/src/scripts/libs/"
@@ -106,12 +105,8 @@
         "cwd": "dist",
         "replacements": [
           {
-            "pattern": "/styles/icons/svg",
+            "pattern": "/styles/svg",
             "replace": "svg"
-          },
-          {
-            "pattern": "icons/ico",
-            "replace": "ico"
           }
         ]
       },

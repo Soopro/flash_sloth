@@ -1,23 +1,23 @@
 /* -------------------------------
- * Server Conf: sup ext url4cc 
+ * Server Conf: flash sloth
 /* ------------------------------- */
 
-if (sup_ext_url4cc == 'undefined' || !sup_ext_url4cc){
-   var sup_ext_url4cc = {}
+if (sup_flash_sloth == 'undefined' || !sup_flash_sloth){
+   var sup_flash_sloth = {}
 }
 
 var test = {
-  'api': 'http://ext.sup.farm/url4/server'
+  'api': 'http://api.sup.farm'
 }
 
 var dev = {
-  'api': 'http://127.0.0.1:6002'
+  'api': 'http://127.0.0.1:5000'
 }
 
 var prd = {
-  'api': 'http://ext.soopro.net/url4/server'
+  'api': 'http://api.soopro.com'
 }
 
-sup_ext_url4cc.server = dev
-sup_ext_url4cc.cookie_domain = ".sup.local"
-sup_ext_url4cc.is_debug = true;
+sup_flash_sloth.server = dev
+sup_flash_sloth.cookie_domain = ".sup.local"
+sup_flash_sloth.debug = true;

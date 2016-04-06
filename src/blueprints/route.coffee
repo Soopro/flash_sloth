@@ -1,11 +1,13 @@
-angular.module('url4cc').config [
+angular.module 'flashSloth'
+
+.config [
   '$routeProvider'
   (
     $routeProvider
   ) ->
-    'use strict'
     $routeProvider
-    .when('/404', templateUrl: 'blueprints/404.html')
+    .when '/404',
+      templateUrl: 'blueprints/404.html'
 
     .otherwise redirectTo: '/404'
 

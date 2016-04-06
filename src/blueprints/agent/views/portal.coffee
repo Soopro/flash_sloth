@@ -1,13 +1,13 @@
-angular.module 'boltApp'
+angular.module 'flashSloth'
 
 .controller "promoAgentCtrl", [
   '$scope'
   '$routeParams'
   '$filter'
   '$location'
-  'restCrm'
+  'restAgent'
   'flash'
-  'ConfigCrm'
+  'Config'
   'fsv'
   'g'
   (
@@ -15,9 +15,9 @@ angular.module 'boltApp'
     $routeParams
     $filter
     $location
-    restCrm
+    restAgent
     flash
-    ConfigCrm
+    Config
     fsv
     g
   ) ->
@@ -25,15 +25,15 @@ angular.module 'boltApp'
     agent_life = $routeParams.agent_life
 
     $scope.forms = {}
-    $scope.input = 
+    $scope.input =
       code: ''
       count: 1
 
     $scope.codes = []
     $scope.pin = null
     $scope.activated = false
-    $scope.promo_types = ConfigCrm.promo_types
-    
+    $scope.promo_types = Config.promo_types
+
     $scope.agent_deadline = do ->
       if not agent_life
         return '????'
@@ -42,11 +42,11 @@ angular.module 'boltApp'
         'yyyy-MM-dd H:mm'
       )
       return deadline
-      
-    
+
+
     $scope.promo_code = {}
 
-    $scope.promo_profile = new restCrm.promocode({
+    $scope.promo_profile = new restAgent.promocode({
       sid: promo_sid
     })
 
@@ -59,10 +59,10 @@ angular.module 'boltApp'
       else
         endtime = null
       return endtime
-    
+
     process_code = (code) ->
       return code
-    
+
     check_badrequest = (error)->
       if not error
         return false
@@ -71,7 +71,7 @@ angular.module 'boltApp'
         return true
       else
         return false
-    
+
     $scope.activate = ->
       $scope.promo_profile.pin = $scope.pin
       $scope.promo_profile.$get()
@@ -80,18 +80,18 @@ angular.module 'boltApp'
         $scope.activated = true
       .catch (error)->
         check_badrequest(error)
-    
+
     $scope.reset = ->
       $scope.promo_code = {}
       $scope.input = {}
       for k,v of $scope.forms
         v.$setPristine()
         v.$setUntouched()
-    
+
     $scope.get = ->
       if not fsv($scope.forms.get_form, 'code')
         return
-      $scope.promo_code = new restCrm.promocode({
+      $scope.promo_code = new restAgent.promocode({
         code: process_code($scope.input.code)
         sid: promo_sid
         pin: $scope.pin
@@ -109,7 +109,7 @@ angular.module 'boltApp'
     $scope.use = ->
       if not fsv($scope.forms.use_form, 'code')
         return
-      $scope.promo_code = new restCrm.promocode({
+      $scope.promo_code = new restAgent.promocode({
         code: process_code($scope.input.code)
         sid: promo_sid
         pin: $scope.pin
@@ -123,7 +123,7 @@ angular.module 'boltApp'
       .catch (error)->
         check_badrequest(error)
         $scope.promo_code._error = true
-    
+
     reset_create_count = ->
       $scope.input.count = 1
 
@@ -131,7 +131,7 @@ angular.module 'boltApp'
       if $scope.promo_profile.amount isnt null
         min = Math.min $scope.promo_profile.amount, val
         $scope.input.count = min
-      
+
     $scope.batch_create = (create_count, retry)->
       amount = $scope.promo_profile.amount
       if amount isnt null
@@ -154,9 +154,9 @@ angular.module 'boltApp'
           retry += 1
           $scope.batch_create(create_count, retry)
       return
-        
+
     create = ->
-      new_promocode = new restCrm.promocode({
+      new_promocode = new restAgent.promocode({
         sid: promo_sid
         pin: $scope.pin
       })
