@@ -1,0 +1,143 @@
+
+<div flex="flex" layout-margin="layout-margin" class="view-animate paper">
+  <div flex="flex" layout-gt-md="row">
+    <div flex-gt-md="90" offset-gt-md="5" layout-padding="layout-padding" layout-margin="layout-margin">
+      <div ng-show="!activated" class="md-padding">
+        <form a="a" flex="flex" novalidate="novalidate" name="forms.act_form" ng-submit="activate()">
+          <md-input-container>
+            <label>{{_('PIN')}}</label>
+            <input type="text" name="pin" ng-model="pin"/>
+            <ng-messages for="forms.act_form.pin.$error" ng-if="forms.act_form.pin.$touched">
+              <ng-message when="required">{{_("PIN is required.")}}</ng-message>
+            </ng-messages>
+          </md-input-container>
+          <div>
+            <md-button type="submit" class="md-raised">{{_('Activate')}}</md-button>
+          </div>
+        </form>
+      </div>
+      <div ng-show="activated" class="md-padding">
+        <h2 class="md-title">{{ promo_profile.meta.title }}</h2>
+        <div class="md-subhead md-caption">{{ _(promo_types[promo_profile.type])}}</div>
+        <p>{{promo_profile.meta.description}}</p>
+      </div>
+      <md-tabs ng-show="activated" md-dynamic-height="md-dynamic-height" class="short">
+        <!-- Use-->
+        <md-tab label="{{_('Use')}}" md-on-select="reset()">
+          <div class="tab-content">
+            <div class="md-padding">
+              <md-card ng-if="promo_code.sid" class="promo"><img ng-src="{{promo_code.meta.sticker}}"/>
+                <md-card-content>
+                  <div ng-class="{'text-warn': promo_code.status == 1}" promo-code="{{promo_code.code}}" class="md-display-1 text-break">{{promo_code.base_code}}</div>
+                  <div ng-if="!promo_code._error &amp;&amp; !promo_code.common">
+                    <div class="md-title text-break">{{promo_code.display_code}}</div>
+                    <div ng-show="promo_code.status == 1" class="md-subhead text-warn">{{_('Used')}}</div>
+                    <div ng-show="promo_code.status == 0" class="md-subhead text-primary">{{_('Available')}}</div>
+                    <div class="md-caption">{{endtime}}</div>
+                  </div>
+                  <div ng-if="!promo_code._error &amp;&amp; promo_code.common">
+                    <div class="md-title text-primary">{{_('Common')}}</div>
+                    <div class="md-caption">{{endtime}}</div>
+                  </div>
+                  <div ng-if="promo_code._error">
+                    <div class="md-subhead text-warn">{{_('Error')}}</div>
+                  </div>
+                </md-card-content>
+              </md-card>
+              <form novalidate="novalidate" name="forms.use_form" ng-submit="use()">
+                <md-input-container>
+                  <label>{{_('Code')}}</label>
+                  <input type="text" name="code" ng-model="input.code" required="required"/>
+                  <ng-messages for="forms.use_form.code.$error" ng-if="forms.use_form.code.$touched">
+                    <ng-message when="required">{{_("Promo code is required.")}}</ng-message>
+                  </ng-messages>
+                </md-input-container>
+                <div>
+                  <md-button type="submit" class="md-raised">{{_('Use')}}</md-button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </md-tab>
+        <!-- Check-->
+        <md-tab label="{{_('Check')}}" md-on-select="reset()">
+          <div class="tab-content">
+            <div class="md-padding">
+              <md-card ng-if="promo_code.sid" class="promo"><img ng-src="{{promo_code.meta.sticker}}"/>
+                <md-card-content>
+                  <div ng-class="{'text-warn': promo_code.status == 1}" promo-code="{{promo_code.code}}" class="md-display-1 text-break">{{promo_code.base_code}}</div>
+                  <div ng-if="!promo_code._error &amp;&amp; !promo_code.common">
+                    <div class="md-title text-break">{{promo_code.display_code}}</div>
+                    <div ng-show="promo_code.status == 1" class="md-subhead text-warn">{{_('Used')}}</div>
+                    <div ng-show="promo_code.status == 0" class="md-subhead text-primary">{{_('Available')}}</div>
+                    <div class="md-caption">{{endtime}}</div>
+                  </div>
+                  <div ng-if="!promo_code._error &amp;&amp; promo_code.common">
+                    <div class="md-title text-primary">{{_('Common')}}</div>
+                    <div class="md-caption">{{endtime}}</div>
+                  </div>
+                  <div ng-if="promo_code._error">
+                    <div class="md-subhead text-warn">{{_('Unavailable')}}</div>
+                  </div>
+                </md-card-content>
+              </md-card>
+              <form novalidate="novalidate" name="forms.get_form" ng-submit="get()">
+                <md-input-container>
+                  <label>{{_('Code')}}</label>
+                  <input type="text" name="code" ng-model="input.code" required="required"/>
+                  <ng-messages for="forms.get_form.code.$error" ng-if="forms.get_form.code.$touched">
+                    <ng-message when="required">{{_("Promo code is required.")}}</ng-message>
+                  </ng-messages>
+                </md-input-container>
+                <div>
+                  <md-button type="submit" class="md-raised">{{_('Check')}}</md-button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </md-tab>
+        <!-- Generate-->
+        <md-tab label="{{_('Generate')}}" ng-disabled="promo_profile.common" md-on-select="reset()">
+          <div class="tab-content">
+            <div class="md-padding">
+              <md-list>
+                <md-subheader class="md-no-sticky">
+                  {{ _('Promo codes') }}
+                  {{promo_profile.count.used}}
+                  /
+                  {{promo_profile.count.total}}
+                  {{promo_profile.amount?'['+promo_profile.amount+']':''}}
+                </md-subheader>
+                <md-divider class="dotted"></md-divider>
+                <div ng-repeat="code in codes" class="anim-item">
+                  <md-list-item class="md-2-line md-padding vertical-center">
+                    <div class="md-list-item-text">
+                      <h3 class="text-break">{{code.code}}</h3>
+                    </div>
+                  </md-list-item>
+                </div>
+                <md-divider ng-if="codes.length &gt; 0" class="dotted"></md-divider>
+              </md-list>
+              <form novalidate="novalidate" name="forms.batch_form" ng-submit="batch_create(input.count)" layout="row" layout-align="end start" flex="flex">
+                <div flex="flex">
+                  <md-button type="submit" class="md-raised"><span class="text">{{_('Generate')}}</span></md-button>
+                </div>
+                <md-input-container>
+                  <label>{{_('Count')}}</label>
+                  <input type="number" name="create_count" min="0" max="100" ng-model="input.count"/>
+                </md-input-container>
+              </form>
+            </div>
+          </div>
+        </md-tab>
+      </md-tabs>
+      <div ng-if="promo_profile.endtime" class="md-padding">
+        <p class="mp-caption">{{_('Time Limit to %s.', promo_profile.endtime)}}</p>
+      </div>
+      <div class="md-padding">
+        <p ng-if="agent_deadline" class="md-caption text-accent">{{_('This page will expire at %s.', agent_deadline)}}</p>
+        <p ng-bind-html="_('* You can use Promo Agent Tool to manage and sharepromo codes. This page only exists 24 hours, you have to re-open it from the management after expired.')" class="md-caption tip"></p>
+      </div>
+    </div>
+  </div>
+</div>
