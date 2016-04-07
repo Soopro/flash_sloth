@@ -1,4 +1,4 @@
-<md-toolbar class="top-nav md-hue-3">
+<md-toolbar class="top-nav">
   <div class="md-toolbar-tools">
     <!-- nav menu -->
     <md-button class="md-icon-button"
@@ -58,13 +58,8 @@
       </md-button>
       <md-menu-content width="3">
         <md-menu-item>
-          <md-button ng-click="return()" ng-disabled="is_list">
-            {{_('Return to list')}}
-          </md-button>
-        </md-menu-item>
-        <md-menu-item>
-          <md-button ng-click="close()">
-            {{_('Close Extension')}}
+          <md-button ng-click="exit()">
+            {{_('Exit')}}
           </md-button>
         </md-menu-item>
       </md-menu-content>

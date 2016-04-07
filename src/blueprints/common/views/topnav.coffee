@@ -24,26 +24,12 @@ angular.module 'flashSloth'
     g
   ) ->
     $scope.navs = navService
-
-    init_g = ->
-      $scope.profile = g.user.profile
-
-    if not g.inited
-      $scope.g = g
-      unwatch = $scope.$watch "g.inited"
-      , (inited)->
-        if inited
-          init_g()
-          unwatch()
-    else
-      init_g()
-
     $scope.locales = Config.locales
 
     $scope.showMenu = ->
       return $mdMedia('gt-md')
 
-    $scope.toggleNav = (nav)->
+    $scope.toggleNav = (nav) ->
       $mdSidenav(nav).toggle()
 
     $scope.is_current_lang = (locale) ->
@@ -54,12 +40,10 @@ angular.module 'flashSloth'
       supLocales.set(locale.code)
       $route.reload()
 
-    $scope.logout = ->
-      restUser.doLogout()
-      .then ->
-        g.clear()
-        $scope.navs.clear()
-        Auth.logout()
+    $scope.exit = ->
+      g.clear()
+      $scope.navs.clear()
+      Auth.logout()
 
     $scope.go = (route)->
       if route
