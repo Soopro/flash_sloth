@@ -1,14 +1,27 @@
 <!doctype html>
 <html lang="{{lang}}" ng-app="flashSloth">
 <head>
-  <title>Promote Agent</title>
+  <title>{{_('Soopro CRM Agent Tool')}}</title>
 
   <meta http-equiv="content-type" content="text/html;charset=utf-8">
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+
+  <meta name="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+
   <!-- build:[href] favicon.png -->
   <link rel="shortcut icon" href="styles/favicon.png">
   <!-- /build-->
+  <!-- build:[href] apple-touch-icon-144-precomposed.png -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144"
+        href="styles/apple-touch-icon-144-precomposed.png">
+  <!-- /build-->
+
   <!-- build:css app.min.css?md5=null -->
   <link rel="stylesheet" href="styles/fonts/md-fonts.css">
   <link rel="stylesheet" href="styles/angular-material.css" />
@@ -18,11 +31,22 @@
   <link rel="stylesheet" href="languages/locales.css">
   <!-- /build-->
 </head>
-<body layout="column">
+<body layout="row">
 
   <!-- ng-templates -->
 
-  <div ng-view class="view"></div>
+  <ng-include ng-controller="mainNavCtrl" layout="column"
+              src="'blueprints/common/views/mainnav.tmpl.html'">
+  </ng-include>
+
+  <div flex layout="column">
+    <ng-include ng-controller="topNavCtrl"
+                src="'blueprints/common/views/topnav.tmpl.html'">
+    </ng-include>
+    <md-content class="view-container" flex layout="column">
+      <ng-view class="view" flex layout="column"></ng-view>
+    </md-content>
+  </div>
 
   <!-- build:js server_conf.js?md5=null -->
   {% include '_conf_.html' %}

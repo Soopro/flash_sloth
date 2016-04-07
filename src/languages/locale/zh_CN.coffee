@@ -5,7 +5,7 @@
 
 sup.localizedDict['zh_CN'] = [
   {
-    'msgid': 'Forward Urls'
-    'msgstr': '转发地址'
+    'msgid': 'Soopro CRM Agent Tool'
+    'msgstr': '速铺客户专员工具'
   }
 ]
