@@ -1,14 +1,14 @@
 <md-sidenav class="primary-nav md-sidenav-left md-whiteframe-z3 no-scroll"
             md-component-id="main_nav" flex layout="column">
   <md-toolbar>
-    <div class="md-toolbar-tools" layout-align="space-between">
-        <div class="logo">Logo</div>
+    <div class="md-toolbar-tools" layout-align="space-between center">
         <md-button class="md-icon-button"
                    aria-label="{{_('Toggle main nav')}}"
-                   ng-click="toggleNav('main_nav')"
-                   ng-show="isOpened()">
-          <md-icon md-svg-icon="nav:ic_arrow_back_24px"></md-icon>
+                   ng-click="toggleNav('main_nav')">
+          <md-icon md-svg-icon="ic_arrow_back_24px">
+          </md-icon>
         </md-button>
+        <div class="logo">Logo</div>
     </div>
   </md-toolbar>
   <md-content flex>
