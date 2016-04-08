@@ -14,18 +14,18 @@ angular.module 'flashSloth'
       domain: Config.cookie_domain
 
     @is_logged = ->
-      !!$cookies.get 'promo'
+      !!$cookies.get 'agent_auth'
 
     @token = ->
-      $cookies.get 'promo'
+      $cookies.get 'agent_auth'
 
     @login = (token, next_path) ->
-      $cookies.put 'promo', token, opts
+      $cookies.put 'agent_auth', token, opts
       $location.path next_path if next_path
       return
 
     @logout = ->
-      $cookies.remove 'promo', opts
+      $cookies.remove 'agent_auth', opts
       $location.path '/auth'
       return
 

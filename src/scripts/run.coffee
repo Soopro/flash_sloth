@@ -16,7 +16,6 @@ angular.module 'flashSloth'
     Auth
     Config
     flashWatcher
-
   ) ->
     console.log "-----------------------------"
     console.log "Flash Sloth:", App.version
@@ -38,10 +37,10 @@ angular.module 'flashSloth'
     # location change lisenter
     $rootScope.$on '$locationChangeStart', ->
       # auth
-      if Auth.is_logged() and isInPathList('outer')
-        $location.path Config.route.portal
-      else if not isInPathList('outer')
-        $location.path Config.route.auth
+      if Auth.is_logged()
+        $location.path Config.route.portal if isInPathList('outer')
+      else
+        $location.path Config.route.auth if not isInPathList('outer')
 
 ]
 

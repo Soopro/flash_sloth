@@ -13,7 +13,7 @@ angular.module 'flashSloth'
       if not opts.pos
         opts.pos = "top right"
       if not opts.delay
-        opts.delay = 4000
+        opts.delay = 3600
       if typeof(msg) is "string"
         msg = flashMsgGen(msg)
 
@@ -25,7 +25,7 @@ angular.module 'flashSloth'
             'opts.warn}">'
             '<span flex>'
             '<md-icon ng-if="opts.warn" '
-            'md-svg-icon="alert:ic_warning_24px"></md-icon> '
+            'md-svg-icon="ic_warning_24px"></md-icon> '
             '{{ content }}'
             '</span>'
             '<md-button class="md-action" ng-if="opts.action" '
@@ -104,7 +104,6 @@ angular.module 'flashSloth'
     (msg) ->
       if typeof(msg) in ['string', 'number']
         msg = error[msg.toString()] or msg
-
       # multi-language transalte
       if typeof(angular.translate) is "function"
         msg = angular.translate(msg)

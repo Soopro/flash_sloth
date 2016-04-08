@@ -2,21 +2,15 @@ angular.module 'flashSloth'
 
 .config [
   '$routeProvider'
-  'gResolveProvider'
   (
     $routeProvider
-    gResolveProvider
   ) ->
-    bp = "agent"
-    dir = "blueprints/agent/views"
-    resolve =
-      global: gResolveProvider.resolve
+    bp = "portal"
+    dir = "blueprints/portal/views"
 
     $routeProvider
     .when '/',
       templateUrl: dir+'/portal.html'
       controller: 'portalCtrl'
-      resolve: resolve
 
-    return
 ]

@@ -10,7 +10,6 @@ angular.module 'flashSloth'
   'Auth'
   'supLocales'
   'navService'
-  'g'
   (
     $scope
     $route
@@ -21,7 +20,6 @@ angular.module 'flashSloth'
     Auth
     supLocales
     navService
-    g
   ) ->
     $scope.navs = navService
     $scope.locales = Config.locales
@@ -39,6 +37,9 @@ angular.module 'flashSloth'
     $scope.use_lang = (locale) ->
       supLocales.set(locale.code)
       $route.reload()
+
+    $scope.is_logged = ->
+      return Auth.is_logged()
 
     $scope.exit = ->
       g.clear()

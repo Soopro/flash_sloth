@@ -9,7 +9,7 @@ angular.module 'flashSloth'
   debug: sup_flash_sloth.debug
 
   route:
-    portal: '/forward'
+    portal: '/'
     auth: '/auth'
     error: '/404'
 

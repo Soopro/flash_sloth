@@ -2,15 +2,12 @@ angular.module 'flashSloth'
 
 # formSubmitValidation
 .service 'fsv', ->
-  (form)->
+  (form, fields)->
     if not form
       console.error form, "Form is not exist"
       return false
     if not form.$valid
-      args=[]
-      for arg in arguments
-        args.push arg
-      for arg in args[1..]
+      for arg in fields
         if form[arg]
           form[arg].$touched = true
           form[arg].$dirty = true

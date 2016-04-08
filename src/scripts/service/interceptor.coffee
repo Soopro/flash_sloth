@@ -2,14 +2,12 @@ angular.module 'flashSloth'
 
 .factory 'requestInterceptor', [
   '$q'
-  '$cookies'
   '$location'
   'flashMsgStack'
   'Auth'
   'Config'
   (
     $q
-    $cookies
     $location
     flashMsgStack
     Auth
@@ -17,12 +15,12 @@ angular.module 'flashSloth'
   ) ->
     request: (request) ->
       request.headers = request.headers or {}
-      if $cookies.get('auth') and not request.headers.Authorization
-        request.headers.Authorization = "Bearer #{$cookies.get 'auth'}"
-      request
+      if Auth.token() and not request.headers.AgentToken
+        request.headers.AgentToken = Auth.token()
+      return request
 
     response: (response) ->
-      response or $q.when(response)
+      return response or $q.when(response)
 
     responseError: (rejection) ->
       is_api_reject = angular.startswith(rejection.config.url,
@@ -46,7 +44,7 @@ angular.module 'flashSloth'
             warn: true
           console.apiError rejection.data
 
-      $q.reject rejection
+      return $q.reject rejection
 ]
 
 .config [

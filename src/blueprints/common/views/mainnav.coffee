@@ -7,7 +7,7 @@ angular.module 'flashSloth'
   '$mdMedia'
   'Auth'
   'navService'
-  'g'
+  'navDefault'
   (
     $scope
     $location
@@ -15,10 +15,11 @@ angular.module 'flashSloth'
     $mdMedia
     Auth
     navService
-    g
+    navDefault
   ) ->
     $scope.navs = navs = navService
     singleMode = false
+    navDefault.load()
 
     $scope.isLockedOpen = (hasNav)->
       return $mdMedia('gt-md')

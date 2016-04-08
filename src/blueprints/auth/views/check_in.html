@@ -1,3 +1,62 @@
-<div layout="column" layout-align="center center">
-  <h2 class="md-display-2">{{_('Check in')}}</h2>
+<div class="view-animate"
+     layout="column"
+     layout-margin
+     flex>
+  <div layout="row"
+       layout-align-gt-xs="center center"
+       flex>
+    <section flex-gt-xs="60"
+             flex>
+      <h1 class="md-display-3">
+        {{_('Check in')}}
+      </h1>
+      <form name="auth_form"
+            layout="column"
+            ng-submit="submit()"
+            ng-disabled="submitted"
+            novalidate>
+
+        <md-input-container>
+          <label>{{_('Owner Account ID')}}</label>
+          <input name="pin"
+                 type="email"
+                 ng-model="auth.log"
+                 required/>
+          <ng-messages for="auth_form.log.$error">
+            <ng-message when="email">
+              {{ _('Owner Account ID must be an email address.') }}
+            </ng-message>
+            <ng-message when="required">
+              {{ _('Owner Account ID is required.') }}
+            </ng-message>
+          </ng-messages>
+        </md-input-container>
+
+        <md-input-container>
+          <label>{{_('Pin')}}</label>
+          <input name="pin"
+                 ng-model="auth.pin"
+                 required/>
+          <ng-messages for="auth_form.pin.$error">
+            <ng-message when="required">
+              {{ _('PIN is required.') }}
+            </ng-message>
+          </ng-messages>
+        </md-input-container>
+
+        <md-input-container>
+          <md-button class="md-raised md-primary"
+                      type="submit">
+            {{_('Enter')}}
+          </md-button>
+        </md-input-container>
+      </form>
+    </section>
+  </div>
+  <div class="copyright"
+       layout="row"
+       layout-align="center center"
+       layout-align-gt-md="end end">
+    <small ng-bind="_('&copy; Soopro Co.,ltd.')"></small>
+  </div>
 </div>

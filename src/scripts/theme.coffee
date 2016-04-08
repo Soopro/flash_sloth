@@ -63,7 +63,11 @@ angular.module 'flashSloth'
       'A400': '999'
       'A700': 'e56d51'
       'contrastDefaultColor': 'light'
-    $mdThemingProvider.theme('bolt').primaryPalette('boltPrimaryPalette').warnPalette('boltWarnPalette').accentPalette 'boltAccentPalette'
+
+    $mdThemingProvider.theme('bolt')
+    .primaryPalette('boltPrimaryPalette')
+    .warnPalette('boltWarnPalette')
+    .accentPalette 'boltAccentPalette'
     return
 ])
 .config [

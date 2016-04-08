@@ -9,15 +9,28 @@ angular.module 'flashSloth'
   ) ->
     api = "#{Config.baseURL.api}/crm/agent"
 
+    # -- Auth --
+    auth: do ->
+      supResource "#{api}/check_in"
+
+    # -- Member --
+    member: do ->
+      supResource "#{api}/member"
+
+    member_apply: do ->
+      supResource "#{api}/member/applyment"
+
+    # -- Events --
+    activity: do ->
+      supResource "#{api}/member/activity/:alias",
+        'alias':'@alias'
+
     # -- Promo --
     promo: do ->
-      supResource "#{api}/promo/:agent_id",
-        'agent_id':'@id'
+      supResource "#{api}/promo"
 
-    # -- PromoCode --
     promocode: do ->
-      supResource "#{api}/promocode/:agent_id",
-        'agent_id':'@id'
+      supResource "#{api}/promo/code/:code",
+        'code':'@code'
 
 ]
-
