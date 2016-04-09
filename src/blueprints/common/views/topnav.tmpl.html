@@ -1,12 +1,14 @@
 <md-toolbar class="top-nav">
   <div class="md-toolbar-tools">
     <!-- nav menu -->
-    <md-button class="md-icon-button anim-fade"
-               ng-show="is_logged()"
-               aria-label="{{_('Toggle main nav')}}"
-               ng-click="toggleNav('main_nav')">
-      <md-icon md-svg-icon="ic_menu_24px"></md-icon>
-    </md-button>
+    <div class="anim-fade"
+         ng-show="is_logged()">
+      <md-button class="md-icon-button"
+                 aria-label="{{_('Toggle main nav')}}"
+                 ng-click="toggleNav('main_nav')">
+        <md-icon md-svg-icon="ic_menu_24px"></md-icon>
+      </md-button>
+    </div>
 
     <!-- breadcrumb -->
     <div class="breadcrumb" flex>

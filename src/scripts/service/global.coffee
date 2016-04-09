@@ -2,12 +2,11 @@ angular.module 'flashSloth'
 
 .service 'g', ->
     self = @
+    self.$clear = ->
+      for k, v of self
+        if k.indexOf('$') != 0
+          delete self[k]
 
-    self.g = {}
+    self.$clear()
 
-    self.clear = ->
-      self.g = {}
-
-    self.clear()
-
-    return self.g
+    return self

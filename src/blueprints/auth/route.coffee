@@ -5,13 +5,17 @@ angular.module 'flashSloth'
   (
     $routeProvider
   ) ->
-    bp = "auth"
     dir = "blueprints/auth/views"
 
     $routeProvider
-    .when '/'+bp,
+    .when '/auth',
       templateUrl: dir+'/check_in.html'
       controller: 'checkInCtrl'
+
+    $routeProvider
+    .when '/exit',
+      template: ''
+      controller: 'exitCtrl'
 
     return
 ]

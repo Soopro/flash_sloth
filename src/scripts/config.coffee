@@ -11,6 +11,7 @@ angular.module 'flashSloth'
   route:
     portal: '/'
     auth: '/auth'
+    exit: '/exit'
     error: '/404'
 
   locales: [

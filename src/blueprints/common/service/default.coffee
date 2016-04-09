@@ -29,6 +29,12 @@ angular.module 'flashSloth'
         ico: "ic_people_24px"
         path: "/member"
       }
+      {
+        alias: "exit"
+        name: "Exit"
+        ico: "ic_exit_24px"
+        path: "/exit"
+      }
     ]
 
     @load =  ->

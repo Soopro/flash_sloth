@@ -9,7 +9,6 @@ angular.module 'flashSloth'
   'Config'
   'Auth'
   'supLocales'
-  'navService'
   (
     $scope
     $route
@@ -19,9 +18,7 @@ angular.module 'flashSloth'
     Config
     Auth
     supLocales
-    navService
   ) ->
-    $scope.navs = navService
     $scope.locales = Config.locales
 
     $scope.showMenu = ->
@@ -42,9 +39,7 @@ angular.module 'flashSloth'
       return Auth.is_logged()
 
     $scope.exit = ->
-      g.clear()
-      $scope.navs.clear()
-      Auth.logout()
+      $location.path Config.route.exit
 
     $scope.go = (route)->
       if route
