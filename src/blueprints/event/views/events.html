@@ -17,20 +17,22 @@
             </md-subheader>
             <md-divider ></md-divider>
             <!-- items -->
-            <div class="anim-item md-padding"
+            <div class="anim-item"
                  ng-repeat="event in events">
-              <md-list-item class="md-3-line">
+              <md-list-item class="md-2-line"
+                            ng-click="open(event)">
                 <div class="md-list-item-text" layout="column">
-                  <h3>
+                  <h3 class="text-nowrap"
+                      vw-max="65">
                     {{ event.title }}
                   </h3>
-                  <p>
-                    {{event.time || '-'}}
-                  </p>
-                  <p>
-                    {{event.location || '-'}}
+                  <p class="text-nowrap"
+                     vw-max="65">
+                    {{ event.time }}
                   </p>
                 </div>
+                <md-icon md-svg-icon="ic_event_24px">
+                </md-icon>
               </md-list-item>
             </div>
           </md-list>

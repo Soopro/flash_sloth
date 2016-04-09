@@ -16,19 +16,19 @@ angular.module 'flashSloth'
         alias: "promo"
         name: "Promotions"
         ico: "ic_local_play_24px"
-        path: "/promo/list"
+        path: "/promo"
       }
       {
         alias: "events"
         name: "Events"
         ico: "ic_event_24px"
-        path: "/event/list"
+        path: "/event"
       }
       {
         alias: "member"
         name: "Membership"
         ico: "ic_people_24px"
-        path: "/member/list"
+        path: "/member"
       }
       {
         alias: "exit"

@@ -22,4 +22,7 @@ angular.module 'flashSloth'
     g
   ) ->
     $scope.events = restAgent.activity.query()
+    $scope.open = (activity)->
+      $location.path '/event/'+activity.id
+
 ]

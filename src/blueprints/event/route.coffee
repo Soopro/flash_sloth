@@ -9,12 +9,12 @@ angular.module 'flashSloth'
     dir = "blueprints/event/views"
 
     $routeProvider
-    .when '/'+bp+'/list',
+    .when '/'+bp,
       templateUrl: dir+'/events.html'
       controller: 'eventsCtrl'
 
     $routeProvider
-    .when '/'+bp+'/detail/:event_id',
+    .when '/'+bp+'/:event_id',
       templateUrl: dir+'/event_detail.html'
       controller: 'eventDetailCtrl'
 
