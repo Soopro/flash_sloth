@@ -1,6 +1,6 @@
 angular.module 'flashSloth'
 
-.controller "portalCtrl", [
+.controller "eventsCtrl", [
   '$scope'
   '$routeParams'
   '$filter'

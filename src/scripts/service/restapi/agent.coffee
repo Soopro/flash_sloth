@@ -13,6 +13,10 @@ angular.module 'flashSloth'
     auth: do ->
       supResource "#{api}/check_in"
 
+    # -- Status --
+    status: do ->
+      supResource "#{api}/status"
+
     # -- Member --
     member: do ->
       supResource "#{api}/member"
