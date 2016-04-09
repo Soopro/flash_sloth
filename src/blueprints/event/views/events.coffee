@@ -21,5 +21,5 @@ angular.module 'flashSloth'
     fsv
     g
   ) ->
-    $scope.status = restAgent.status.get()
+    $scope.events = restAgent.activity.query()
 ]

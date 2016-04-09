@@ -9,98 +9,32 @@
           </h2>
         </header>
         <!-- events -->
-        <div layout-gt-sm="row">
-          <!-- count: members -->
-          <md-card class="analysis"
-                   layout-padding
-                   flex>
-            <div layout='column'
-                 layout-align="center center"
-                 layout-margin>
-              <md-icon class="s60"
-                       md-svg-icon="ic_people_24px">
-              </md-icon>
+        <md-content>
+          <md-list>
+            <md-subheader class="md-no-sticky">
+              <span ng-bind-html="_('You have <span class=text-primary>%s</span> events.', events.length)">
+              </span>
+            </md-subheader>
+            <md-divider ></md-divider>
+            <!-- items -->
+            <div class="anim-item md-padding"
+                 ng-repeat="event in events">
+              <md-list-item class="md-3-line">
+                <div class="md-list-item-text" layout="column">
+                  <h3>
+                    {{ event.title }}
+                  </h3>
+                  <p>
+                    {{event.time || '-'}}
+                  </p>
+                  <p>
+                    {{event.location || '-'}}
+                  </p>
+                </div>
+              </md-list-item>
             </div>
-            <md-card-content layout='column'
-                             layout-align="center center">
-              <div class="md-title subject">
-                {{ _('Members') }}
-              </div>
-              <div class="md-display-2">
-                {{ status.members_count | abbrnum }}
-              </div>
-              <div layout-margin>
-                <md-button class="main-nav-btn md-primary"
-                           ng-href="/#/member">
-                  <span class="text">
-                    {{_('Enter')}}
-                  </span>
-                </md-button>
-              </div>
-            </md-card-content>
-          </md-card>
-
-          <!-- count: members -->
-          <md-card class="analysis"
-                   layout-padding
-                   flex>
-            <div layout='column'
-                 layout-align="center center"
-                 layout-margin>
-              <md-icon class="s60"
-                       md-svg-icon="ic_local_play_24px">
-              </md-icon>
-            </div>
-            <md-card-content layout='column'
-                             layout-align="center center">
-              <div class="md-title subject">
-                {{ _('Promotions') }}
-              </div>
-              <div class="md-display-2">
-                {{ status.promos_count | abbrnum }}
-              </div>
-              <div layout-margin>
-                <md-button class="main-nav-btn md-primary"
-                           ng-href="/#/promotion">
-                  <span class="text">
-                    {{_('Enter')}}
-                  </span>
-                </md-button>
-              </div>
-            </md-card-content>
-          </md-card>
-
-          <!-- count: members -->
-          <md-card class="analysis"
-                   layout-padding
-                   flex>
-            <div layout='column'
-                 layout-align="center center"
-                 layout-margin>
-              <md-icon class="s60"
-                       md-svg-icon="ic_event_24px">
-              </md-icon>
-            </div>
-            <md-card-content layout='column'
-                             layout-align="center center">
-              <div class="md-title subject">
-                {{ _('Events') }}
-              </div>
-              <div class="md-display-2">
-                {{ status.events_count | abbrnum }}
-              </div>
-              <div layout-margin>
-                <md-button class="main-nav-btn md-primary"
-                           ng-href="/#/event">
-                  <span class="text">
-                    {{_('Enter')}}
-                  </span>
-                </md-button>
-              </div>
-            </md-card-content>
-          </md-card>
-        </div>
+          </md-list>
+      </md-content>
     </section>
-    <!-- #column -->
   </div>
 </div>

@@ -26,7 +26,7 @@ angular.module 'flashSloth'
 
     # -- Events --
     activity: do ->
-      supResource "#{api}/member/activity/:alias",
+      supResource "#{api}/activity/:alias",
         'alias':'@alias'
 
     # -- Promo --
