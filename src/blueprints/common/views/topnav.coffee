@@ -6,6 +6,7 @@ angular.module 'flashSloth'
   '$location'
   '$mdSidenav'
   '$mdMedia'
+  'navService'
   'Config'
   'Auth'
   'supLocales'
@@ -15,10 +16,12 @@ angular.module 'flashSloth'
     $location
     $mdSidenav
     $mdMedia
+    navService
     Config
     Auth
     supLocales
   ) ->
+    $scope.navs = navService
     $scope.locales = Config.locales
 
     $scope.showMenu = ->
