@@ -1,0 +1,50 @@
+<md-dialog class="md-content-overflow"
+           aria-label="{{_('Reservation')}}"
+           flex>
+  <md-toolbar class="dialog md-hue-3">
+    <div class="md-toolbar-tools"
+         layout-align="space-between">
+      <span>{{_('Reservation')}}</span>
+      <md-button class="md-icon-button"
+                 aria-label="{{_('Close')}}"
+                 ng-click="close()">
+        <md-icon md-svg-icon="ic_close_24px">
+        </md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <h2 class="md-headline">
+      {{ apply.title }}
+    </h2>
+    <p>{{_('Full Name:')}} {{apply.name}}</p>
+    <p>{{_('Member Account:')}} {{apply.member_login || '-'}}</p>
+    <p>
+      <span>{{_('Promo Code:')}}</span>
+      <span class="text-accent">{{apply.code || '-'}}</span>
+    </p>
+    <p class="text-break">
+      {{_('Message:')}} {{apply.message}}
+    </p>
+  </md-dialog-content>
+  <div class="md-actions"
+       layout="row"
+       layout-align="space-between center"
+       flex-order="3">
+    <md-button class="md-icon-button"
+               aria-label="{{_('Delete')}}"
+               type="button"
+               ng-disabled="submitted"
+               ng-click="trash()">
+      <md-icon md-svg-icon="ic_delete_24px">
+      </md-icon>
+    </md-button>
+
+    <md-button class="md-icon-button"
+               type="submit"
+               ng-disabled="submitted"
+               ng-click="save()">
+      {{_('Save')}}
+    </md-button>
+  </div>
+</md-dialog>
