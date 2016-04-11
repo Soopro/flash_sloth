@@ -3,8 +3,6 @@ angular.module 'flashSloth'
 .controller "eventDetailCtrl", [
   '$scope'
   '$routeParams'
-  '$filter'
-  '$location'
   'restAgent'
   'flash'
   'Config'
@@ -13,13 +11,13 @@ angular.module 'flashSloth'
   (
     $scope
     $routeParams
-    $filter
-    $location
     restAgent
     flash
     Config
     fsv
     g
   ) ->
-    $scope.status = restAgent.status.get()
+    act_id = $routeParams.act_id
+    $scope.event = restAgent.activity.get
+      act_id: act_id
 ]
