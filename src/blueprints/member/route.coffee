@@ -10,7 +10,12 @@ angular.module 'flashSloth'
 
     $routeProvider
     .when '/'+bp,
-      templateUrl: dir+'/member.html'
-      controller: 'memberCtrl'
+      templateUrl: dir+'/gate.html'
+      controller: 'memberGateCtrl'
+
+    $routeProvider
+    .when '/'+bp+'/:member_id',
+      templateUrl: dir+'/member_detail.html'
+      controller: 'memberDetailCtrl'
 
 ]

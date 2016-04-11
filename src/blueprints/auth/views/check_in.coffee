@@ -21,6 +21,8 @@ angular.module 'flashSloth'
     $scope.submit = ->
       if not fsv($scope.auth_form, ['pin'])
         return
+      if $scope.submitted
+        return
       $scope.submitted = true
       restAgent.auth.post $scope.auth, (data)->
         $scope.submitted = false

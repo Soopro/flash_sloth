@@ -1,0 +1,117 @@
+<div class="view-animate">
+  <div layout-gt-sm="row">
+    <!-- column -->
+    <section flex-gt-sm="45"
+             offset-gt-sm="5"
+             layout-padding>
+      <!-- section header -->
+      <header layout-margin>
+        <h2 class="md-title">
+          {{_('Find Member')}}
+        </h2>
+      </header>
+      <!-- find member -->
+      <div layout-margin>
+        <form name="find_member_form"
+              layout="column"
+              ng-submit="find_member()"
+              novalidate>
+
+          <md-input-container>
+            <label>{{_('Account')}}</label>
+            <input name="login"
+                   type="text"
+                   ng-model="member.login"
+                   required/>
+            <ng-messages for="member_form.login.$error">
+              <ng-message when="required">
+                {{ _('Account is required.') }}
+              </ng-message>
+            </ng-messages>
+          </md-input-container>
+
+          <md-input-container>
+            <md-button class="md-raised md-primary"
+                       ng-disabled="submitted"
+                       type="submit">
+              {{_('Find')}}
+            </md-button>
+          </md-input-container>
+        </form>
+      </div>
+    </section>
+    <!-- column -->
+    <section flex-gt-sm="45"
+             offset-gt-sm="5"
+             layout-padding>
+      <!-- section header -->
+      <header layout-margin>
+        <h2 class="md-title">
+          {{_('Create New Member')}}
+        </h2>
+      </header>
+      <!-- find member -->
+      <div layout-margin>
+        <form name="new_member_form"
+              layout="column"
+              ng-submit="create_member()"
+              ng-disabled="submitted"
+              novalidate>
+
+          <md-input-container>
+            <label>{{_('Account')}}</label>
+            <input name="login"
+                   type="text"
+                   ng-model="new.login"
+                   required/>
+            <ng-messages for="new_member_form.login.$error">
+              <ng-message when="required">
+                {{ _('Account is required.') }}
+              </ng-message>
+            </ng-messages>
+          </md-input-container>
+
+          <md-input-container>
+            <label>{{_('Name')}}</label>
+            <input name="name"
+                   type="text"
+                   ng-model="new.name"/>
+          </md-input-container>
+
+          <md-input-container>
+            <label>{{_('Mobile')}}</label>
+            <input name="mobile"
+                   type="text"
+                   ng-model="new.mobile"/>
+          </md-input-container>
+
+          <md-input-container>
+            <label>{{_('Email')}}</label>
+            <input name="email"
+                   type="email"
+                   ng-model="new.email"/>
+            <ng-messages for="new_member_form.email.$error">
+              <ng-message when="email">
+                {{ _('Must be an email.') }}
+              </ng-message>
+            </ng-messages>
+          </md-input-container>
+
+          <md-input-container>
+            <label>{{_('Code')}}</label>
+            <input name="code"
+                   type="text"
+                   ng-model="new.code"/>
+          </md-input-container>
+
+          <md-input-container>
+            <md-button class="md-raised"
+                       type="submit">
+              {{_('Create')}}
+            </md-button>
+          </md-input-container>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
