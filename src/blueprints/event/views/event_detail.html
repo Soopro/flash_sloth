@@ -26,7 +26,9 @@
         <div>
           <md-list>
             <md-subheader class="md-no-sticky">
-              <span ng-bind-html="_('You have <span class=text-primary>%s</span> applyments, <span class=text-primary>%s</span> displayed.', total, applyments.length)">
+              <span ng-bind-html="_('You have <span class=text-primary>'+
+               '%s</span> applyments, <span class=text-primary>%s</span> '+
+               'displayed.', total, applyments.length)">
               </span>
             </md-subheader>
             <md-divider></md-divider>

@@ -12,7 +12,8 @@
       <div>
         <md-list>
           <md-subheader class="md-no-sticky">
-            <span ng-bind-html="_('You have <span class=text-primary>%s</span> events.', events.length)">
+            <span ng-bind-html="_('You have <span class=text-primary>'+
+             '%s</span> events.', events.length)">
             </span>
           </md-subheader>
           <md-divider></md-divider>
