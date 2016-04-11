@@ -33,6 +33,8 @@ angular.module 'flashSloth'
       supResource "#{api}/activity/:act_id/applyment/:apply_id",
         'act_id': '@activity_id'
         'apply_id': '@id'
+      ,
+        done: method: "POST"
 
     # -- Promo --
     promo: do ->

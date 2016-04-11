@@ -1,10 +1,10 @@
 <md-dialog class="md-content-overflow"
            aria-label="{{_('Reservation')}}"
            flex>
-  <md-toolbar class="dialog md-hue-3">
-    <div class="md-toolbar-tools"
-         layout-align="space-between">
-      <span>{{_('Reservation')}}</span>
+  <md-toolbar class="dialog">
+    <div class="md-toolbar-tools">
+      <h2>{{_('Reservation')}}</h2>
+      <span flex></span>
       <md-button class="md-icon-button"
                  aria-label="{{_('Close')}}"
                  ng-click="close()">
@@ -14,37 +14,59 @@
     </div>
   </md-toolbar>
   <md-dialog-content>
-    <h2 class="md-headline">
-      {{ apply.title }}
-    </h2>
-    <p>{{_('Full Name:')}} {{apply.name}}</p>
-    <p>{{_('Member Account:')}} {{apply.member_login || '-'}}</p>
-    <p>
-      <span>{{_('Promo Code:')}}</span>
-      <span class="text-accent">{{apply.code || '-'}}</span>
-    </p>
-    <p class="text-break">
-      {{_('Message:')}} {{apply.message}}
-    </p>
+    <div layout-margin
+         layout-padding>
+      <h2 class="md-headline">
+        {{ apply.title }}
+      </h2>
+      <div class="md-padding"
+           layout="column">
+        <div class="input-container">
+          <label class="static-label">{{_('Full Name')}}</label>
+          <p class="md-padding"
+             flex-order="2">{{apply.name}}</p>
+        </div>
+        <div class="input-container">
+          <label class="static-label">{{_('Member Account')}}</label>
+          <p class="md-padding"
+             flex-order="2">{{apply.member_login || '-'}}</p>
+        </div>
+        <div class="input-container">
+          <label class="static-label">{{_('Promo Code')}}</label>
+          <p class="md-padding"
+             flex-order="2">{{apply.code}}</p>
+        </div>
+        <div class="input-container">
+          <label class="static-label">{{_('Message')}}</label>
+          <p class="md-padding"
+             flex-order="2">{{apply.message}}</p>
+        </div>
+        <md-input-container flex>
+          <label>{{_('Comment')}}</label>
+          <textarea name="comment"
+                    ng-model="apply.comment"></textarea>
+        </md-input-container>
+      </div>
+    </div>
   </md-dialog-content>
-  <div class="md-actions"
+  <md-dialog-actions
        layout="row"
        layout-align="space-between center"
        flex-order="3">
     <md-button class="md-icon-button"
-               aria-label="{{_('Delete')}}"
+               aria-label="{{_('Done')}}"
                type="button"
                ng-disabled="submitted"
-               ng-click="trash()">
-      <md-icon md-svg-icon="ic_delete_24px">
+               ng-click="done()">
+      <md-icon md-svg-icon="ic_done_24px">
       </md-icon>
     </md-button>
 
-    <md-button class="md-icon-button"
+    <md-button class="md-primary"
                type="submit"
                ng-disabled="submitted"
                ng-click="save()">
       {{_('Save')}}
     </md-button>
-  </div>
+  </md-dialog-actions>
 </md-dialog>

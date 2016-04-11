@@ -1,11 +1,9 @@
 angular.module 'flashSloth'
 
 .service 'dialog', [
-  '$q'
   '$mdDialog'
   '$mdMedia'
   (
-    $q
     $mdDialog
     $mdMedia
   ) ->
@@ -21,8 +19,6 @@ angular.module 'flashSloth'
       options.focusOnOpen = Boolean(options.focusOnOpen)
       return options
 
-    @promise = null
-
     @alert = ->
       $mdDialog.alert()
 
@@ -30,12 +26,7 @@ angular.module 'flashSloth'
       $mdDialog.confirm()
 
     @show = (options, force) ->
-      if self.promise and not force
-        self.cancel()
-      else
-        self.promise = $mdDialog.show(parse_options(options))
-
-      return self.promise
+      return $mdDialog.show(parse_options(options))
 
 
     @hide = (data) ->

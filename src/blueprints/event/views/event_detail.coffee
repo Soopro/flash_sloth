@@ -46,6 +46,13 @@ angular.module 'flashSloth'
         templateUrl: 'blueprints/event/views/apply_edit.tmpl.html'
         locals:
           apply: apply
+      .then (data)->
+        if data.status isnt 0
+          flash "Reservation has been closed."
+          return
+        else
+          flash "Reservation has been saved."
+          return
 
 
     $scope.more = ->
