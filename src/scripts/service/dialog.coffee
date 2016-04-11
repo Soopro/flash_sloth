@@ -3,9 +3,11 @@ angular.module 'flashSloth'
 .service 'dialog', [
   '$q'
   '$mdDialog'
+  '$mdMedia'
   (
     $q
     $mdDialog
+    $mdMedia
   ) ->
     self = @
 
@@ -14,6 +16,8 @@ angular.module 'flashSloth'
         options.clickOutsideToClose = true
       if options.hasBackdrop is undefined
         options.hasBackdrop = true
+      if options.fullscreen = undefined
+        options.fullscreen = Boolean($mdMedia('sm') or $mdMedia('xs'))
       options.focusOnOpen = Boolean(options.focusOnOpen)
       return options
 
@@ -30,8 +34,6 @@ angular.module 'flashSloth'
         self.cancel()
       else
         self.promise = $mdDialog.show(parse_options(options))
-        self.promise.finally ->
-          self.promise = null
 
       return self.promise
 

@@ -10,11 +10,61 @@
           </h2>
         </header>
         <!-- event -->
-        <div>
-          <div>
+        <div layout-margin>
+          <h3 class="md-subhead">
+            {{_('Time:')}}&nbsp;{{event.time || '-'}}
+          </h3>
+          <h3 class="md-subhead">
+            {{_('Location:')}}&nbsp;{{event.location || '-'}}
+          </h3>
+          <p>
+            {{_('Description:')}}&nbsp;{{event.description}}
+          </p>
+        </div>
 
-          </div>
-          <div>
+        <!-- applyments -->
+        <div>
+          <md-list>
+            <md-subheader class="md-no-sticky">
+              <span ng-bind-html="_('You have <span class=text-primary>%s</span> applyments, <span class=text-primary>%s</span> displayed.', total, applyments.length)">
+              </span>
+            </md-subheader>
+            <md-divider></md-divider>
+            <!-- items -->
+            <div class="anim-item"
+                 ng-repeat="apply in applyments">
+              <md-list-item class="md-3-line" ng-click="open(apply)">
+                <div class="md-list-item-text"
+                     layout="column">
+                  <h3 class="text-nowrap"
+                      vw-max="65">
+                    {{ apply.name }}
+                  </h3>
+                  <p class="text-nowrap"
+                     vw-max="65">
+                    <span class="text-accent"
+                          ng-if="apply.code">
+                      [{{ apply.code }}]
+                    </span>
+                    {{ apply.member_login || '-'}}
+                  </p>
+                  <p class="text-nowrap"
+                     vw-max="65">
+                    {{ apply.message }}
+                  </p>
+                </div>
+                <md-icon md-svg-icon="ic_assignment_ind_24px">
+                </md-icon>
+              </md-list-item>
+            </div>
+          </md-list>
+          <div layout="row"
+               layout-align="center center"
+               ng-if="has_more">
+            <md-button class="md-raised"
+                       ng-click="more()">
+              <span>{{_('More')}}</span>
+            </md-button>
           </div>
         </div>
     </section>

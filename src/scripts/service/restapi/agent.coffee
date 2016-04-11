@@ -27,7 +27,12 @@ angular.module 'flashSloth'
     # -- Events --
     activity: do ->
       supResource "#{api}/activity/:act_id",
-        'act_id':'@id'
+        'act_id': '@id'
+
+    applyment: do ->
+      supResource "#{api}/activity/:act_id/applyment/:apply_id",
+        'act_id': '@activity_id'
+        'apply_id': '@id'
 
     # -- Promo --
     promo: do ->
