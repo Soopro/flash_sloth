@@ -1,0 +1,90 @@
+<div class="view-animate">
+  <div layout="row">
+    <!-- column -->
+    <section flex-gt-md="45"
+             offset-gt-md="5"
+             layout-padding>
+      <!-- section header -->
+      <header layout-margin>
+        <h2 class="md-title">
+          {{_('Member')}}
+        </h2>
+      </header>
+      <!-- member -->
+      <div layout-margin
+           ng-show="!member">
+        <form name="member_form"
+              layout="column"
+              ng-submit="find_member()"
+              ng-disabled="submitted"
+              novalidate>
+
+          <md-input-container>
+            <label>{{_('Account')}}</label>
+            <input name="log"
+                   type="text"
+                   ng-model="log"
+                   required/>
+            <ng-messages for="member_form.log.$error">
+              <ng-message when="required">
+                {{ _('Account is required.') }}
+              </ng-message>
+            </ng-messages>
+          </md-input-container>
+
+          <md-input-container>
+            <md-button class="md-raised md-primary"
+                       type="submit">
+              {{_('Find')}}
+            </md-button>
+          </md-input-container>
+        </form>
+      </div>
+      <!-- member -->
+      <div layout-margin
+           ng-show="member">
+        <div>
+          <img class="member-avatar"
+               ng-src="{{member.avatar}}"
+               ng-if="member.avator" />
+          <md-icon class="member-avatar"
+                   md-svg-icon="ic_person_24px"
+                   ng-if="!member.avator">
+          </md-icon>
+        </div>
+        <md-divider></md-divider>
+        <div class="input-container">
+          <label class="static-label">{{_('Full Name')}}</label>
+          <p class="md-title"
+             flex-order="2">
+            {{member.name}}
+          </p>
+        </div>
+        <div class="input-container">
+          <label class="static-label">{{_('Account')}}</label>
+          <p flex-order="2">
+            {{member.login}}
+          </p>
+        </div>
+        <div class="input-container">
+          <label class="static-label">{{_('Member Role')}}</label>
+          <p flex-order="2">
+            {{member.role.title || 'No Role'}}
+          </p>
+        </div>
+        <div class="input-container">
+          <label class="static-label">{{_('Mobile')}}</label>
+          <p flex-order="2">
+            {{member.mobile || '-'}}
+          </p>
+        </div>
+        <div class="input-container">
+          <label class="static-label">{{_('Email')}}</label>
+          <p flex-order="2">
+            {{member.email || '-'}}
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

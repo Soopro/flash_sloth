@@ -19,7 +19,8 @@ angular.module 'flashSloth'
 
     # -- Member --
     member: do ->
-      supResource "#{api}/member"
+      supResource "#{api}/member",
+        'member_log': '@login'
 
     member_apply: do ->
       supResource "#{api}/member/applyment"

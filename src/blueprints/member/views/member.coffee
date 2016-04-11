@@ -1,6 +1,6 @@
 angular.module 'flashSloth'
 
-.controller "portalCtrl", [
+.controller "memberCtrl", [
   '$scope'
   '$routeParams'
   '$filter'
@@ -21,5 +21,11 @@ angular.module 'flashSloth'
     fsv
     g
   ) ->
-    $scope.status = restAgent.status.get()
+    $scope.member = null
+
+    $scope.find_member = ->
+      if not fsv($scope.member_form, ['log'])
+        return
+      $scope.member = restAgent.member.get
+        member_log: $scope.log
 ]
