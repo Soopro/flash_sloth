@@ -11,14 +11,17 @@
         </header>
         <!-- event -->
         <div layout-margin>
-          <h3 class="md-subhead">
-            {{_('Time:')}}&nbsp;{{event.time || '-'}}
-          </h3>
-          <h3 class="md-subhead">
-            {{_('Location:')}}&nbsp;{{event.location || '-'}}
-          </h3>
           <p>
-            {{_('Description:')}}&nbsp;{{event.description}}
+            {{_('Time:')}}
+            {{event.time || '-'}}
+          </p>
+          <p>
+            {{_('Location:')}}
+            {{event.location || '-'}}
+          </p>
+          <p>
+            {{_('Description:')}}
+            {{event.description}}
           </p>
         </div>
 
@@ -72,7 +75,7 @@
                ng-if="has_more">
             <md-button class="md-raised"
                        ng-click="more()">
-              <span>{{_('More')}}</span>
+              {{_('More')}}
             </md-button>
           </div>
         </div>
