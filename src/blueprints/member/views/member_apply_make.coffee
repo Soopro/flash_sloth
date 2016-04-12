@@ -29,6 +29,8 @@ angular.module 'flashSloth'
       $scope.apply.$save()
       .then (data) ->
         dialog.hide(data)
+      .finally ->
+        $scope.submitted = false
 
     $scope.close = ->
       dialog.cancel()

@@ -3,20 +3,16 @@ angular.module 'flashSloth'
 .controller "memberApplyEditCtrl", [
   '$scope'
   'dialog'
-  'restAgent'
   'apply'
   (
     $scope
     dialog
-    restAgent
     apply
   ) ->
     if typeof(angular.translate) is 'function'
       $scope._ = angular.translate
 
-    $scope.apply = restAgent.applyment.get
-      act_id: apply.activity_id
-      apply_id: apply.id
+    $scope.apply = apply
 
     $scope.submitted = false
 
@@ -27,6 +23,8 @@ angular.module 'flashSloth'
       $scope.apply.$done()
       .then (data) ->
         dialog.hide(data)
+      .finally ->
+        $scope.submitted = false
 
     $scope.save = ->
       if $scope.submitted
@@ -35,6 +33,8 @@ angular.module 'flashSloth'
       $scope.apply.$save()
       .then (data) ->
         dialog.hide(data)
+      .finally ->
+        $scope.submitted = false
 
     $scope.close = ->
       dialog.cancel()

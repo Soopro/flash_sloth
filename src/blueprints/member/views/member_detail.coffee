@@ -57,6 +57,7 @@ angular.module 'flashSloth'
       .then (data)->
         last_index+=1
         $scope.total+=1
+        console.log data
         $scope.applyments.unshift data
       .then (data)->
         flash "Reservation has been created."
@@ -69,7 +70,6 @@ angular.module 'flashSloth'
         locals:
           apply: apply
       .then (data)->
-        apply.status = data.status
         if data.status isnt 0
           flash "Reservation has been closed."
         else

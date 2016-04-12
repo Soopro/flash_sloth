@@ -29,6 +29,7 @@
           <md-select placeholder="Assign to Event"
                      md-on-open="loadEvents()"
                      flex-order="3"
+                     required
                      ng-model="apply.activity_id">
             <md-option ng-repeat="event in events"
                        ng-value="event.id">
@@ -42,13 +43,6 @@
           <input name="name"
                  type="text"
                  ng-model="apply.name"/>
-        </md-input-container>
-
-        <md-input-container>
-          <label>{{_('Promo Code')}}</label>
-          <input name="code"
-                 type="text"
-                 ng-model="apply.code"/>
         </md-input-container>
 
         <md-input-container>
@@ -75,7 +69,7 @@
                type="submit"
                ng-disabled="submitted"
                ng-click="save()">
-      {{_('Save')}}
+      {{_('Create')}}
     </md-button>
   </md-dialog-actions>
 </md-dialog>

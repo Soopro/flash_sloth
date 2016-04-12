@@ -22,6 +22,8 @@ angular.module 'flashSloth'
       $scope.apply.$done()
       .then (data) ->
         dialog.hide(data)
+      .finally ->
+        $scope.submitted = false
 
     $scope.save = ->
       if $scope.submitted
@@ -30,6 +32,8 @@ angular.module 'flashSloth'
       $scope.apply.$save()
       .then (data) ->
         dialog.hide(data)
+      .finally ->
+        $scope.submitted = false
 
     $scope.close = ->
       dialog.cancel()
