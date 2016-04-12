@@ -23,7 +23,7 @@
            layout="column">
         <div class="input-container">
           <label class="static-label">{{_('Full Name')}}</label>
-          <p flex-order="2">{{apply.name}}</p>
+          <p flex-order="2">{{apply.name || '-'}}</p>
         </div>
         <div class="input-container">
           <label class="static-label">{{_('Member Account')}}</label>
@@ -31,11 +31,11 @@
         </div>
         <div class="input-container">
           <label class="static-label">{{_('Promo Code')}}</label>
-          <p flex-order="2">{{apply.code}}</p>
+          <p flex-order="2">{{apply.code || '-'}}</p>
         </div>
         <div class="input-container">
           <label class="static-label">{{_('Message')}}</label>
-          <p flex-order="2">{{apply.message}}</p>
+          <p flex-order="2">{{apply.message || '...'}}</p>
         </div>
         <md-input-container flex>
           <label>{{_('Memo')}}</label>

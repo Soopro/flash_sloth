@@ -24,8 +24,11 @@ angular.module 'flashSloth'
         'member_id': '@id'
 
     member_apply: do ->
-      supResource "#{api}/member/:member_id/applyment",
+      supResource "#{api}/member/:member_id/applyment/:apply_id",
         'member_id': '@member_id'
+        'apply_id': '@id'
+      ,
+        done: method: "POST"
 
     # -- Events --
     activity: do ->

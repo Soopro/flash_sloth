@@ -21,21 +21,30 @@
         {{ _('Make New Reservation') }}
       </h2>
 
-      <div class="md-padding"
-           layout="column">
+      <form class="md-padding"
+            name="create_form"
+            layout="column"
+            ng-submit="save()"
+            novalidate>
 
         <md-input-container>
           <label>{{_('Event')}}</label>
           <md-select placeholder="Assign to Event"
                      md-on-open="loadEvents()"
                      flex-order="3"
-                     required
-                     ng-model="apply.activity_id">
+                     name="event"
+                     ng-model="apply.activity_id"
+                     required>
             <md-option ng-repeat="event in events"
                        ng-value="event.id">
               {{event.title}}
             </md-option>
           </md-select>
+          <ng-messages for="create_form.event.$error">
+            <ng-message when="required">
+              {{ _('Must assign to an event.') }}
+            </ng-message>
+          </ng-messages>
         </md-input-container>
 
         <md-input-container>
@@ -57,7 +66,8 @@
                     ng-model="apply.memo"></textarea>
         </md-input-container>
 
-      </div>
+      </form>
+
     </div>
   </md-dialog-content>
   <md-dialog-actions
@@ -66,7 +76,6 @@
        flex-order="3">
 
     <md-button class="md-primary"
-               type="submit"
                ng-disabled="submitted"
                ng-click="save()">
       {{_('Create')}}

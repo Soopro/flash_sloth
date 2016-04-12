@@ -4,11 +4,13 @@ angular.module 'flashSloth'
   '$scope'
   'restAgent'
   'dialog'
+  'fsv'
   'apply'
   (
     $scope
     restAgent
     dialog
+    fsv
     apply
   ) ->
     if typeof(angular.translate) is 'function'
@@ -23,6 +25,8 @@ angular.module 'flashSloth'
       $scope.events = restAgent.activity.query()
 
     $scope.save = ->
+      if not fsv($scope.create_form, ['event'])
+        return
       if $scope.submitted
         return
       $scope.submitted = true
