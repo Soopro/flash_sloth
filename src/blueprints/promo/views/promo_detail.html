@@ -1,0 +1,166 @@
+<div class="view-animate">
+  <div layout="column">
+    <!-- column -->
+    <section layout-padding>
+        <!-- section header -->
+        <header layout-margin>
+          <h2 class="md-display-1 text-nowrap"
+              vw-max="65">
+            {{promo.meta.title}}
+          </h2>
+        </header>
+        <!-- promo info -->
+        <div layout-margin>
+          <h3 class="md-subhead">
+            {{_('Alias:')}}
+            {{promo.alias}}
+          </h3>
+          <h3 class="md-subhead">
+            {{_('Type:')}}
+            {{promo_type_name(promo.type)}}
+          </h3>
+          <p>
+            {{_('Mode:')}}
+            {{promo.common?_('Common'):_('Distribution')}}
+          </h3>
+          <p ng-if="!promo.common">
+            {{_('Reserves:')}}
+            {{promo.count.used}} / {{promo.count.total}}
+            {{promo.amount?'['+promo.amount+']':''}}
+          </p>
+          <p ng-if="!promo.common && promo.upper">
+            {{_('Upper:')}}
+            {{promo.count.upper}}
+          </p>
+          <p ng-if="promo.duration">
+            {{_('Remain:')}}
+            {{remain(promo.remain)}}
+          </p>
+          <p ng-if="promo.amount">
+            {{_('Amount:')}}
+            {{promo.amount}}
+          </p>
+          <p>
+            {{_('Updated:')}}
+            {{promo.updated | dateformat}}
+          </p>
+          <p>
+            {{_('Description:')}}&nbsp;{{promo.meta.description}}
+          </p>
+        </div>
+
+        <!-- promo action -->
+        <div layout-margin>
+          <md-list>
+            <md-subheader class="md-no-sticky">
+              <span ng-bind-html="_('You have <span class=text-primary>'+
+               '%s</span> reservations, <span class=text-primary>%s</span> '+
+               'displayed.', total, applyments.length)">
+              </span>
+            </md-subheader>
+            <md-divider></md-divider>
+            <!-- items -->
+            <div class="anim-item"
+                 ng-repeat="apply in applyments">
+              <md-list-item class="md-3-line" ng-click="open(apply)">
+                <div class="md-list-item-text"
+                     layout="column">
+                  <h3 class="text-nowrap"
+                      vw-max="65">
+                    {{ apply.name }}
+                  </h3>
+                  <p class="text-nowrap"
+                     vw-max="65">
+                    <span class="text-accent"
+                          ng-if="apply.code">
+                      [{{ apply.code }}]
+                    </span>
+                    {{ apply.member_login || '-'}}
+                  </p>
+                  <p class="text-nowrap"
+                     vw-max="65">
+                    {{ apply.message }}
+                  </p>
+                </div>
+                <md-icon md-svg-icon="ic_assignment_ind_24px"
+                         ng-if="apply.status == 0">
+                </md-icon>
+                <md-icon md-svg-icon="ic_done_24px"
+                         ng-if="apply.status == 1">
+                </md-icon>
+                <md-icon md-svg-icon="ic_block_24px"
+                         ng-if="apply.status == 2">
+                </md-icon>
+              </md-list-item>
+            </div>
+          </md-list>
+          <div layout="row"
+               layout-align="center center"
+               ng-if="has_more">
+            <md-button class="md-raised"
+                       ng-click="more()">
+              <span>{{_('More')}}</span>
+            </md-button>
+          </div>
+        </div>
+    </section>
+
+    <!-- column -->
+    <section>
+      <!-- promo action -->
+      <div layout-margin>
+        <md-list>
+          <md-subheader class="md-no-sticky">
+            <span ng-bind-html="_('You have <span class=text-primary>'+
+             '%s</span> reservations, <span class=text-primary>%s</span> '+
+             'displayed.', total, applyments.length)">
+            </span>
+          </md-subheader>
+          <md-divider></md-divider>
+          <!-- items -->
+          <div class="anim-item"
+               ng-repeat="apply in applyments">
+            <md-list-item class="md-3-line" ng-click="open(apply)">
+              <div class="md-list-item-text"
+                   layout="column">
+                <h3 class="text-nowrap"
+                    vw-max="65">
+                  {{ apply.name }}
+                </h3>
+                <p class="text-nowrap"
+                   vw-max="65">
+                  <span class="text-accent"
+                        ng-if="apply.code">
+                    [{{ apply.code }}]
+                  </span>
+                  {{ apply.member_login || '-'}}
+                </p>
+                <p class="text-nowrap"
+                   vw-max="65">
+                  {{ apply.message }}
+                </p>
+              </div>
+              <md-icon md-svg-icon="ic_assignment_ind_24px"
+                       ng-if="apply.status == 0">
+              </md-icon>
+              <md-icon md-svg-icon="ic_done_24px"
+                       ng-if="apply.status == 1">
+              </md-icon>
+              <md-icon md-svg-icon="ic_block_24px"
+                       ng-if="apply.status == 2">
+              </md-icon>
+            </md-list-item>
+          </div>
+        </md-list>
+        <div layout="row"
+             layout-align="center center"
+             ng-if="has_more">
+          <md-button class="md-raised"
+                     ng-click="more()">
+            <span>{{_('More')}}</span>
+          </md-button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

@@ -14,7 +14,7 @@ angular.module 'flashSloth'
         options.clickOutsideToClose = true
       if options.hasBackdrop is undefined
         options.hasBackdrop = true
-      if options.fullscreen = undefined
+      if options.fullscreen is undefined
         options.fullscreen = Boolean($mdMedia('sm') or $mdMedia('xs'))
       options.focusOnOpen = Boolean(options.focusOnOpen)
       return options
