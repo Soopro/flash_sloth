@@ -40,10 +40,18 @@ angular.module 'flashSloth'
       member_id: member_id
 
 
-    $scope.applyments = restAgent.member_apply.query
-      member_id: member_id
-    , (list)->
-      process_paged(list)
+    init_applyments = ->
+      paged = 0
+      last_index = 0
+      $scope.has_more = false
+      $scope.total = 0
+
+      $scope.applyments = restAgent.member_apply.query
+        member_id: member_id
+      , (list)->
+        process_paged(list)
+
+    init_applyments()
 
 
     $scope.make_applyment = ->
@@ -55,9 +63,10 @@ angular.module 'flashSloth'
         templateUrl: 'blueprints/member/views/member_apply_make.tmpl.html'
         locals:
           apply: apply
+      .then ->
+        init_applyments()
       .then (data)->
         flash "Reservation has been created."
-
 
 
     $scope.open = (apply)->
