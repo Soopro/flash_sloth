@@ -44,8 +44,8 @@ angular.module 'flashSloth'
       supResource "#{api}/promo/:promo_id",
         'promo_id': '@id'
 
-    promocode: do ->
-      supResource "#{api}/promo/code/:code",
+    promo_code: do ->
+      supResource "#{api}/promo/:promo_id/code/:code",
         'code':'@code'
 
 ]

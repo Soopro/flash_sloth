@@ -39,19 +39,10 @@ angular.module 'flashSloth'
     $scope.member = restAgent.member.get
       member_id: member_id
 
-
-    init_applyments = ->
-      paged = 0
-      last_index = 0
-      $scope.has_more = false
-      $scope.total = 0
-
-      $scope.applyments = restAgent.member_apply.query
-        member_id: member_id
-      , (list)->
-        process_paged(list)
-
-    init_applyments()
+    $scope.applyments = restAgent.member_apply.query
+      member_id: member_id
+    , (list)->
+      process_paged(list)
 
 
     $scope.make_applyment = ->
@@ -63,25 +54,20 @@ angular.module 'flashSloth'
         templateUrl: 'blueprints/member/views/member_apply_make.tmpl.html'
         locals:
           apply: apply
-      .then ->
-        init_applyments()
+      .then (data)->
+        last_index+=1
+        $scope.total+=1
+        $scope.applyments.unshift data
       .then (data)->
         flash "Reservation has been created."
 
 
     $scope.open = (apply)->
       dialog.show
-        controller: 'memberApplyEditCtrl'
+        controller: 'memberApplyDetailCtrl'
         templateUrl: 'blueprints/member/views/member_apply_edit.tmpl.html'
         locals:
           apply: apply
-      .then (data)->
-        if data.status isnt 0
-          flash "Reservation has been closed."
-          return
-        else
-          flash "Reservation has been saved."
-          return
 
 
     $scope.more = ->

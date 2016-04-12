@@ -40,7 +40,8 @@
         <md-input-container flex>
           <label>{{_('Memo')}}</label>
           <textarea name="memo"
-                    ng-model="apply.memo"></textarea>
+                    ng-model="apply.memo"
+                    ng-disabled="apply.status != 0"></textarea>
         </md-input-container>
       </div>
     </div>
@@ -52,7 +53,7 @@
     <md-button class="md-icon-button"
                aria-label="{{_('Done')}}"
                type="button"
-               ng-disabled="submitted"
+               ng-disabled="submitted || apply.status != 0"
                ng-click="done()">
       <md-icon md-svg-icon="ic_done_24px">
       </md-icon>

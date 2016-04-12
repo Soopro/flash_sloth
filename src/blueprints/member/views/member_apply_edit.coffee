@@ -3,19 +3,35 @@ angular.module 'flashSloth'
 .controller "memberApplyEditCtrl", [
   '$scope'
   'dialog'
+  'restAgent'
   'apply'
   (
     $scope
     dialog
+    restAgent
     apply
   ) ->
     if typeof(angular.translate) is 'function'
       $scope._ = angular.translate
 
-    $scope.apply = apply
+    $scope.apply = restAgent.applyment.get
+      act_id: apply.activity_id
+      apply_id: apply.id
+
     $scope.submitted = false
 
+    $scope.done = ->
+      if $scope.submitted or $scope.apply.status isnt 0
+        return
+      $scope.submitted = true
+      $scope.apply.$done()
+      .then (data) ->
+        dialog.hide(data)
+
     $scope.save = ->
+      if $scope.apply.status isnt 0
+        dialog.hide($scope.apply)
+        return
       if $scope.submitted
         return
       $scope.submitted = true

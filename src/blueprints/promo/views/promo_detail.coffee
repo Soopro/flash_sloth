@@ -21,8 +21,12 @@ angular.module 'flashSloth'
   ) ->
     promo_id = $routeParams.promo_id
 
+    $scope.code = ''
+    $scope.promo_code = null
+
     $scope.promo = restAgent.promo.get
       promo_id: promo_id
+
 
     $scope.remain = (remain)->
       if remain
@@ -39,5 +43,15 @@ angular.module 'flashSloth'
         if type.key == ptype
           return type.name
       return null
+
+    $scope.find_code = (code)->
+      $scope.promo_code = new restAgent.promo_code
+        promo_id: promo_id
+        code: code
+
+      $scope.promo_code.$get()
+      .catch (error)->
+        $scope.promo_code._error = true
+
 
 ]

@@ -30,7 +30,7 @@ angular.module 'flashSloth'
         last_data = list[list.length-1]
         last_index = last_data.cursor.index
         $scope.total = last_data.cursor.total
-        $scope.has_more = last_data.cursor.index < last_data.cursor.total-1
+        $scope.has_more = last_index < $scope.total-1
 
     $scope.event = restAgent.activity.get
       act_id: act_id
@@ -48,6 +48,13 @@ angular.module 'flashSloth'
           apply: apply
       .then (data)->
         if data.status isnt 0
+          last_index-=1
+          $scope.total-=1
+          angular.removeFromList(
+            $scope.applyments,
+            data,
+            'id'
+          )
           flash "Reservation has been closed."
           return
         else

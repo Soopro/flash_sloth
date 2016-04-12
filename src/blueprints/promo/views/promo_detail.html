@@ -1,5 +1,5 @@
 <div class="view-animate">
-  <div layout="column">
+  <div layout-gt-sm="row">
     <!-- column -->
     <section flex-gt-sm="45"
              offset-gt-sm="5"
@@ -7,15 +7,17 @@
         <!-- section header -->
         <header layout-margin>
           <h2 class="md-display-1 text-nowrap"
-              vw-max="65">
+              vw-max="80">
             {{promo.meta.title}}
           </h2>
         </header>
         <!-- promo info -->
         <div layout-margin>
           <p>
-            {{_('Alias:')}}
-            {{promo.alias}}
+            {{_('Base Code:')}}
+            <span class="text-primary">
+              {{promo.base_code}}
+            </span>
           </p>
           <p>
             {{_('Type:')}}
@@ -53,7 +55,7 @@
           </h2>
           <form name="find_form"
                 layout="column"
-                ng-submit="find_code()"
+                ng-submit="find_code(code)"
                 novalidate>
             <md-input-container>
               <label>{{_('Code')}}</label>
@@ -77,9 +79,63 @@
         </div>
     </section>
 
+
     <!-- column -->
-    <section>
-      <!-- promo action -->
+    <section flex-gt-sm="45"
+             offset-gt-sm="5"
+             layout-padding>
+      <!-- section header -->
+      <header layout-margin>
+        <h2 class="md-display-1 text-nowrap"
+            vw-max="80">
+          {{_('Promotion Code')}}
+        </h2>
+      </header>
+      <!-- promo code -->
+      <div layout-margin>
+        <!-- code card -->
+        <md-card>
+          <img ng-src="{{promo_code.meta.sticker}}">
+          <md-card-content layout='column'
+                           layout-align="center center">
+            <div class="md-title subject">
+
+            </div>
+            <div class="md-display-2"
+                 ng-if="!promo_code._error">
+              {{promo_code.display_code}}
+            </div>
+            <div class="md-display-2"
+                 ng-if="promo_code._error">
+              {{_('Error')}}
+            </div>
+            <div layout-margin>
+              <md-button class="main-nav-btn md-primary"
+                         ng-click="use_code(promo_code)"
+                         ng-disabled="promo_code.status != 0">
+                {{_('Use')}}
+              </md-button>
+            </div>
+          </md-card-content>
+        </md-card>
+
+        <div layout="row"
+             layout-align="center center"
+             ng-if="has_more">
+          <md-button class="md-raised"
+                     ng-click="more()">
+            {{_('More')}}
+          </md-button>
+        </div>
+      </div>
+    </section>
+
+    <!-- column -->
+    <section flex-gt-sm="45"
+             offset-gt-sm="5"
+             ng-if="gen"
+             layout-padding>
+      <!-- promo code -->
       <div layout-margin>
         <md-list>
           <md-subheader class="md-no-sticky">
