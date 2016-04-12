@@ -1,7 +1,9 @@
 <div class="view-animate">
   <div layout="column">
     <!-- column -->
-    <section layout-padding>
+    <section flex-gt-sm="45"
+             offset-gt-sm="5"
+             layout-padding>
         <!-- section header -->
         <header layout-margin>
           <h2 class="md-display-1 text-nowrap"
@@ -44,26 +46,31 @@
           </p>
         </div>
 
-        <!-- promo action -->
+        <!-- find promo code -->
         <div layout-margin>
           <h2 class="md-title">
-            {{_('Use Promotion Code')}}
+            {{_('Find Promotion Code')}}
           </h2>
-          <form name="new_member_form"
+          <form name="find_form"
                 layout="column"
-                ng-submit="create_member()"
+                ng-submit="find_code()"
                 novalidate>
             <md-input-container>
               <label>{{_('Code')}}</label>
               <input name="code"
                      type="text"
                      ng-model="code"/>
+              <ng-messages for="find_form.code.$error">
+                <ng-message when="required">
+                  {{ _('Code is required.') }}
+                </ng-message>
+              </ng-messages>
             </md-input-container>
             <div>
               <md-button class="md-raised"
-                         ng-disabled="submitted"
-                         ng-click="use()">
-                {{_('Use')}}
+                         type="submit"
+                         ng-disabled="submitted">
+                {{_('Find')}}
               </md-button>
             </div>
           </form>
