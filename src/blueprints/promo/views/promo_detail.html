@@ -50,9 +50,9 @@
 
         <!-- find promo code -->
         <div layout-margin>
-          <h2 class="md-title">
+          <h3 class="md-title">
             {{_('Find Promotion Code')}}
-          </h2>
+          </h3>
           <form name="find_form"
                 layout="column"
                 ng-submit="find_code(code)"
@@ -95,21 +95,30 @@
       <div layout-margin>
         <!-- code card -->
         <md-card>
-          <img ng-src="{{promo_code.meta.sticker}}">
-          <md-card-content layout='column'
+          <img ng-src="{{promo_code.meta.sticker}}"
+               ng-show="promo_code.meta.sticker">
+          <md-icon class="s120"
+                   md-svg-icon="ic_local_play_24px"
+                   ng-show="!promo_code.meta.sticker">
+          </md-icon>
+          <md-card-content ng-show="promo_code.display_code ||
+                                    promo_code._error"
+                           layout='column'
                            layout-align="center center">
-            <div class="md-title subject">
 
+            <div class="md-display-1 text-break">
+              <span class="text-primary"
+                    ng-if="!promo_code._error">
+                {{promo_code.display_code}}
+              </span>
+              <span class="text-warn"
+                    ng-if="promo_code._error">
+                {{_('Error')}}
+              </span>
             </div>
-            <div class="md-display-2"
-                 ng-if="!promo_code._error">
-              {{promo_code.display_code}}
-            </div>
-            <div class="md-display-2"
-                 ng-if="promo_code._error">
-              {{_('Error')}}
-            </div>
-            <div layout-margin>
+
+            <div ng-show="promo_code.status"
+                 layout-margin>
               <md-button class="main-nav-btn md-primary"
                          ng-click="use_code(promo_code)"
                          ng-disabled="promo_code.status != 0">
