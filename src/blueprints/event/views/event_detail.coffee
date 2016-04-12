@@ -26,11 +26,11 @@ angular.module 'flashSloth'
     $scope.total = 0
 
     process_paged = (list)->
-        if list.length > 0
-          last_data = list[list.length-1]
-          last_index = last_data.cursor.index
-          $scope.total = last_data.cursor.total
-          $scope.has_more = last_data.cursor.index < last_data.cursor.total-1
+      if list.length > 0
+        last_data = list[list.length-1]
+        last_index = last_data.cursor.index
+        $scope.total = last_data.cursor.total
+        $scope.has_more = last_data.cursor.index < last_data.cursor.total-1
 
     $scope.event = restAgent.activity.get
       act_id: act_id

@@ -1,0 +1,68 @@
+<md-dialog class="md-content-overflow"
+           aria-label="{{_('Reservation')}}"
+           flex>
+  <md-toolbar class="dialog">
+    <div class="md-toolbar-tools">
+      <h2>{{_('Reservation')}}</h2>
+      <span flex></span>
+      <md-button class="md-icon-button"
+                 aria-label="{{_('Close')}}"
+                 ng-click="close()">
+        <md-icon md-svg-icon="ic_close_24px">
+        </md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div layout-margin
+         layout-padding>
+      <h2 class="md-headline">
+        {{ apply.title }}
+      </h2>
+      <div class="md-padding"
+           layout="column">
+        <div class="input-container">
+          <label class="static-label">{{_('Full Name')}}</label>
+          <p flex-order="2">{{apply.name}}</p>
+        </div>
+        <div class="input-container">
+          <label class="static-label">{{_('Member Account')}}</label>
+          <p flex-order="2">{{apply.member_login || '-'}}</p>
+        </div>
+        <div class="input-container">
+          <label class="static-label">{{_('Promo Code')}}</label>
+          <p flex-order="2">{{apply.code}}</p>
+        </div>
+        <div class="input-container">
+          <label class="static-label">{{_('Message')}}</label>
+          <p flex-order="2">{{apply.message}}</p>
+        </div>
+        <md-input-container flex>
+          <label>{{_('Memo')}}</label>
+          <textarea name="memo"
+                    ng-model="apply.memo"></textarea>
+        </md-input-container>
+      </div>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions
+       layout="row"
+       layout-align="space-between center"
+       flex-order="3">
+    <md-button class="md-icon-button"
+               aria-label="{{_('Done')}}"
+               type="button"
+               ng-disabled="submitted"
+               ng-click="done()">
+      <md-icon md-svg-icon="ic_done_24px">
+      </md-icon>
+    </md-button>
+
+    <md-button class="md-primary"
+               type="submit"
+               ng-disabled="submitted"
+               ng-click="save()">
+      {{_('Save')}}
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

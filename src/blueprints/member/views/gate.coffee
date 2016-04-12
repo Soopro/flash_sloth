@@ -4,11 +4,13 @@ angular.module 'flashSloth'
   '$scope'
   '$location'
   'restAgent'
+  'flash'
   'fsv'
   (
     $scope
     $location
     restAgent
+    flash
     fsv
   ) ->
     $scope.submitted = false
@@ -30,13 +32,19 @@ angular.module 'flashSloth'
       .finally ->
         $scope.submitted = false
 
-    $scope.new_member = ->
-      if not fsv($scope.new_member_form, ['login', 'name', 'mobile', 'email'])
+    $scope.create_member = ->
+      fields = ['log', 'pwd', 'name', 'mobile', 'email']
+      if not fsv($scope.new_member_form, fields)
         return
       if $scope.submitted
         return
       $scope.submitted = true
       $scope.new.$save()
+      .then (data)->
+        $scope.new_member_form.$setPristine()
+        $scope.new_member_form.$setUntouched()
+        $location.path 'member/'+data.id
+        flash 'Member has been created.'
       .finally ->
         $scope.submitted = false
 ]

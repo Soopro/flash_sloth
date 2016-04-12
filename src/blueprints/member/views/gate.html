@@ -60,13 +60,26 @@
 
           <md-input-container>
             <label>{{_('Account')}}</label>
-            <input name="login"
+            <input name="log"
                    type="text"
-                   ng-model="new.login"
+                   ng-model="new.log"
                    required/>
-            <ng-messages for="new_member_form.login.$error">
+            <ng-messages for="new_member_form.log.$error">
               <ng-message when="required">
                 {{ _('Account is required.') }}
+              </ng-message>
+            </ng-messages>
+          </md-input-container>
+
+          <md-input-container>
+            <label>{{_('Password')}}</label>
+            <input name="pwd"
+                   type="text"
+                   ng-model="new.pwd"
+                   required/>
+            <ng-messages for="new_member_form.pwd.$error">
+              <ng-message when="required">
+                {{ _('Password is required.') }}
               </ng-message>
             </ng-messages>
           </md-input-container>

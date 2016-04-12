@@ -1,0 +1,81 @@
+<md-dialog class="md-content-overflow"
+           aria-label="{{_('Reservation')}}"
+           flex>
+  <md-toolbar class="dialog">
+    <div class="md-toolbar-tools">
+      <h2>{{_('Reservation')}}</h2>
+      <span flex></span>
+      <md-button class="md-icon-button"
+                 aria-label="{{_('Close')}}"
+                 ng-click="close()">
+        <md-icon md-svg-icon="ic_close_24px">
+        </md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div layout-margin
+         layout-padding>
+
+      <h2 class="md-headline">
+        {{ _('Make New Reservation') }}
+      </h2>
+
+      <div class="md-padding"
+           layout="column">
+
+        <md-input-container>
+          <label>{{_('Event')}}</label>
+          <md-select placeholder="Assign to Event"
+                     md-on-open="loadEvents()"
+                     flex-order="3"
+                     ng-model="apply.activity_id">
+            <md-option ng-repeat="event in events"
+                       ng-value="event.id">
+              {{event.title}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container>
+          <label>{{_('Full Name')}}</label>
+          <input name="name"
+                 type="text"
+                 ng-model="apply.name"/>
+        </md-input-container>
+
+        <md-input-container>
+          <label>{{_('Promo Code')}}</label>
+          <input name="code"
+                 type="text"
+                 ng-model="apply.code"/>
+        </md-input-container>
+
+        <md-input-container>
+          <label>{{_('Message')}}</label>
+          <textarea name="message"
+                    ng-model="apply.message"></textarea>
+        </md-input-container>
+
+        <md-input-container>
+          <label>{{_('Memo')}}</label>
+          <textarea name="memo"
+                    ng-model="apply.memo"></textarea>
+        </md-input-container>
+
+      </div>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions
+       layout="row"
+       layout-align="end center"
+       flex-order="3">
+
+    <md-button class="md-primary"
+               type="submit"
+               ng-disabled="submitted"
+               ng-click="save()">
+      {{_('Save')}}
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>
