@@ -47,9 +47,11 @@ angular.module 'flashSloth'
       supResource "#{api}/promo/:promo_id",
         'promo_id': '@id'
 
-    promo_code: do ->
+    promocode: do ->
       supResource "#{api}/promo/:promo_id/code/:code",
-        'promo_id': '@promo_id'
+        'promo_id': '@id'
         'code':'@code'
+      ,
+        use: method: "POST"
 
 ]

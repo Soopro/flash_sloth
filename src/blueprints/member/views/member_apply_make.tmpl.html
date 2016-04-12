@@ -40,7 +40,8 @@
               {{event.title}}
             </md-option>
           </md-select>
-          <ng-messages for="create_form.event.$error">
+          <ng-messages ng-show="create_form.event.$touched"
+                       for="create_form.event.$error">
             <ng-message when="required">
               {{ _('Must assign to an event.') }}
             </ng-message>

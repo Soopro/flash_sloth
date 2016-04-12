@@ -874,14 +874,7 @@ md-card{
   }
 
   &.promo {
-    text-align: center;
-    & > img {
-      max-width: 360px;
-      margin: 0 auto;
-    }
-    & md-card-content{
-      text-align: center;
-    }
+    min-height: 360px;
   }
 }
 
@@ -957,11 +950,11 @@ md-dialog{
 
 // tabs
 md-tabs {
-  & .tab-content{
+  & .tab-content {
     margin-top: 16px;
     min-height: 300px;
   }
-  &.short .tab-content{
+  &.short .tab-content {
     min-height: 200px;
   }
   &[md-dynamic-height] md-tab-content {

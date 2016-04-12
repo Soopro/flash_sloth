@@ -44,7 +44,7 @@ angular.module 'flashSloth'
       return deadline
 
 
-    $scope.promo_code = {}
+    $scope.promocode = {}
 
     $scope.promo_profile = new restAgent.promocode({
       sid: promo_sid
@@ -82,7 +82,7 @@ angular.module 'flashSloth'
         check_badrequest(error)
 
     $scope.reset = ->
-      $scope.promo_code = {}
+      $scope.promocode = {}
       $scope.input = {}
       for k,v of $scope.forms
         v.$setPristine()
@@ -91,30 +91,30 @@ angular.module 'flashSloth'
     $scope.get = ->
       if not fsv($scope.forms.get_form, 'code')
         return
-      $scope.promo_code = new restAgent.promocode({
+      $scope.promocode = new restAgent.promocode({
         code: process_code($scope.input.code)
         sid: promo_sid
         pin: $scope.pin
       })
 
-      $scope.promo_code.$get()
+      $scope.promocode.$get()
       .then (data)->
         $scope.promo_profile.endtime = get_endtime(data.remain)
         $scope.promo_profile.count = data.count
         $scope.promo_profile.common = data.common
       .catch (error)->
         check_badrequest(error)
-        $scope.promo_code._error = true
+        $scope.promocode._error = true
 
     $scope.use = ->
       if not fsv($scope.forms.use_form, 'code')
         return
-      $scope.promo_code = new restAgent.promocode({
+      $scope.promocode = new restAgent.promocode({
         code: process_code($scope.input.code)
         sid: promo_sid
         pin: $scope.pin
       })
-      $scope.promo_code.$use()
+      $scope.promocode.$use()
       .then (data)->
         $scope.promo_profile.endtime = get_endtime(data.remain)
         $scope.promo_profile.count = data.count
@@ -122,7 +122,7 @@ angular.module 'flashSloth'
         flash 'Promo code has been used.'
       .catch (error)->
         check_badrequest(error)
-        $scope.promo_code._error = true
+        $scope.promocode._error = true
 
     reset_create_count = ->
       $scope.input.count = 1

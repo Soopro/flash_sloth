@@ -23,7 +23,8 @@
                    type="text"
                    ng-model="member.login"
                    required/>
-            <ng-messages for="member_form.login.$error">
+            <ng-messages ng-show="member_form.login.$touched"
+                         for="member_form.login.$error">
               <ng-message when="required">
                 {{ _('Account is required.') }}
               </ng-message>
@@ -63,7 +64,8 @@
                    type="text"
                    ng-model="new.log"
                    required/>
-            <ng-messages for="new_member_form.log.$error">
+            <ng-messages ng-show="new_member_form.log.$touched"
+                         for="new_member_form.log.$error">
               <ng-message when="required">
                 {{ _('Account is required.') }}
               </ng-message>
@@ -76,7 +78,8 @@
                    type="text"
                    ng-model="new.pwd"
                    required/>
-            <ng-messages for="new_member_form.pwd.$error">
+            <ng-messages ng-show="new_member_form.pwd.$touched"
+                         for="new_member_form.pwd.$error">
               <ng-message when="required">
                 {{ _('Password is required.') }}
               </ng-message>
@@ -102,7 +105,8 @@
             <input name="email"
                    type="email"
                    ng-model="new.email"/>
-            <ng-messages for="new_member_form.email.$error">
+            <ng-messages ng-show="new_member_form.email.$touched"
+                         for="new_member_form.email.$error">
               <ng-message when="email">
                 {{ _('Must be an email.') }}
               </ng-message>
