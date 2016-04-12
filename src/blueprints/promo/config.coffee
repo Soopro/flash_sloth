@@ -1,6 +1,6 @@
 angular.module 'flashSloth'
 
-.constant 'ConfigAgent',
+.constant 'ConfigPromo',
 
   promo_types: [
     {

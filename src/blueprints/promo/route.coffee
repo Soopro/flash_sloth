@@ -5,12 +5,17 @@ angular.module 'flashSloth'
   (
     $routeProvider
   ) ->
-    bp = "portal"
-    dir = "blueprints/portal/views"
+    bp = "promo"
+    dir = "blueprints/promo/views"
 
     $routeProvider
-    .when '/',
-      templateUrl: dir+'/portal.html'
-      controller: 'portalCtrl'
+    .when '/'+bp,
+      templateUrl: dir+'/promos.html'
+      controller: 'promosCtrl'
+
+    $routeProvider
+    .when '/'+bp+'/:promo_id',
+      templateUrl: dir+'/promo_detail.html'
+      controller: 'promoDetailCtrl'
 
 ]
