@@ -64,10 +64,17 @@ angular.module 'flashSloth'
 
     $scope.open = (apply)->
       dialog.show
-        controller: 'memberApplyDetailCtrl'
+        controller: 'memberApplyEditCtrl'
         templateUrl: 'blueprints/member/views/member_apply_edit.tmpl.html'
         locals:
           apply: apply
+      .then (data)->
+        apply.status = data.status
+        if data.status isnt 0
+          flash "Reservation has been closed."
+        else
+          flash "Reservation has been saved."
+        return
 
 
     $scope.more = ->

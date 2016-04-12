@@ -21,7 +21,7 @@ angular.module 'flashSloth'
     $scope.submitted = false
 
     $scope.done = ->
-      if $scope.submitted or $scope.apply.status isnt 0
+      if $scope.submitted
         return
       $scope.submitted = true
       $scope.apply.$done()
@@ -29,9 +29,6 @@ angular.module 'flashSloth'
         dialog.hide(data)
 
     $scope.save = ->
-      if $scope.apply.status isnt 0
-        dialog.hide($scope.apply)
-        return
       if $scope.submitted
         return
       $scope.submitted = true

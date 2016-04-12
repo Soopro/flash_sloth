@@ -56,10 +56,10 @@ angular.module 'flashSloth'
             'id'
           )
           flash "Reservation has been closed."
-          return
         else
           flash "Reservation has been saved."
-          return
+
+        return
 
 
     $scope.more = ->
