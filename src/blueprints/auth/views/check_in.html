@@ -37,14 +37,14 @@
         </md-input-container>
 
         <md-input-container>
-          <label>{{_('Pin')}}</label>
-          <input name="pin"
-                 ng-model="auth.pin"
+          <label>{{_('Magic Spell')}}</label>
+          <input name="spell"
+                 ng-model="auth.spell"
                  required/>
-          <ng-messages ng-if="auth_form.pin.$touched"
-                       for="auth_form.pin.$error">
+          <ng-messages ng-if="auth_form.spell.$touched"
+                       for="auth_form.spell.$error">
             <ng-message when="required">
-              {{ _('PIN is required.') }}
+              {{ _('Spell is required.') }}
             </ng-message>
           </ng-messages>
         </md-input-container>
