@@ -30,6 +30,7 @@ angular.module 'flashSloth'
     $scope.gen_mode = false
     $scope.promocode = {}
     $scope.new_codes = []
+    $scope.add_point = 0
 
     $scope.promo = new restAgent.promo
       id: promo_id
@@ -64,11 +65,15 @@ angular.module 'flashSloth'
       return false
 
     $scope.disable_use = ->
+      type_point = $scope.promo_type_point($scope.promocode.type)
+
       if $scope.promocode.consumed
         return true
       else if $scope.promocode.status != 1
         return true
       else if $scope.promocode.member_assigned and not $scope.use_member_log
+        return true
+      else if type_point and not $scope.add_point
         return true
       else if $scope.promo.common
         timeout = $scope.promo.remain isnt null and $scope.promo.remain <= 0
@@ -111,7 +116,8 @@ angular.module 'flashSloth'
         return
       $scope.submitted = true
       $scope.promocode.member_log = $scope.use_member_log
-      $scope.promocode.point = $scope.use_point
+      $scope.promocode.add_point = $scope.add_point
+      $scope.add_point = 0
       $scope.promocode.$use()
       .then (data)->
         $scope.promocode._success = true

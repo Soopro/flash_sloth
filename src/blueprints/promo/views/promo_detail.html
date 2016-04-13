@@ -179,9 +179,9 @@
                    ng-if="promocode.member_assigned">
                 {{_('For Member only')}}
               </div>
-              <div class="md-title"
-                   ng-if="promocode.point">
-                {{promocode.point}}
+              <div class="md-headline"
+                   ng-if="promo_type_point(promocode.type)">
+                {{promocode.point}} / {{promo.upper}}
               </div>
               <div class="md-title"
                    layout-margin>
@@ -212,7 +212,7 @@
                   <label>{{_('Point:')}}</label>
                   <input name="point"
                          type="number"
-                         ng-model="use_point"
+                         ng-model="add_point"
                          ng-disabled="promocode.consumed" />
                 </md-input-container>
               </div>
