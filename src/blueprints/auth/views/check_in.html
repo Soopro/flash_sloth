@@ -25,7 +25,7 @@
                  type="email"
                  ng-model="auth.log"
                  required/>
-          <ng-messages ng-show="auth_form.log.$touched"
+          <ng-messages ng-if="auth_form.log.$touched"
                        for="auth_form.log.$error">
             <ng-message when="email">
               {{ _('Owner Account must be an email address.') }}
@@ -41,7 +41,7 @@
           <input name="pin"
                  ng-model="auth.pin"
                  required/>
-          <ng-messages ng-show="auth_form.pin.$touched"
+          <ng-messages ng-if="auth_form.pin.$touched"
                        for="auth_form.pin.$error">
             <ng-message when="required">
               {{ _('PIN is required.') }}

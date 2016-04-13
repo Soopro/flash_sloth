@@ -26,6 +26,7 @@ angular.module 'flashSloth'
     $scope.code = null
     $scope.promo_loaded = false
     $scope.code_loaded = false
+    $scope.submitted = false
     $scope.gen_mode = false
     $scope.promocode = {}
     $scope.new_codes = []
@@ -56,21 +57,33 @@ angular.module 'flashSloth'
           return type.name
       return null
 
+    $scope.promo_type_point = (ptype)->
+      for type in ConfigPromo.promo_types
+        if type.key == ptype
+          return type.upper
+      return false
+
     $scope.disable_use = ->
-      if $scope.promocode.status != 0
+      if $scope.promocode.consumed
         return true
+      else if $scope.promocode.status != 1
+        return true
+      else if $scope.promocode.member_assigned and not $scope.use_member_log
+        return true
+      else if $scope.promo.common
+        timeout = $scope.promo.remain isnt null and $scope.promo.remain <= 0
+        runout = $scope.promo.amount isnt null and $scope.promo.amount <= 0
+        return timeout or runout
       else
-        if $scope.promo.common
-          timeout = $scope.promo.remain isnt null and $scope.promo.remain <= 0
-          runout = $scope.promo.amount isnt null and $scope.promo.amount <= 0
-          return timeout or runout
-        if $scope.promocode.consumed
-          return true
+        return false
 
 
     $scope.find_code = (skip_form)->
       if not fsv($scope.find_form, ['code']) and not skip_form
         return
+      if $scope.submitted
+        return
+      $scope.submitted = true
       $scope.promocode = new restAgent.promocode
         id: promo_id
         code: $scope.code
@@ -81,6 +94,7 @@ angular.module 'flashSloth'
           _error: true
       .finally ->
         $scope.code_loaded = true
+        $scope.submitted = false
 
     $scope.reset_code = ->
       $scope.code = null
@@ -93,6 +107,11 @@ angular.module 'flashSloth'
 
 
     $scope.use_code = ->
+      if $scope.submitted
+        return
+      $scope.submitted = true
+      $scope.promocode.member_log = $scope.use_member_log
+      $scope.promocode.point = $scope.use_point
       $scope.promocode.$use()
       .then (data)->
         $scope.promocode._success = true
@@ -101,26 +120,40 @@ angular.module 'flashSloth'
         $scope.promo.remain = data.remain
         $scope.promo.count = data.count
         flash 'Promo code has been used.'
+        return
       .catch (error)->
-        $scope.promocode =
-          _error: true
+        $scope.promocode._error = true
+      .finally ->
+        $scope.submitted = false
 
 
     $scope.create = ->
+      if $scope.submitted
+        return
+      $scope.submitted = true
       create_one($scope.assign_member_log)
       .then ->
         flash 'Promo code has been created.'
-      return
+        return
+      .finally ->
+        $scope.submitted = false
 
     $scope.auto_create = ->
+      $scope.assign_member_log = null
+
+      if $scope.submitted
+        return
+      $scope.submitted = true
       dialog.show
-        controller: 'batchCreatePromoCodeCtrl'
-        templateUrl: 'blueprints/promo/views/promo_code_batch.tmpl.html'
-      .then (data)->
-        batch_create(data.create_count)
+        controller: 'batchCreateCodeCtrl'
+        templateUrl: 'blueprints/promo/views/batch_create_code.tmpl.html'
+      .then (create_count)->
+        batch_create(create_count)
       .then ->
-        flash 'Promo code has been created.'
-      return
+        flash 'Promo codes have been created.'
+        return
+      .finally ->
+        $scope.submitted = false
 
 
     batch_create = (create_count, retry)->
@@ -136,8 +169,6 @@ angular.module 'flashSloth'
         create_count -= 1
         if create_count > 0
           batch_create(create_count, retry)
-        else
-          flash 'Promo codes have been created.'
       .catch (error)->
         if error and retry < 1
           console.log 'retry:', retry

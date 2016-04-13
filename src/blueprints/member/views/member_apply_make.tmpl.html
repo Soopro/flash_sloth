@@ -1,9 +1,9 @@
 <md-dialog class="md-content-overflow"
-           aria-label="{{_('Reservation')}}"
+           aria-label="{{_('New Reservation')}}"
            flex>
-  <md-toolbar class="dialog">
+  <md-toolbar class="dialog md-hue-3">
     <div class="md-toolbar-tools">
-      <h2>{{_('Reservation')}}</h2>
+      <h2>{{_('New Reservation')}}</h2>
       <span flex></span>
       <md-button class="md-icon-button"
                  aria-label="{{_('Close')}}"
@@ -16,10 +16,6 @@
   <md-dialog-content>
     <div layout-margin
          layout-padding>
-
-      <h2 class="md-headline">
-        {{ _('Make New Reservation') }}
-      </h2>
 
       <form class="md-padding"
             name="create_form"
@@ -40,8 +36,7 @@
               {{event.title}}
             </md-option>
           </md-select>
-          <ng-messages ng-show="create_form.event.$touched"
-                       for="create_form.event.$error">
+          <ng-messages for="create_form.event.$error">
             <ng-message when="required">
               {{ _('Must assign to an event.') }}
             </ng-message>

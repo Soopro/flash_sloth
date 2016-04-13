@@ -70,7 +70,7 @@ angular.module 'flashSloth'
         locals:
           apply: apply
       .then (data)->
-        if data.status isnt 0
+        if data.status isnt 1
           flash "Reservation has been closed."
         else
           flash "Reservation has been saved."

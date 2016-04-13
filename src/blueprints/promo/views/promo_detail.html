@@ -72,7 +72,7 @@
                          type="text"
                          ng-model="code"
                          required/>
-                  <ng-messages ng-show="find_form.code.$touched"
+                  <ng-messages ng-if="find_form.code.$touched"
                                for="find_form.code.$error">
                     <ng-message when="required">
                       {{ _('Code is required.') }}
@@ -125,7 +125,7 @@
                   <md-button class="md-icon-button"
                              aria-label="{{_('Batch')}}"
                              ng-disabled="submitted"
-                             ng-click="batch_create()">
+                             ng-click="auto_create()">
                     <md-icon md-svg-icon="ic_android_24px">
                     </md-icon>
                   </md-button>
@@ -154,9 +154,10 @@
       <!-- promo code -->
       <div layout-margin>
         <!-- code card -->
-        <md-card class="promo">
+        <md-card class="promo"
+                 layout-padding>
           <img ng-src="{{promocode.meta.sticker}}"
-               ng-show="promocode.meta.sticker">
+               ng-show="promocode.meta.sticker" />
           <md-icon class="s120"
                    md-svg-icon="ic_local_play_24px"
                    ng-show="!promocode.meta.sticker">
@@ -164,20 +165,23 @@
           <md-card-content ng-show="code_loaded">
             <form name="use_form"
                   layout="column"
+                  layout-align="start center"
                   ng-submit="use_code()"
-                  layout-align="center center"
                   novalidate>
-              <div class="md-caption"
-                   ng-if="promocode.member_id">
-                {{_('For Member only')}}
-              </div>
-
-              <div class="md-display-1 text-break">
-                  {{promocode.display_code}}
-              </div>
-              <div class="md-title text-warn"
+              <div class="md-caption text-warn"
                    ng-if="promocode.consumed">
                 {{_('Consumed')}}
+              </div>
+              <div class="md-display-1 text-break">
+                  {{promocode.code}}
+              </div>
+              <div class="md-caption"
+                   ng-if="promocode.member_assigned">
+                {{_('For Member only')}}
+              </div>
+              <div class="md-title"
+                   ng-if="promocode.point">
+                {{promocode.point}}
               </div>
               <div class="md-title"
                    layout-margin>
@@ -197,25 +201,31 @@
                   <label>{{_('Member Account ID:')}}</label>
                   <input name="member_log"
                          type="text"
-                         ng-model="promocode.member_log"
-                         ng-required="promocode.member_assigned" />
-                  <ng-messages ng-show="use_form.member_log.$touched"
-                               for="use_form.member_log.$error">
-                    <ng-message when="required">
-                      {{ _('Member Account is required.') }}
-                    </ng-message>
-                  </ng-messages>
+                         ng-model="use_member_log"
+                         ng-disabled="promocode.consumed" />
                 </md-input-container>
               </div>
 
-              <div ng-show="promocode.status == 0"
+              <div ng-show="promo_type_point(promocode.type)"
+                   layout-margin>
+                <md-input-container>
+                  <label>{{_('Point:')}}</label>
+                  <input name="point"
+                         type="number"
+                         ng-model="use_point"
+                         ng-disabled="promocode.consumed" />
+                </md-input-container>
+              </div>
+
+              <div ng-show="promocode.status == 1"
                    layout-margin>
                 <md-button class="main-nav-btn md-primary"
                            type="submit"
                            ng-disabled="disable_use()">
-                  {{_('Use')}}
+                  {{_('Use this code')}}
                 </md-button>
               </div>
+
             </form>
 
           </md-card-content>
@@ -240,8 +250,8 @@
         <md-list>
           <md-subheader class="md-no-sticky">
             <span ng-bind-html="_('You have <span class=text-primary>'+
-             '%s</span> / <span class=text-primary>%s</span> codes',
-              promo.count.used, promo.count.total)">
+             '%s</span> codes, <span class=text-primary>%s</span> '+
+              'have been used', promo.count.total, promo.count.used)">
             </span>
           </md-subheader>
           <md-divider></md-divider>
@@ -252,7 +262,7 @@
               <div class="md-list-item-text"
                    layout="column">
                 <h3 class="text-break">
-                  {{ code.display_code }}
+                  {{ code.code }}
                 </h3>
                 <p class="text-break"
                    ng-if="code.member_log">

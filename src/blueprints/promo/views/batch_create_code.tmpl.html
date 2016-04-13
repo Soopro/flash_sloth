@@ -1,0 +1,53 @@
+<md-dialog class="md-content-overflow"
+           aria-label="{{_('Batch Create')}}"
+           flex>
+  <md-toolbar class="dialog md-hue-3">
+    <div class="md-toolbar-tools">
+      <h2>{{_('Batch Create')}}</h2>
+      <span flex></span>
+      <md-button class="md-icon-button"
+                 aria-label="{{_('Close')}}"
+                 ng-click="close()">
+        <md-icon md-svg-icon="ic_close_24px">
+        </md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div layout-margin
+         layout-padding>
+      <form class="md-padding"
+            name="count_form"
+            layout="column"
+            ng-submit="submit()"
+            novalidate>
+        <md-input-container flex>
+          <label>{{_('Count')}}</label>
+          <input name="count"
+                 type="number"
+                 ng-model="count"
+                 required />
+          <ng-messages ng-if="count_form.count.$touched"
+                       for="count_form.count.$error">
+            <ng-message when="number">
+              {{ _('Count must be a number.') }}
+            </ng-message>
+            <ng-message when="required">
+              {{ _('Count is required.') }}
+            </ng-message>
+          </ng-messages>
+        </md-input-container>
+      </form>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions
+       layout="row"
+       layout-align="end center"
+       flex-order="3">
+    <md-button class="md-primary"
+               ng-disabled="submitted"
+               ng-click="create()">
+      {{_('Create')}}
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>
