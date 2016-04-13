@@ -9,7 +9,6 @@ angular.module 'flashSloth'
   'dialog'
   'ConfigPromo'
   'fsv'
-  'g'
   (
     $scope
     $routeParams
@@ -19,7 +18,6 @@ angular.module 'flashSloth'
     dialog
     ConfigPromo
     fsv
-    g
   ) ->
     promo_id = $routeParams.promo_id
 

@@ -22,12 +22,10 @@ angular.module 'flashSloth'
     @login = (token, next_path) ->
       $cookies.put 'agent_auth', token, opts
       $location.path next_path if next_path
-      return
 
     @logout = ->
       $cookies.remove 'agent_auth', opts
       $location.path '/auth'
-      return
 
     return
 ]

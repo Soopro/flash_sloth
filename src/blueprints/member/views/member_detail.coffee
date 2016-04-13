@@ -3,23 +3,15 @@ angular.module 'flashSloth'
 .controller "memberDetailCtrl", [
   '$scope'
   '$routeParams'
-  '$location'
   'restAgent'
   'dialog'
   'flash'
-  'Config'
-  'fsv'
-  'g'
   (
     $scope
     $routeParams
-    $location
     restAgent
     dialog
     flash
-    Config
-    fsv
-    g
   ) ->
     member_id = $routeParams.member_id
     paged = 0
