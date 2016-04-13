@@ -20,8 +20,9 @@ angular.module 'flashSloth'
     fsv
   ) ->
     promo_id = $routeParams.promo_id
+    code = $routeParams.code
 
-    $scope.code = null
+    $scope.code = code
     $scope.promo_loaded = false
     $scope.code_loaded = false
     $scope.submitted = false
@@ -38,6 +39,8 @@ angular.module 'flashSloth'
       $scope.promo_loaded = true
       if $scope.promo.common
         $scope.code = $scope.promo.alias
+        $scope.find_code(true)
+      else if $scope.code
         $scope.find_code(true)
 
     $scope.remain = (remain)->
