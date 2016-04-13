@@ -35,17 +35,13 @@
           {{_('Amount:')}}
           {{promo.amount}}
         </p>
-        <p ng-if="!promo.common && promo.upper">
-          {{_('Upper:')}}
-          {{promo.upper}}
-        </p>
         <p ng-if="!promo.common">
           {{_('Reserves:')}}
           {{promo.count.used}} / {{promo.count.total}}
         </p>
-        <p>
-          {{_('Updated:')}}
-          {{promo.updated | dateformat}}
+        <p ng-if="!promo.common && promo.upper">
+          {{_('Point Upper limit:')}}
+          {{promo.upper}}
         </p>
         <p>
           {{_('Description:')}}&nbsp;{{promo.meta.description}}
@@ -226,6 +222,11 @@
                 </md-button>
               </div>
 
+              <div>
+                <p class="md-caption tip">
+                  {{promocode.updated | dateformat}}
+                </p>
+              </div>
             </form>
 
           </md-card-content>

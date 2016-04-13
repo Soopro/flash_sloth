@@ -153,6 +153,7 @@ angular.module 'flashSloth'
       dialog.show
         controller: 'batchCreateCodeCtrl'
         templateUrl: 'blueprints/promo/views/batch_create_code.tmpl.html'
+        fullscreen: false
       .then (create_count)->
         batch_create(create_count)
       .then ->

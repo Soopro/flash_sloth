@@ -25,7 +25,7 @@ angular.module 'flashSloth'
         return
       $scope.submitted = true
       do_auth = new restAgent.auth($scope.auth)
-      do_auth.$post
+      do_auth.$post()
       .then (data)->
         Auth.login data.token, '/'
       .finally ->
