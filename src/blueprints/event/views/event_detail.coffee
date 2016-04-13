@@ -47,7 +47,7 @@ angular.module 'flashSloth'
         locals:
           apply: apply
       .then (data)->
-        if data.status isnt 0
+        if data.status isnt 1
           last_index-=1
           $scope.total-=1
           angular.removeFromList(

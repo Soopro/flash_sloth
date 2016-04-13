@@ -13,7 +13,7 @@ angular.module 'flashSloth', [
 
 angular.module 'flashSloth'
 .constant 'App',
-  version: '0.1.0'
+  version: '0.1.1'
   artisan: [
     'Redyyu'
   ]
