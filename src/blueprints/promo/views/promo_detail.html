@@ -138,17 +138,19 @@
     <!-- column -->
     <section flex-gt-sm="45"
              offset-gt-sm="5"
-             ng-show="!gen_mode && promo_loaded"
+             ng-show="promo_loaded"
              layout-padding>
       <!-- section header -->
       <header layout-margin>
         <h2 class="md-display-1 text-nowrap"
             vw-max="80">
-          {{_('Use Code')}}
+            {{gen_mode?_('Generated Codes'):_('Use Code')}}
         </h2>
       </header>
-      <!-- promo code -->
-      <div layout-margin>
+      <!-- display promo code -->
+      <div class="anim-fade"
+           ng-show="!gen_mode"
+           layout-margin>
         <!-- code card -->
         <md-card class="promo"
                  layout-padding>
@@ -232,22 +234,10 @@
           </md-card-content>
         </md-card>
       </div>
-    </section>
-
-    <!-- column -->
-    <section flex-gt-sm="45"
-             offset-gt-sm="5"
-             ng-show="gen_mode && promo_loaded"
-             layout-padding>
-      <!-- section header -->
-      <header layout-margin>
-        <h2 class="md-display-1 text-nowrap"
-            vw-max="80">
-          {{_('Generated Codes')}}
-        </h2>
-      </header>
-      <!-- promo code -->
-      <div layout-margin>
+      <!-- gen promo code -->
+      <div class="anim-fade"
+           ng-show="gen_mode"
+           layout-margin>
         <md-list>
           <md-subheader class="md-no-sticky">
             <span ng-bind-html="_('You have <span class=text-primary>'+
