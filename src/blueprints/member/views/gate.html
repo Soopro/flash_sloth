@@ -73,7 +73,7 @@
           </md-input-container>
 
           <md-input-container>
-            <label>{{_('Password')}}</label>
+            <label>{{_('New Password')}}</label>
             <input name="pwd"
                    type="text"
                    ng-model="new.pwd"
@@ -81,7 +81,7 @@
             <ng-messages ng-if="new_member_form.pwd.$touched"
                          for="new_member_form.pwd.$error">
               <ng-message when="required">
-                {{ _('Password is required.') }}
+                {{ _('New Password is required.') }}
               </ng-message>
             </ng-messages>
           </md-input-container>
