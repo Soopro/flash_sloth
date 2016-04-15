@@ -48,4 +48,6 @@ angular.module 'flashSloth'
       if route
         $location.path route
 
+    $scope.reload = ->
+      location.reload(true)
 ]
