@@ -13,6 +13,7 @@ angular.module 'flashSloth'
     $scope.count = 1
 
     $scope.create = ->
+      $scope.count = Math.min(100, $scope.count)
       dialog.hide($scope.count)
 
     $scope.close = ->

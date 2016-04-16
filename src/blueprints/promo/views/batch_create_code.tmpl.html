@@ -26,6 +26,7 @@
           <input name="count"
                  type="number"
                  ng-model="count"
+                 max="100"
                  required />
           <ng-messages ng-if="count_form.count.$touched"
                        for="count_form.count.$error">
