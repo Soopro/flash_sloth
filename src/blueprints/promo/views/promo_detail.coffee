@@ -176,7 +176,7 @@ angular.module 'flashSloth'
       .then ->
         create_count -= 1
         if create_count > 0
-          batch_create(create_count, retry)
+          batch_create(create_count, 0)
       .catch (error)->
         if error and retry < 1
           console.log 'retry:', retry

@@ -19,7 +19,7 @@ trash
 /**/build
 /**/release
 
-
+!android/*
 
 /db/mongo_data
 /db/dump.rdb
