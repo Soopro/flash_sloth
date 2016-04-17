@@ -97,6 +97,9 @@ angular.module 'flashSloth'
       .then (data)->
         if data.result
           $scope.code = data.result
+          $scope.submitted = false
+          $scope.find_code(true)
+          return
       .catch (error)->
         console.error error
       .finally ->
