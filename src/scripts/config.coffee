@@ -3,6 +3,7 @@ angular.module 'flashSloth'
 .constant 'Config',
   baseURL:
     'api': sup_flash_sloth.server.api
+    'self': sup_flash_sloth.server.self
 
   cookie_domain: sup_flash_sloth.cookie_domain
 

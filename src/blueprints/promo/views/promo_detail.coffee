@@ -3,21 +3,25 @@ angular.module 'flashSloth'
 .controller "promoDetailCtrl", [
   '$scope'
   '$routeParams'
+  '$location'
   '$filter'
   'restAgent'
   'QRScanner'
   'flash'
   'dialog'
+  'Config'
   'ConfigPromo'
   'fsv'
   (
     $scope
     $routeParams
+    $location
     $filter
     restAgent
     QRScanner
     flash
     dialog
+    Config
     ConfigPromo
     fsv
   ) ->
@@ -96,9 +100,13 @@ angular.module 'flashSloth'
       QRScanner.scan()
       .then (data)->
         if data.result
-          $scope.code = data.result
-          $scope.submitted = false
-          $scope.find_code(true)
+          if angular.startswith(data.result, Config.baseURL.self)
+            path = data.result.replace(Config.baseURL.self, '')
+            $location path
+          else
+            $scope.code = data.result
+            $scope.submitted = false
+            $scope.find_code(true)
           return
       .catch (error)->
         console.error error
