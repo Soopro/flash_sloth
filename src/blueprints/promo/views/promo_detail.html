@@ -75,13 +75,19 @@
                     </ng-message>
                   </ng-messages>
                 </md-input-container>
-                <div layout="row"
-                     layout-align="space-between">
+                <div layout="row">
                   <md-button class="md-raised"
                              type="submit"
                              ng-disabled="submitted">
                     {{_('Find')}}
                   </md-button>
+                  <md-button class="md-raised"
+                             ng-show="has_scanner"
+                             ng-click="scan_code()"
+                             ng-disabled="submitted">
+                    {{_('Scan')}}
+                  </md-button>
+                  <span flex></span>
                   <md-button class="md-icon-button"
                              aria-label="{{_('Refresh')}}"
                              ng-disabled="submitted"

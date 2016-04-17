@@ -5,6 +5,7 @@ angular.module 'flashSloth'
   '$routeParams'
   '$filter'
   'restAgent'
+  'QRScanner'
   'flash'
   'dialog'
   'ConfigPromo'
@@ -14,6 +15,7 @@ angular.module 'flashSloth'
     $routeParams
     $filter
     restAgent
+    QRScanner
     flash
     dialog
     ConfigPromo
@@ -82,6 +84,23 @@ angular.module 'flashSloth'
         return timeout or runout
       else
         return false
+
+
+    $scope.has_scanner = QRScanner.check()
+
+    $scope.scan_code = ->
+      if not $scope.has_scanner or $scope.submitted
+        return
+      $scope.submitted = true
+
+      QRScanner.scan()
+      .then (data)->
+        if data.result
+          $scope.code = data.result
+      .catch (error)->
+        console.error error
+      .finally ->
+        $scope.submitted = false
 
 
     $scope.find_code = (skip_form)->
