@@ -5,6 +5,9 @@ angular.module 'flashSloth'
   (
     $q
   ) ->
+    # window.$$__QRScannerJS__ =
+    #   scan: (func)->
+    #     eval(func)(null)
 
     scanner = window.$$__QRScannerJS__ or null
     scanning = false
@@ -25,8 +28,7 @@ angular.module 'flashSloth'
         return deferred.promise
 
       scanner.result = (result)->
-        if result
-          deferred.resolve({result: result})
+        deferred.resolve({result: result})
         scanning = false
 
       try
