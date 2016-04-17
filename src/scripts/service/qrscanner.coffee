@@ -25,7 +25,8 @@ angular.module 'flashSloth'
         return deferred.promise
 
       scanner.result = (result)->
-        deferred.resolve({result: result})
+        if result
+          deferred.resolve({result: result})
         scanning = false
 
       try

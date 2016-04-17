@@ -95,8 +95,7 @@ angular.module 'flashSloth'
 
       QRScanner.scan()
       .then (data)->
-        if data.result
-          $scope.code = data.result
+        $scope.code = data.result
       .catch (error)->
         console.error error
       .finally ->
