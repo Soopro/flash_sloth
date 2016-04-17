@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Soopro Agent</string>
+    <string name="url_alert_dialog_title">URL</string>
+    <string name="zxing_msg_default_status">Place a QR code inside the viewfinder rectangle to scan it.</string>
+</resources>

@@ -1,0 +1,15 @@
+<h1>hello world</h1>
+
+<script>
+    function scanResult(result) {
+        if (!result) {
+            alert("scan cancelled");
+        } else {
+            alert("scan result: " + result);
+        }
+    }
+</script>
+
+<a href="javascript:window.$$__QRScannerJS__.scan('scanResult');">Scan!!</a>
+<br><br>
+<a href="javascript:alert('alert')">alert!!</a>

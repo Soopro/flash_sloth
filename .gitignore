@@ -19,9 +19,16 @@ trash
 /**/build
 /**/release
 
-!android/*
-
 /db/mongo_data
 /db/dump.rdb
 
 *.sublime*
+
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
