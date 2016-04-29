@@ -2,6 +2,7 @@ angular.module 'flashSloth'
 
 .controller "checkInCtrl", [
   '$scope'
+  '$location'
   'restAgent'
   'Auth'
   'flash'
@@ -9,6 +10,7 @@ angular.module 'flashSloth'
   'fsv'
   (
     $scope
+    $location
     restAgent
     Auth
     flash
@@ -28,7 +30,8 @@ angular.module 'flashSloth'
       do_auth = new restAgent.auth($scope.auth)
       do_auth.$post()
       .then (data)->
-        Auth.login data.token, '/'
+        Auth.login data.token
+        $location.path '/'
       .finally ->
         $scope.submitted = false
 
