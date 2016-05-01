@@ -21,7 +21,7 @@ angular.module 'flashSloth'
     $scope.submitted = false
 
     $scope.submit = ->
-      if not fsv($scope.auth_form, ['pin'])
+      if not fsv($scope.auth_form, ['log', 'spell'])
         return
       if $scope.submitted
         return
