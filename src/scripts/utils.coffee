@@ -33,15 +33,15 @@ angular.get_file_ext = (str)->
     return ''
 
 
-# ---- process alias ----
-angular.pre_process_alias = (alias) ->
+# ---- process slug ----
+angular.pre_process_slug = (value) ->
   try
-    alias = alias.toLowerCase()
-    if not alias.match(/^[a-z0-9_\-]+$/g)
-      return false
+    slug = value.toLowerCase()
+    if not slug.match(/^[a-z0-9_\-]+$/g)
+      return null
   catch
-    alias = false
-  return alias
+    slug = null
+  return slug
 
 # ---- startswith ----
 angular.startswith = (str, text) ->

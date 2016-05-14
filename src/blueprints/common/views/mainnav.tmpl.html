@@ -18,16 +18,16 @@
     <ul class="sidenav-menu">
       <li ng-repeat="nav in navs.data">
         <div class="name-tag"
-             ng-if="!nav.alias">
+             ng-if="!nav.key">
           <span class="md-caption text-primary">
             {{_(nav.name)}}
           </span>
         </div>
-        <div ng-if="nav.alias && !nav.nodes">
+        <div ng-if="nav.key && !nav.nodes">
           <md-button class="main-nav-btn"
                      ng-click="go(nav.path)"
                      ng-class="nav.class"
-                     ng-disabled="isCurrent(nav.alias)">
+                     ng-disabled="isCurrent(nav.key)">
             <div class="row"
                  layout="row">
               <md-icon class="ico"
@@ -40,11 +40,11 @@
             </div>
           </md-button>
         </div>
-        <div ng-if="nav.alias && nav.nodes">
+        <div ng-if="nav.key && nav.nodes">
           <md-button class="main-nav-btn menu-btn-toggle"
-                     ng-click="toggle(nav.alias)"
+                     ng-click="toggle(nav.key)"
                      ng-class="nav.class"
-                     ng-disabled="isCurrent(nav.alias)">
+                     ng-disabled="isCurrent(nav.key)">
             <div class="row"
                  layout="row">
               <md-icon class="ico"
@@ -57,13 +57,13 @@
               </span>
               <md-icon class="menu-toggle-icon"
                        md-svg-icon="ic_expand_more_24px"
-                       ng-class="{'toggled': isShow(nav.alias)}">
+                       ng-class="{'toggled': isShow(nav.key)}">
               </md-icon>
             </div>
           </md-button>
           <ul class="menu-toggle-list"
-              ng-show="isShow(nav.alias)"
-              ng-class="{'active':isCurrent(nav.alias)}">
+              ng-show="isShow(nav.key)"
+              ng-class="{'active':isCurrent(nav.key)}">
               <li ng-repeat="child in nav.nodes">
                 <md-button ng-class="child.class"
                            ng-click="go(child.path)">

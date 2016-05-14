@@ -7,31 +7,31 @@ angular.module 'flashSloth'
   )->
     default_navs = [
       {
-        alias: "dashboard"
+        key: "dashboard"
         name: "Dashboard"
         path: "/"
         ico: "ic_dashboard_24px"
       }
       {
-        alias: "promo"
+        key: "promo"
         name: "Promotions"
         ico: "ic_local_play_24px"
         path: "/promo"
       }
       {
-        alias: "events"
+        key: "events"
         name: "Events"
         ico: "ic_event_24px"
         path: "/event"
       }
       {
-        alias: "member"
+        key: "member"
         name: "Membership"
         ico: "ic_people_24px"
         path: "/member"
       }
       {
-        alias: "exit"
+        key: "exit"
         name: "Exit"
         ico: "ic_exit_24px"
         path: "/exit"

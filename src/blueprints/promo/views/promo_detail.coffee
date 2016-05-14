@@ -44,7 +44,7 @@ angular.module 'flashSloth'
     .then (data)->
       $scope.promo_loaded = true
       if $scope.promo.common
-        $scope.code = $scope.promo.alias
+        $scope.code = $scope.promo.slug
         $scope.find_code(true)
       else if $scope.code
         $scope.find_code(true)
