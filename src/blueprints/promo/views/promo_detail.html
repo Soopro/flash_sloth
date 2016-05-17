@@ -113,9 +113,9 @@
                     novalidate>
                 <md-input-container>
                   <label>{{_('Assign to Member')}}</label>
-                  <input name="member_log"
+                  <input name="assign_member"
                          type="text"
-                         ng-model="assign_member_log" />
+                         ng-model="assign_member_login" />
                 </md-input-container>
                 <div layout="row"
                      layout-align="space-between">
@@ -203,9 +203,9 @@
                    layout-margin>
                 <md-input-container>
                   <label>{{_('Member Account ID:')}}</label>
-                  <input name="member_log"
+                  <input name="member_login"
                          type="text"
-                         ng-model="use_member_log"
+                         ng-model="member_login"
                          ng-disabled="promocode.consumed" />
                 </md-input-container>
               </div>
@@ -262,8 +262,8 @@
                   {{ code.code }}
                 </h3>
                 <p class="text-break"
-                   ng-if="code.member_log">
-                  {{ code.member_log}}
+                   ng-if="code.member_login">
+                  {{ code.member_login}}
                 </p>
               </div>
               <md-icon md-svg-icon="ic_local_play_24px"

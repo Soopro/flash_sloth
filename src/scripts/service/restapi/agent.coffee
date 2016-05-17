@@ -20,7 +20,7 @@ angular.module 'flashSloth'
     # -- Member --
     member: do ->
       supResource "#{api}/member/:member_id",
-        'member_log': '@login'
+        'member_login': '@login'
         'member_id': '@id'
 
     member_apply: do ->

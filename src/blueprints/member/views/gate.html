@@ -60,12 +60,12 @@
 
           <md-input-container>
             <label>{{_('Account')}}</label>
-            <input name="log"
+            <input name="login"
                    type="text"
-                   ng-model="new.log"
+                   ng-model="new.login"
                    required/>
-            <ng-messages ng-if="new_member_form.log.$touched"
-                         for="new_member_form.log.$error">
+            <ng-messages ng-if="new_member_form.login.$touched"
+                         for="new_member_form.login.$error">
               <ng-message when="required">
                 {{ _('Account is required.') }}
               </ng-message>
@@ -74,12 +74,12 @@
 
           <md-input-container>
             <label>{{_('New Password')}}</label>
-            <input name="pwd"
+            <input name="passwd"
                    type="text"
-                   ng-model="new.pwd"
+                   ng-model="new.passwd"
                    required/>
-            <ng-messages ng-if="new_member_form.pwd.$touched"
-                         for="new_member_form.pwd.$error">
+            <ng-messages ng-if="new_member_form.passwd.$touched"
+                         for="new_member_form.passwd.$error">
               <ng-message when="required">
                 {{ _('New Password is required.') }}
               </ng-message>

@@ -21,12 +21,12 @@
 
         <md-input-container>
           <label>{{_('Owner Account')}}</label>
-          <input name="log"
+          <input name="login"
                  type="email"
-                 ng-model="auth.log"
+                 ng-model="auth.login"
                  required/>
-          <ng-messages ng-if="auth_form.log.$touched"
-                       for="auth_form.log.$error">
+          <ng-messages ng-if="auth_form.login.$touched"
+                       for="auth_form.login.$error">
             <ng-message when="email">
               {{ _('Owner Account must be an email address.') }}
             </ng-message>

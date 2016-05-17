@@ -78,7 +78,7 @@ angular.module 'flashSloth'
         return true
       else if $scope.promocode.status != 1
         return true
-      else if $scope.promocode.member_assigned and not $scope.use_member_log
+      else if $scope.promocode.member_assigned and not $scope.member_login
         return true
       else if type_point and not $scope.add_point
         return true
@@ -146,7 +146,7 @@ angular.module 'flashSloth'
       if $scope.submitted
         return
       $scope.submitted = true
-      $scope.promocode.member_log = $scope.use_member_log
+      $scope.promocode.member_login = $scope.member_login
       $scope.promocode.add_point = $scope.add_point
       $scope.add_point = 0
       $scope.promocode.$use()
@@ -168,7 +168,7 @@ angular.module 'flashSloth'
       if $scope.submitted
         return
       $scope.submitted = true
-      create_one($scope.assign_member_log)
+      create_one($scope.assign_member_login)
       .then ->
         flash 'Promo code has been created.'
         return
@@ -176,7 +176,7 @@ angular.module 'flashSloth'
         $scope.submitted = false
 
     $scope.auto_create = ->
-      $scope.assign_member_log = null
+      $scope.assign_member_login = null
 
       if $scope.submitted
         return
@@ -215,14 +215,14 @@ angular.module 'flashSloth'
       return
 
 
-    create_one = (member_log)->
+    create_one = (member_login)->
       new_promocode = new restAgent.promocode
         id: promo_id
-        member_log: member_log
+        member_login: member_login
 
       new_promocode.$create()
       .then (data)->
-        data.member_log = member_log
+        data.member_login = member_login
         $scope.new_codes.push(data)
         $scope.promo.count = data.count
 
