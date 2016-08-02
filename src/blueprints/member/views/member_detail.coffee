@@ -31,26 +31,26 @@ angular.module 'flashSloth'
     $scope.member = restAgent.member.get
       member_id: member_id
 
-    $scope.applyments = restAgent.member_apply.query
+    $scope.demands = restAgent.member_demand.query
       member_id: member_id
     , (list)->
       process_paged(list)
 
 
-    $scope.make_applyment = ->
-      apply_tmpl =
+    $scope.make_demand = ->
+      demand_tmpl =
         member_id: member_id
-      apply = new restAgent.member_apply(apply_tmpl)
+      apply = new restAgent.member_apply(demand_tmpl)
       dialog.show
         controller: 'memberApplyMakeCtrl'
-        templateUrl: 'blueprints/member/views/member_apply_make.tmpl.html'
+        templateUrl: 'blueprints/member/views/member_demand_make.tmpl.html'
         locals:
           apply: apply
       .then (data)->
         last_index+=1
         $scope.total+=1
         console.log data
-        $scope.applyments.unshift data
+        $scope.demands.unshift data
       .then (data)->
         flash "Reservation has been created."
 
@@ -58,7 +58,7 @@ angular.module 'flashSloth'
     $scope.open = (apply)->
       dialog.show
         controller: 'memberApplyEditCtrl'
-        templateUrl: 'blueprints/member/views/member_apply_edit.tmpl.html'
+        templateUrl: 'blueprints/member/views/member_demand_edit.tmpl.html'
         locals:
           apply: apply
       .then (data)->
@@ -71,12 +71,12 @@ angular.module 'flashSloth'
 
     $scope.more = ->
       paged++
-      restAgent.member_apply.query
+      restAgent.member_demand.query
         member_id: member_id
         offset: last_index+1
       , (list) ->
         process_paged(list)
         for item in list
-          $scope.applyments.push item
+          $scope.demands.push item
 
 ]

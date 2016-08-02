@@ -29,7 +29,7 @@
                      md-on-open="loadEvents()"
                      flex-order="3"
                      name="event"
-                     ng-model="apply.activity_id"
+                     ng-model="demand.event_id"
                      required>
             <md-option ng-repeat="event in events"
                        ng-value="event.id">
@@ -47,19 +47,19 @@
           <label>{{_('Full Name')}}</label>
           <input name="name"
                  type="text"
-                 ng-model="apply.name"/>
+                 ng-model="demand.name"/>
         </md-input-container>
 
         <md-input-container>
           <label>{{_('Message')}}</label>
           <textarea name="message"
-                    ng-model="apply.message"></textarea>
+                    ng-model="demand.message"></textarea>
         </md-input-container>
 
         <md-input-container>
           <label>{{_('Memo')}}</label>
           <textarea name="memo"
-                    ng-model="apply.memo"></textarea>
+                    ng-model="demand.memo"></textarea>
         </md-input-container>
 
       </form>

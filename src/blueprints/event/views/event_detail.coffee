@@ -19,7 +19,7 @@ angular.module 'flashSloth'
     fsv
     g
   ) ->
-    act_id = $routeParams.act_id
+    event_id = $routeParams.event_id
     paged = 0
     last_index = 0
     $scope.has_more = false
@@ -32,44 +32,38 @@ angular.module 'flashSloth'
         $scope.total = last_data.cursor.total
         $scope.has_more = last_index < $scope.total-1
 
-    $scope.event = restAgent.activity.get
-      act_id: act_id
+    $scope.event = restAgent.event.get
+      event_id: event_id
 
-    $scope.applyments = restAgent.applyment.query
-      act_id: act_id
+    $scope.demands = restAgent.demand.query
+      event_id: event_id
     , (data) ->
       process_paged(data)
 
-    $scope.open = (apply)->
+    $scope.open = (demand)->
       dialog.show
-        controller: 'applyEditCtrl'
-        templateUrl: 'blueprints/event/views/apply_edit.tmpl.html'
+        controller: 'demandEditCtrl'
+        templateUrl: 'blueprints/event/views/demand_edit.tmpl.html'
         locals:
-          apply: apply
+          demand: demand
       .then (data)->
         if data.status isnt 1
           last_index-=1
           $scope.total-=1
-          angular.removeFromList(
-            $scope.applyments,
-            data,
-            'id'
-          )
-          flash "Reservation has been closed."
+          angular.removeFromList($scope.demands, data, 'id')
+          flash "Demand has been closed."
         else
-          flash "Reservation has been saved."
-
+          flash "Demand has been saved."
         return
-
 
     $scope.more = ->
       paged++
-      restAgent.applyment.query
-        act_id: act_id
+      restAgent.demand.query
+        event_id: event_id
         offset: last_index+1
       , (list) ->
         process_paged(list)
         for item in list
-          $scope.applyments.push item
+          $scope.demands.push item
 
 ]

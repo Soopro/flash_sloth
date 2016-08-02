@@ -73,11 +73,11 @@
           {{_('Reservations')}}
         </h2>
       </header>
-      <!-- applyments -->
+      <!-- demands -->
       <div layout-margin>
         <md-input-container>
           <md-button class="md-raised"
-                     ng-click="make_applyment()">
+                     ng-click="make_demand()">
             {{_('New Reservation')}}
           </md-button>
         </md-input-container>
@@ -85,41 +85,41 @@
           <md-subheader class="md-no-sticky">
             <span ng-bind-html="_('You have <span class=text-primary>'+
              '%s</span> reservations, <span class=text-primary>%s</span> '+
-             'displayed.', total, applyments.length)">
+             'displayed.', total, demands.length)">
             </span>
           </md-subheader>
           <md-divider></md-divider>
           <!-- items -->
           <div class="anim-item"
-               ng-repeat="apply in applyments">
+               ng-repeat="apply in demands">
             <md-list-item class="md-3-line" ng-click="open(apply)">
               <div class="md-list-item-text"
                    layout="column">
                 <h3 class="text-nowrap"
                     vw-max="65">
-                  {{ apply.name || '-'}}
+                  {{ demand.name || '-'}}
                 </h3>
                 <p class="text-nowrap"
                    vw-max="65">
                   <span class="text-accent"
-                        ng-if="apply.code">
-                    [{{ apply.code }}]
+                        ng-if="demand.code">
+                    [{{ demand.code }}]
                   </span>
-                  {{ apply.member_login || '-'}}
+                  {{ demand.member_login || '-'}}
                 </p>
                 <p class="text-nowrap"
                    vw-max="65">
-                  {{ apply.message }}
+                  {{ demand.message }}
                 </p>
               </div>
               <md-icon md-svg-icon="ic_done_24px"
-                       ng-if="apply.status == 0">
+                       ng-if="demand.status == 0">
               </md-icon>
               <md-icon md-svg-icon="ic_assignment_ind_24px"
-                       ng-if="apply.status == 1">
+                       ng-if="demand.status == 1">
               </md-icon>
               <md-icon md-svg-icon="ic_block_24px"
-                       ng-if="apply.status == 2">
+                       ng-if="demand.status == 2">
               </md-icon>
             </md-list-item>
           </div>

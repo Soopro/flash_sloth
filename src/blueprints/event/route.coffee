@@ -14,7 +14,7 @@ angular.module 'flashSloth'
       controller: 'eventsCtrl'
 
     $routeProvider
-    .when '/'+bp+'/:act_id',
+    .when '/'+bp+'/:event_id',
       templateUrl: dir+'/event_detail.html'
       controller: 'eventDetailCtrl'
 

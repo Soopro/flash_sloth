@@ -17,31 +17,31 @@
     <div layout-margin
          layout-padding>
       <h2 class="md-headline">
-        {{ apply.title }}
+        {{ demand.title }}
       </h2>
       <div class="md-padding"
            layout="column">
         <div class="input-container">
           <label class="static-label">{{_('Full Name')}}</label>
-          <p flex-order="2">{{apply.name || '-'}}</p>
+          <p flex-order="2">{{demand.name || '-'}}</p>
         </div>
         <div class="input-container">
           <label class="static-label">{{_('Member Account')}}</label>
-          <p flex-order="2">{{apply.member_login || '-'}}</p>
+          <p flex-order="2">{{demand.member_login || '-'}}</p>
         </div>
         <div class="input-container">
           <label class="static-label">{{_('Promo Code')}}</label>
-          <p flex-order="2">{{apply.code || '-'}}</p>
+          <p flex-order="2">{{demand.code || '-'}}</p>
         </div>
         <div class="input-container">
           <label class="static-label">{{_('Message')}}</label>
-          <p flex-order="2">{{apply.message || '...'}}</p>
+          <p flex-order="2">{{demand.message || '...'}}</p>
         </div>
         <md-input-container flex>
           <label>{{_('Memo')}}</label>
           <textarea name="memo"
-                    ng-model="apply.memo"
-                    ng-disabled="apply.status != 1"></textarea>
+                    ng-model="demand.memo"
+                    ng-disabled="demand.status != 1"></textarea>
         </md-input-container>
       </div>
     </div>
@@ -52,7 +52,7 @@
        flex-order="3">
     <md-button class="md-icon-button"
                aria-label="{{_('Done')}}"
-               ng-disabled="submitted || apply.status != 1"
+               ng-disabled="submitted || demand.status != 1"
                ng-click="done()">
       <md-icon md-svg-icon="ic_done_24px">
       </md-icon>
@@ -60,12 +60,12 @@
 
     <md-button class="md-primary"
                ng-disabled="submitted"
-               ng-show="apply.status == 1"
+               ng-show="demand.status == 1"
                ng-click="save()">
       {{_('Save')}}
     </md-button>
     <md-button class="md-primary"
-               ng-show="apply.status != 1"
+               ng-show="demand.status != 1"
                ng-click="close()">
       {{_('Ok')}}
     </md-button>

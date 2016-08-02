@@ -1,6 +1,6 @@
 angular.module 'flashSloth'
 
-.controller "applyEditCtrl", [
+.controller "memberApplyEditCtrl", [
   '$scope'
   'dialog'
   'apply'
@@ -13,13 +13,14 @@ angular.module 'flashSloth'
       $scope._ = angular.translate
 
     $scope.apply = apply
+
     $scope.submitted = false
 
     $scope.done = ->
       if $scope.submitted
         return
       $scope.submitted = true
-      $scope.apply.$done()
+      $scope.demand.$done()
       .then (data) ->
         dialog.hide(data)
       .finally ->
@@ -29,7 +30,7 @@ angular.module 'flashSloth'
       if $scope.submitted
         return
       $scope.submitted = true
-      $scope.apply.$save()
+      $scope.demand.$save()
       .then (data) ->
         dialog.hide(data)
       .finally ->

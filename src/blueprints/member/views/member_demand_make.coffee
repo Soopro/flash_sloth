@@ -22,7 +22,7 @@ angular.module 'flashSloth'
     $scope.events = []
 
     $scope.loadEvents = ->
-      $scope.events = restAgent.activity.query()
+      $scope.events = restAgent.event.query()
 
     $scope.save = ->
       if not fsv($scope.create_form, ['event'])
@@ -30,7 +30,7 @@ angular.module 'flashSloth'
       if $scope.submitted
         return
       $scope.submitted = true
-      $scope.apply.$save()
+      $scope.demand.$save()
       .then (data) ->
         dialog.hide(data)
       .finally ->
