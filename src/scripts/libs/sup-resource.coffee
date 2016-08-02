@@ -4,7 +4,7 @@
  Author : Redy Ru
  Email : redy.ru@gmail.com
  License : 2014 MIT
- Version 1.0.0
+ Version 1.0.1
 
  ---- Usage ----
  A warp of ng-resource, add 'update' 'save' and 'create'
@@ -51,13 +51,13 @@ angular.module 'supResource', [
 
       else if typeof object.then is "function"
         return object
-        
+
       else if object.$promise
         return object.$promise
-        
+
       else
-        throw "Error: Invalid parameter in 'supChain'. - Object must have" + 
-              " Promise or $promise. [SupResource]"
+        throw "SupResource Error: Invalid parameter in 'supChain'. "+
+              "- Object must have Promise or $promise."
 ]
 
 .factory "supParallel", [
@@ -69,7 +69,7 @@ angular.module 'supResource', [
         results = []
         count = 1
         limit = list.length
-        
+
         start_then = (pms,index) ->
           pms.then (data) ->
             results[index]=data
@@ -79,15 +79,15 @@ angular.module 'supResource', [
               success(results)
           .catch (error) ->
             failure error
-        
+
         for index, obj of list
           if typeof obj.then is "function"
             pms = obj
           else if obj.$promise
             pms = obj.$promise
-          
+
           start_then pms, index
-        
+
         success = (results) ->
           deferred.resolve(results)
 
@@ -96,7 +96,6 @@ angular.module 'supResource', [
 
         return deferred.promise
       else
-        throw "Error: Invalid parameter in 'supParallel'. - " +
-              "Objst must be Array, each item must be a promise " + 
-              "[SupResource]"
+        throw "SupResource Error: Invalid parameter in 'supParallel'. " +
+              "- Object must be Array, each item must be a promise "
 ]

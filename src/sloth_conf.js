@@ -21,5 +21,5 @@ var prd = {
   'self': 'http://agent.soopro.com'
 }
 
-sup_flash_sloth.server = prd
+sup_flash_sloth.server = test
 sup_flash_sloth.debug = true;

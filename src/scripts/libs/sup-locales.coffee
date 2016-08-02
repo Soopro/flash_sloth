@@ -1,7 +1,7 @@
 # -------------------------------
 # sup Localized
 # -------------------------------
-varsion = '1.1.3'
+varsion = '1.1.4'
 
 is_exports = typeof exports isnt "undefined" and exports isnt null
 root = if is_exports then exports else this
@@ -67,7 +67,7 @@ setLocale = (loc) ->
     if k.toLowerCase() is loc.toLowerCase()
       locale = k
       break
-  
+
   if locale and sup.localizedDict[locale]
     locale_dict = sup.localizedDict[locale]
   else
@@ -78,7 +78,7 @@ setLocale = (loc) ->
 
   return locale
 
-    
+
 translate = (text) ->
   if not text or typeof text isnt 'string'
     return text
@@ -86,7 +86,7 @@ translate = (text) ->
   trans = localizedText[_trans_key(text)]
   if not trans
     trans = text
-  
+
   args=[]
   for arg in arguments
     args.push arg
@@ -96,7 +96,7 @@ translate = (text) ->
     trans = trans.replace("%s", arg)
 
   return trans
- 
+
 self_translate = (text)->
   if not text or typeof text isnt 'object'
     return text
@@ -104,10 +104,12 @@ self_translate = (text)->
     lang = locale.split('_')[0] or 'en'
     trans_text = text[locale] or text[lang]
   if not trans_text
+    trans_text = text['en_US'] or text['en']
+  if not trans_text
     key = Object.keys(text)[0]
     trans_text = text[key]
   return trans_text
- 
+
 
 angular.module 'supLocales', ['ngCookies']
 
@@ -131,13 +133,13 @@ angular.module 'supLocales', ['ngCookies']
   ) ->
     default_locale = 'en_US'
     self = @
-    
+
     @version = varsion
     @inited = false
 
     @init = (loc, case_sensitive)->
       @inited = true
-      
+
       CASE_SENSITIVE = Boolean(case_sensitive)
 
       if loc
@@ -160,11 +162,11 @@ angular.module 'supLocales', ['ngCookies']
       self.set(currLocale)
       $rootScope._ = angular.translate = translate
       $rootScope._t = angular.self_translate = self_translate
-    
+
     @load = (loc, text_list)->
       insert(loc, text_list)
       setLocale(loc)
-    
+
     @translate = (args)->
       return translate.apply(this, arguments)
 
@@ -174,13 +176,13 @@ angular.module 'supLocales', ['ngCookies']
       $rootScope.lang = locale.split('_')[0] or 'en'
       if $cookies.get('current_locale') != locale
         $cookies.put('current_locale', locale)
-    
+
     @append = (translates)->
       append(translates)
-    
+
     @restore = ->
       restore()
-    
+
     @get = ->
       try
         cookieLocale = $cookies.get 'current_locale'
@@ -194,6 +196,6 @@ angular.module 'supLocales', ['ngCookies']
       lang1 = lang1.replace('-','_')
       lang2 = lang2.replace('-','_')
       return lang1.toLowerCase() == lang2.toLowerCase()
-        
+
     return  @
 ]
