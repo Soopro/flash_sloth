@@ -1,22 +1,22 @@
 angular.module 'flashSloth'
 
-.controller "memberApplyMakeCtrl", [
+.controller "memberDemandMakeCtrl", [
   '$scope'
   'restAgent'
   'dialog'
   'fsv'
-  'apply'
+  'demand'
   (
     $scope
     restAgent
     dialog
     fsv
-    apply
+    demand
   ) ->
     if typeof(angular.translate) is 'function'
       $scope._ = angular.translate
 
-    $scope.apply = apply
+    $scope.demand = demand
     $scope.submitted = false
 
     $scope.events = []

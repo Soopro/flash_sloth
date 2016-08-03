@@ -40,27 +40,26 @@ angular.module 'flashSloth'
     $scope.make_demand = ->
       demand_tmpl =
         member_id: member_id
-      apply = new restAgent.member_apply(demand_tmpl)
+      demand = new restAgent.member_demand(demand_tmpl)
       dialog.show
-        controller: 'memberApplyMakeCtrl'
+        controller: 'memberDemandMakeCtrl'
         templateUrl: 'blueprints/member/views/member_demand_make.tmpl.html'
         locals:
-          apply: apply
+          demand: demand
       .then (data)->
         last_index+=1
         $scope.total+=1
-        console.log data
         $scope.demands.unshift data
       .then (data)->
         flash "Reservation has been created."
 
 
-    $scope.open = (apply)->
+    $scope.open = (demand)->
       dialog.show
-        controller: 'memberApplyEditCtrl'
+        controller: 'memberDemandEditCtrl'
         templateUrl: 'blueprints/member/views/member_demand_edit.tmpl.html'
         locals:
-          apply: apply
+          demand: demand
       .then (data)->
         if data.status isnt 1
           flash "Reservation has been closed."

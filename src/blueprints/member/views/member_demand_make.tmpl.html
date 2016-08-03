@@ -44,16 +44,16 @@
         </md-input-container>
 
         <md-input-container>
-          <label>{{_('Full Name')}}</label>
+          <label>{{_('Subject')}}</label>
           <input name="name"
                  type="text"
-                 ng-model="demand.name"/>
+                 ng-model="demand.subject"/>
         </md-input-container>
 
         <md-input-container>
           <label>{{_('Message')}}</label>
           <textarea name="message"
-                    ng-model="demand.message"></textarea>
+                    ng-model="demand.meta.message"></textarea>
         </md-input-container>
 
         <md-input-container>

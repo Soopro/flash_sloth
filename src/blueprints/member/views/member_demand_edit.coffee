@@ -1,18 +1,18 @@
 angular.module 'flashSloth'
 
-.controller "memberApplyEditCtrl", [
+.controller "memberDemandEditCtrl", [
   '$scope'
   'dialog'
-  'apply'
+  'demand'
   (
     $scope
     dialog
-    apply
+    demand
   ) ->
     if typeof(angular.translate) is 'function'
       $scope._ = angular.translate
 
-    $scope.apply = apply
+    $scope.demand = demand
 
     $scope.submitted = false
 

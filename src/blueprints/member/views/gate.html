@@ -90,21 +90,21 @@
             <label>{{_('Name')}}</label>
             <input name="name"
                    type="text"
-                   ng-model="new.name"/>
+                   ng-model="new.meta.name"/>
           </md-input-container>
 
           <md-input-container>
             <label>{{_('Mobile')}}</label>
             <input name="mobile"
                    type="text"
-                   ng-model="new.mobile"/>
+                   ng-model="new.meta.mobile"/>
           </md-input-container>
 
           <md-input-container>
             <label>{{_('Email')}}</label>
             <input name="email"
                    type="email"
-                   ng-model="new.email"/>
+                   ng-model="new.meta.email"/>
             <ng-messages ng-if="new_member_form.email.$touched"
                          for="new_member_form.email.$error">
               <ng-message when="email">
@@ -117,14 +117,13 @@
             <label>{{_('Avatar')}}</label>
             <input name="avatar"
                    type="text"
-                   ng-model="new.avatar"/>
+                   ng-model="new.meta.avatar"/>
           </md-input-container>
 
           <md-input-container>
-            <label>{{_('Code')}}</label>
-            <input name="code"
-                   type="text"
-                   ng-model="new.code"/>
+            <label>{{_('Memo')}}</label>
+            <textarea name="memo"
+                      ng-model="new.memo"/></textarea>
           </md-input-container>
 
           <md-input-container>

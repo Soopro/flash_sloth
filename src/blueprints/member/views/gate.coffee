@@ -33,7 +33,7 @@ angular.module 'flashSloth'
         $scope.submitted = false
 
     $scope.create_member = ->
-      fields = ['login', 'passwd', 'name', 'mobile', 'email']
+      fields = ['login', 'passwd']
       if not fsv($scope.new_member_form, fields)
         return
       if $scope.submitted
