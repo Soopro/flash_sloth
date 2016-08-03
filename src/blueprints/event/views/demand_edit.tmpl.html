@@ -19,15 +19,29 @@
       <h2 class="md-headline">
         {{ demand.title }}
       </h2>
+      <h3 class="md-subhead text-accent"
+          ng-if="demand.status == 2">
+        {{ _('Canceled') }}
+      </h3>
+      <h3 class="md-subhead text-accent"
+          ng-if="demand.status == 0">
+        {{ _('Closed') }}
+      </h3>
       <div class="md-padding"
            layout="column">
+        <div class="input-container">
+          <label class="static-label">{{_('Subject')}}</label>
+          <p flex-order="2">{{demand.subject || demand.id}}</p>
+        </div>
         <div class="input-container">
           <label class="static-label">{{_('Member Account')}}</label>
           <p flex-order="2">{{demand.member_login || '-'}}</p>
         </div>
-        <div class="input-container">
-          <label class="static-label">{{_('Message')}}</label>
-          <p flex-order="2">{{demand.message || '...'}}</p>
+        <div class="input-container"
+             ng-repeat="field in demand.fields">
+          <p class="text-break">
+            {{field.label}}{{_(':')}}&nbsp;{{field.value}}
+          </p>
         </div>
 
         <md-input-container flex>

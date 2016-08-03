@@ -37,26 +37,14 @@
             <md-divider></md-divider>
             <!-- items -->
             <div class="anim-item"
-                 ng-repeat="apply in demands">
-              <md-list-item class="md-3-line" ng-click="open(apply)">
+                 ng-repeat="demand in demands">
+              <md-list-item class="md-3-line" ng-click="open(demand)">
                 <div class="md-list-item-text"
                      layout="column">
                   <h3 class="text-nowrap"
                       vw-max="65">
-                    {{ demand.name || '-'}}
+                    {{ demand.subject || demand.id }}
                   </h3>
-                  <p class="text-nowrap"
-                     vw-max="65">
-                    <span class="text-accent"
-                          ng-if="demand.code">
-                      [{{ demand.code }}]
-                    </span>
-                    {{ demand.member_login || '-'}}
-                  </p>
-                  <p class="text-nowrap"
-                     vw-max="65">
-                    {{ demand.message }}
-                  </p>
                 </div>
                 <md-icon md-svg-icon="ic_done_24px"
                          ng-if="demand.status == 0">
