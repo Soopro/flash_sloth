@@ -92,8 +92,8 @@ angular.module 'flashSloth'
       if $scope.submitted
         return
       $scope.submitted = true
-      $scope.promocode = new restAgent.promocode
-        id: promo_id
+      $scope.cardnum = new restAgent.cardnum
+        id: card_id
         code: $scope.code
 
       $scope.promocode.$get()
@@ -106,7 +106,7 @@ angular.module 'flashSloth'
 
     $scope.reset_code = ->
       $scope.code = null
-      $scope.promocode = {}
+      $scope.cardnum = {}
       $scope.find_form.$setPristine()
       $scope.find_form.$setUntouched()
 

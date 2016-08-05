@@ -1,4 +1,4 @@
-<md-content ng-show="card.slug">
+<md-content ng-show="card.slug && !card.common">
   <md-tabs md-dynamic-height>
     <md-tab label="{{_('Find')}}"
             md-on-deselect="reset_code()"
@@ -13,15 +13,15 @@
               ng-submit="find_code()"
               novalidate>
           <md-input-container>
-            <label>{{_('Code')}}</label>
-            <input name="code"
+            <label>{{_('Card Number')}}</label>
+            <input name="cardnum"
                    type="text"
-                   ng-model="code"
+                   ng-model="cardnum"
                    required/>
-            <ng-messages ng-if="find_form.code.$touched"
-                         for="find_form.code.$error">
+            <ng-messages ng-if="find_form.cardnum.$touched"
+                         for="find_form.cardnum.$error">
               <ng-message when="required">
-                {{ _('Code is required.') }}
+                {{ _('Card Number is required.') }}
               </ng-message>
             </ng-messages>
           </md-input-container>
