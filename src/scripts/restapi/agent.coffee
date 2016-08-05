@@ -42,15 +42,15 @@ angular.module 'flashSloth'
       ,
         done: method: "POST"
 
-    # -- Promo --
-    promo: do ->
-      supResource "#{api}/promo/:promo_id",
-        'promo_id': '@id'
+    # -- Card --
+    card: do ->
+      supResource "#{api}/card/:card_id",
+        'card_id': '@id'
 
-    promocode: do ->
-      supResource "#{api}/promo/:promo_id/code/:code",
-        'promo_id': '@id'
-        'code':'@code'
+    cardnum: do ->
+      supResource "#{api}/card/:card_id/cardnum/:num",
+        'card_id': '@card_id'
+        'num':'@num'
       ,
         use: method: "POST"
 

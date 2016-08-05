@@ -5,32 +5,31 @@
       <!-- section header -->
       <header layout-margin>
         <h2 class="md-title">
-          {{_('Promotions')}}
+          {{_('Cards')}}
         </h2>
       </header>
       <!-- events -->
       <div>
         <md-list>
           <md-subheader class="md-no-sticky">
-            <span ng-bind-html="_('You have <span class=text-primary>'+
-             '%s</span> promotions.', promos.length)">
+            <span ng-bind-html="_('You have %s cards.', cards.length)">
             </span>
           </md-subheader>
           <md-divider></md-divider>
           <!-- items -->
           <div class="anim-item"
-               ng-repeat="promo in promos">
+               ng-repeat="card in cards">
             <md-list-item class="md-2-line"
-                          ng-click="open(promo)">
+                          ng-click="open(card)">
               <div class="md-list-item-text"
                    layout="column">
                 <h3 class="text-nowrap"
                     vw-max="65">
-                  {{ promo.meta.title }}
+                  {{ card.meta.title }}
                 </h3>
                 <p class="text-nowrap"
                    vw-max="65">
-                  {{ promo.base_code }}
+                  {{ card.base_code }}
                 </p>
               </div>
               <md-icon md-svg-icon="ic_local_play_24px">

@@ -1,6 +1,6 @@
 angular.module 'flashSloth'
 
-.controller "promoDetailCtrl", [
+.controller "cardDetailCtrl", [
   '$scope'
   '$routeParams'
   '$location'
@@ -10,7 +10,7 @@ angular.module 'flashSloth'
   'flash'
   'dialog'
   'Config'
-  'ConfigPromo'
+  'ConfigCard'
   'fsv'
   (
     $scope
@@ -22,10 +22,10 @@ angular.module 'flashSloth'
     flash
     dialog
     Config
-    ConfigPromo
+    ConfigCard
     fsv
   ) ->
-    promo_id = $routeParams.promo_id
+    card_id = $routeParams.card_id
     code = $routeParams.code
 
     $scope.code = code
@@ -49,24 +49,14 @@ angular.module 'flashSloth'
       else if $scope.code
         $scope.find_code(true)
 
-    $scope.remain = (remain)->
-      if remain
-        endtime = $filter('dateformat')(
-          Date.now() + remain * 1000,
-          'yyyy-MM-dd H:mm'
-        )
-      else
-        endtime = null
-      return endtime
-
     $scope.promo_type_name = (ptype)->
-      for type in ConfigPromo.promo_types
+      for type in ConfigCard.promo_types
         if type.key == ptype
           return type.name
       return null
 
     $scope.promo_type_point = (ptype)->
-      for type in ConfigPromo.promo_types
+      for type in ConfigCard.promo_types
         if type.key == ptype
           return type.upper
       return false
