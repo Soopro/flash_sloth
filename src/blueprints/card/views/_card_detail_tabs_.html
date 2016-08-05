@@ -1,0 +1,89 @@
+<md-content ng-show="card.slug">
+  <md-tabs md-dynamic-height>
+    <md-tab label="{{_('Find')}}"
+            md-on-deselect="reset_code()"
+            md-on-select="switch_gen_mode(false)">
+      <!-- find card code -->
+      <div layout-padding>
+        <h3 class="md-title">
+          {{_('Find Card Number')}}
+        </h3>
+        <form name="find_form"
+              layout="column"
+              ng-submit="find_code()"
+              novalidate>
+          <md-input-container>
+            <label>{{_('Code')}}</label>
+            <input name="code"
+                   type="text"
+                   ng-model="code"
+                   required/>
+            <ng-messages ng-if="find_form.code.$touched"
+                         for="find_form.code.$error">
+              <ng-message when="required">
+                {{ _('Code is required.') }}
+              </ng-message>
+            </ng-messages>
+          </md-input-container>
+          <div layout="row">
+            <md-button class="md-raised"
+                       type="submit"
+                       ng-disabled="submitted">
+              {{_('Find')}}
+            </md-button>
+            <md-button class="md-raised"
+                       ng-show="has_scanner"
+                       ng-click="scan_code()"
+                       ng-disabled="submitted">
+              {{_('Scan')}}
+            </md-button>
+            <span flex></span>
+            <md-button class="md-icon-button"
+                       aria-label="{{_('Refresh')}}"
+                       ng-disabled="submitted"
+                       ng-click="reset_code()">
+              <md-icon md-svg-icon="ic_refresh_24px">
+              </md-icon>
+            </md-button>
+          </div>
+        </form>
+      </div>
+    </md-tab>
+
+    <md-tab label="{{_('Create')}}"
+            md-on-select="switch_gen_mode(true)">
+      <!-- create card code -->
+      <div layout-padding>
+        <h3 class="md-title">
+          {{_('Create Card Number')}}
+        </h3>
+        <form name="create_form"
+              layout="column"
+              ng-submit="create()"
+              novalidate>
+          <md-input-container>
+            <label>{{_('Assign to Member')}}</label>
+            <input name="assign_member"
+                   type="text"
+                   ng-model="assign_member_login" />
+          </md-input-container>
+          <div layout="row"
+               layout-align="space-between">
+            <md-button class="md-raised"
+                       type="submit"
+                       ng-disabled="submitted">
+              {{_('Create')}}
+            </md-button>
+            <md-button class="md-icon-button"
+                       aria-label="{{_('Batch')}}"
+                       ng-disabled="submitted"
+                       ng-click="auto_create()">
+              <md-icon md-svg-icon="ic_android_24px">
+              </md-icon>
+            </md-button>
+          </div>
+        </form>
+      </div>
+    </md-tab>
+  </md-tabs>
+</md-content>

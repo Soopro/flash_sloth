@@ -1,0 +1,32 @@
+<div layout-margin>
+  <p>
+    {{_('Base Code')}}{{_(': ')}}
+    <span class="text-primary">
+      {{card.base_code}}
+    </span>
+  </p>
+  <p>
+    {{_('Style')}}{{_(': ')}}
+    {{_(cardstyles[card.style])}}
+  </p>
+  <p>
+    {{_('Usage Mode')}}{{_(': ')}}
+    {{card.common?_('Common'):_('Distribution')}}
+  </h3>
+  <p ng-if="card.duration != undefined">
+    {{_('Remain')}}{{_(': ')}}
+    {{remain(card.remain)}}
+  </p>
+  <p ng-if="card.amount != undefined">
+    {{_('Amount')}}{{_(': ')}}
+    {{card.amount}}
+  </p>
+  <p ng-if="!card.common">
+    {{_('Count')}}{{_(': ')}}
+    {{card.count}}
+  </p>
+  <p>
+    {{_('Description')}}{{_(': ')}}
+    {{card.meta.description}}
+  </p>
+</div>

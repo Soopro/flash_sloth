@@ -37,31 +37,13 @@ angular.module 'flashSloth'
     $scope.new_codes = []
     $scope.add_point = 0
 
-    $scope.promo = new restAgent.promo
-      id: promo_id
+    $scope.cardstyles = ConfigCard.cardstyles
 
-    $scope.promo.$get()
-    .then (data)->
-      $scope.promo_loaded = true
-      if $scope.promo.common
-        $scope.code = $scope.promo.slug
-        $scope.find_code(true)
-      else if $scope.code
-        $scope.find_code(true)
+    $scope.card = restAgent.card.get
+      card_id: card_id
 
-    $scope.promo_type_name = (ptype)->
-      for type in ConfigCard.promo_types
-        if type.key == ptype
-          return type.name
-      return null
 
-    $scope.promo_type_point = (ptype)->
-      for type in ConfigCard.promo_types
-        if type.key == ptype
-          return type.upper
-      return false
-
-    $scope.disable_use = ->
+    $scope.disable_use = (card)->
       type_point = $scope.promo_type_point($scope.promocode.type)
 
       if $scope.promocode.consumed

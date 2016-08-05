@@ -8,143 +8,20 @@
       <header layout-margin>
         <h2 class="md-display-1 text-nowrap"
             vw-max="80">
-          {{promo.meta.title}}
+          {{card.meta.title}}
         </h2>
       </header>
-      <!-- promo info -->
-      <div layout-margin>
-        <p>
-          {{_('Base Code:')}}
-          <span class="text-primary">
-            {{promo.base_code}}
-          </span>
-        </p>
-        <p>
-          {{_('Type:')}}
-          {{promo_type_name(promo.type)}}
-        </p>
-        <p>
-          {{_('Mode:')}}
-          {{promo.common?_('Common'):_('Distribution')}}
-        </h3>
-        <p ng-if="promo.duration != undefined">
-          {{_('Remain:')}}
-          {{remain(promo.remain)}}
-        </p>
-        <p ng-if="promo.amount != undefined">
-          {{_('Amount:')}}
-          {{promo.amount}}
-        </p>
-        <p ng-if="!promo.common">
-          {{_('Reserves:')}}
-          {{promo.count.used}} / {{promo.count.total}}
-        </p>
-        <p ng-if="!promo.common && promo.upper">
-          {{_('Point Upper limit:')}}
-          {{promo.upper}}
-        </p>
-        <p>
-          {{_('Description:')}}&nbsp;{{promo.meta.description}}
-        </p>
-      </div>
-
-      <md-content ng-show="promo_loaded && !promo.common">
-        <md-tabs md-dynamic-height>
-          <md-tab label="{{_('Find')}}"
-                  md-on-deselect="reset_code()"
-                  md-on-select="switch_gen_mode(false)">
-            <!-- find promo code -->
-            <div layout-padding>
-              <h3 class="md-title">
-                {{_('Find Card Number')}}
-              </h3>
-              <form name="find_form"
-                    layout="column"
-                    ng-submit="find_code()"
-                    novalidate>
-                <md-input-container>
-                  <label>{{_('Code')}}</label>
-                  <input name="code"
-                         type="text"
-                         ng-model="code"
-                         required/>
-                  <ng-messages ng-if="find_form.code.$touched"
-                               for="find_form.code.$error">
-                    <ng-message when="required">
-                      {{ _('Code is required.') }}
-                    </ng-message>
-                  </ng-messages>
-                </md-input-container>
-                <div layout="row">
-                  <md-button class="md-raised"
-                             type="submit"
-                             ng-disabled="submitted">
-                    {{_('Find')}}
-                  </md-button>
-                  <md-button class="md-raised"
-                             ng-show="has_scanner"
-                             ng-click="scan_code()"
-                             ng-disabled="submitted">
-                    {{_('Scan')}}
-                  </md-button>
-                  <span flex></span>
-                  <md-button class="md-icon-button"
-                             aria-label="{{_('Refresh')}}"
-                             ng-disabled="submitted"
-                             ng-click="reset_code()">
-                    <md-icon md-svg-icon="ic_refresh_24px">
-                    </md-icon>
-                  </md-button>
-                </div>
-              </form>
-            </div>
-          </md-tab>
-
-          <md-tab label="{{_('Create')}}"
-                  md-on-select="switch_gen_mode(true)">
-            <!-- create promo code -->
-            <div layout-padding>
-              <h3 class="md-title">
-                {{_('Create Card Number')}}
-              </h3>
-              <form name="create_form"
-                    layout="column"
-                    ng-submit="create()"
-                    novalidate>
-                <md-input-container>
-                  <label>{{_('Assign to Member')}}</label>
-                  <input name="assign_member"
-                         type="text"
-                         ng-model="assign_member_login" />
-                </md-input-container>
-                <div layout="row"
-                     layout-align="space-between">
-                  <md-button class="md-raised"
-                             type="submit"
-                             ng-disabled="submitted">
-                    {{_('Create')}}
-                  </md-button>
-                  <md-button class="md-icon-button"
-                             aria-label="{{_('Batch')}}"
-                             ng-disabled="submitted"
-                             ng-click="auto_create()">
-                    <md-icon md-svg-icon="ic_android_24px">
-                    </md-icon>
-                  </md-button>
-                </div>
-              </form>
-            </div>
-          </md-tab>
-        </md-tabs>
-      </md-content>
-
+      <!-- info -->
+      {% include '_card_detail_info_.html' %}
+      <!-- tabs -->
+      {% include '_card_detail_tabs_.html' %}
     </section>
 
 
     <!-- column -->
     <section flex-gt-sm="45"
              offset-gt-sm="5"
-             ng-show="promo_loaded"
+             ng-show="card_loaded"
              layout-padding>
       <!-- section header -->
       <header layout-margin>
@@ -153,18 +30,18 @@
             {{gen_mode?_('Generated Codes'):_('Use Code')}}
         </h2>
       </header>
-      <!-- display promo code -->
+      <!-- display card code -->
       <div class="anim-fade"
            ng-show="!gen_mode"
            layout-margin>
         <!-- code card -->
-        <md-card class="promo"
+        <md-card class="card"
                  layout-padding>
-          <img ng-src="{{promo.meta.sticker}}"
-               ng-show="promo.meta.sticker" />
+          <img ng-src="{{card.meta.sticker}}"
+               ng-show="card.meta.sticker" />
           <md-icon class="s120"
                    md-svg-icon="ic_local_play_24px"
-                   ng-show="!promo.meta.sticker">
+                   ng-show="!card.meta.sticker">
           </md-icon>
           <md-card-content ng-show="code_loaded">
             <form name="use_form"
@@ -173,66 +50,65 @@
                   ng-submit="use_code()"
                   novalidate>
               <div class="md-caption text-warn"
-                   ng-if="promocode.consumed">
+                   ng-if="cardcode.consumed">
                 {{_('Consumed')}}
               </div>
               <div class="md-display-1 text-break">
-                  {{promocode.code}}
+                  {{cardcode.code}}
               </div>
               <div class="md-caption"
-                   ng-if="promocode.member_assigned">
+                   ng-if="cardcode.member_assigned">
                 {{_('For Member only')}}
               </div>
               <div class="md-headline"
-                   ng-if="promo_type_point(promocode.type)">
-                {{promocode.point}} / {{promo.upper}}
+                   ng-if="card_type_point(cardcode.type)">
+                {{cardcode.point}} / {{card.upper}}
               </div>
               <div class="md-title"
                    layout-margin>
                 <span class="text-primary"
-                      ng-if="promocode._success && !promocode._error">
+                      ng-if="cardcode._success && !cardcode._error">
                   {{_('Success')}}
                 </span>
                 <span class="text-warn"
-                      ng-if="!promocode._success && promocode._error">
+                      ng-if="!cardcode._success && cardcode._error">
                   {{_('Error')}}
                 </span>
               </div>
 
-              <div ng-show="promocode.member_assigned"
+              <div ng-show="cardcode.member_assigned"
                    layout-margin>
                 <md-input-container>
                   <label>{{_('Member Account ID:')}}</label>
                   <input name="member_login"
                          type="text"
                          ng-model="member_login"
-                         ng-disabled="promocode.consumed" />
+                         ng-disabled="cardcode.consumed" />
                 </md-input-container>
               </div>
 
-              <div ng-show="promo_type_point(promocode.type)"
+              <div ng-show="card_type_point(cardcode.type)"
                    layout-margin>
                 <md-input-container>
                   <label>{{_('Point:')}}</label>
                   <input name="point"
                          type="number"
                          ng-model="add_point"
-                         ng-disabled="promocode.consumed" />
+                         ng-disabled="cardcode.consumed" />
                 </md-input-container>
               </div>
 
-              <div ng-show="promocode.status == 1"
+              <div ng-show="cardcode.status == 1"
                    layout-margin>
                 <md-button class="main-nav-btn md-primary"
-                           type="submit"
-                           ng-disabled="disable_use()">
+                           type="submit">
                   {{_('Use this code')}}
                 </md-button>
               </div>
 
               <div>
                 <p class="md-caption tip">
-                  {{promocode.updated | dateformat}}
+                  {{cardcode.updated | dateformat}}
                 </p>
               </div>
             </form>
@@ -240,7 +116,7 @@
           </md-card-content>
         </md-card>
       </div>
-      <!-- gen promo code -->
+      <!-- gen card code -->
       <div class="anim-fade"
            ng-show="gen_mode"
            layout-margin>
@@ -248,7 +124,7 @@
           <md-subheader class="md-no-sticky">
             <span ng-bind-html="_('You have <span class=text-primary>'+
              '%s</span> codes, <span class=text-primary>%s</span> '+
-              'have been used', promo.count.total, promo.count.used)">
+              'have been used', card.count.total, card.count.used)">
             </span>
           </md-subheader>
           <md-divider></md-divider>
