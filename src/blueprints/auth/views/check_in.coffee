@@ -3,6 +3,7 @@ angular.module 'flashSloth'
 .controller "checkInCtrl", [
   '$scope'
   '$location'
+  '$routeParams'
   'restAgent'
   'Auth'
   'flash'
@@ -11,19 +12,21 @@ angular.module 'flashSloth'
   (
     $scope
     $location
+    $routeParams
     restAgent
     Auth
     flash
     Config
     fsv
   ) ->
-    $scope.auth = {}
+    $scope.auth =
+      passcode: ''
+      owner_slug:  ''
+
     $scope.submitted = false
 
     $scope.submit = ->
-      if not fsv($scope.auth_form, ['login', 'spell'])
-        return
-      if $scope.submitted
+      if not fsv($scope.auth_form, ['owner', 'passcode']) or $scope.submitted
         return
 
       $scope.submitted = true

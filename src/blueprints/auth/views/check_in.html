@@ -20,18 +20,15 @@
             novalidate>
 
         <md-input-container>
-          <label>{{_('Owner Account')}}</label>
-          <input name="login"
-                 type="email"
-                 ng-model="auth.login"
-                 required/>
-          <ng-messages ng-if="auth_form.login.$touched"
-                       for="auth_form.login.$error">
-            <ng-message when="email">
-              {{ _('Owner Account must be an email address.') }}
-            </ng-message>
+          <label>{{_('Username')}}</label>
+          <input name="owner"
+                 type="text"
+                 ng-model="auth.owner_slug"
+                 required />
+          <ng-messages ng-if="auth_form.owner.$touched"
+                       for="auth_form.owner.$error">
             <ng-message when="required">
-              {{ _('Owner Account is required.') }}
+              {{ _('Username is required.') }}
             </ng-message>
           </ng-messages>
         </md-input-container>
