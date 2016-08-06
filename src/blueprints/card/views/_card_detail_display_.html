@@ -15,32 +15,40 @@
             class="text-center"
             ng-submit="use(display_card)"
             novalidate>
-        <div class="md-caption text-warn"
-             ng-if="display_card.status == 0">
-          {{_('Scrapped')}}
-        </div>
-        <div class="md-title md-padding"
-             ng-if="display_card.status != 0">
-          <span class="text-warn"
-                ng-if="display_card._error">
-            {{_('Error')}}
-          </span>
-        </div>
 
         <div class="md-caption text-primary"
              ng-if="display_card.member_login">
           {{display_card.member_login}}
         </div>
-        <div class="md-display-1 text-break">
+        <div class="md-display-1 text-break"
+             ng-class="{'text-warn': display_card._error}">
             {{display_card.code}}
         </div>
         <div class="md-headline text-accent"
              ng-if="display_card.style == 'storeCard'">
           {{display_card.balance | abbrnum}}
         </div>
+        <div class="md-caption text-warn"
+             ng-if="display_card.status == 0">
+          {{_('Scrapped')}}
+        </div>
 
         <div class="md-padding"
              ng-show="display_card.status == 1">
+
+          <div class="md-caption"
+               ng-if="display_card.duration != null"
+               ng-class="{'text-warn': display_card.duration <= 0,
+                          'text-accent': display_card.duration > 0}">
+            {{_('%s Hours Remain', display_card.duration)}}
+          </div>
+          <div class="md-caption"
+               ng-if="display_card.amount != null && display_card.common"
+               ng-class="{'text-warn': display_card.amount <= 0,
+                          'text-accent': display_card.amount > 0}">
+            {{_('%s in Stock', display_card.amount)}}
+          </div>
+
           <div ng-show="display_card.style == 'storeCard'">
             <md-input-container>
               <label>{{_('Credit')}}</label>
@@ -72,8 +80,9 @@
         </div>
       </form>
 
-      <div class="text-right"
-           ng-show="display_card.style == 'storeCard'">
+      <div layout="row"
+           layout-align="end center"
+           ng-if="display_card.slug && !display_card.common">
         <md-button class="md-icon-button"
                    aria-label="{{_('Destroy')}}"
                    ng-click="destroy(display_card)">

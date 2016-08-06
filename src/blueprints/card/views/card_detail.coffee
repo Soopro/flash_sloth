@@ -38,28 +38,13 @@ angular.module 'flashSloth'
 
     $scope.cardstyles = ConfigCard.cardstyles
 
-    $scope.card = restAgent.card.get
-      card_id: card_id
+    $scope.card = new restAgent.card
+      id: card_id
 
-
-    $scope.disable_use = (card)->
-      type_point = $scope.promo_type_point($scope.promocode.type)
-
-      if $scope.promocode.consumed
-        return true
-      else if $scope.promocode.status != 1
-        return true
-      else if $scope.promocode.member_assigned and not $scope.member_login
-        return true
-      else if type_point and not $scope.add_point
-        return true
-      else if $scope.promo.common
-        timeout = $scope.promo.remain isnt null and $scope.promo.remain <= 0
-        runout = $scope.promo.amount isnt null and $scope.promo.amount <= 0
-        return timeout or runout
-      else
-        return false
-
+    $scope.card.$get().then (card)->
+      if card.common
+        $scope.code = card.code
+        $scope.find_code(true)
 
     $scope.has_scanner = QRScanner.check()
 
@@ -207,6 +192,8 @@ angular.module 'flashSloth'
       .then (data)->
         data.member_login = member_login
         $scope.card.count = data.count
+        if $scope.card.amount
+          $scope.card.amount -= 1
         $scope.generated.push(data)
 
 ]

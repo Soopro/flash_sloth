@@ -13,10 +13,10 @@ angular.module 'flashSloth'
         ico: "ic_dashboard_24px"
       }
       {
-        key: "card"
-        name: "cards"
-        ico: "ic_local_play_24px"
-        path: "/card"
+        key: "member"
+        name: "Membership"
+        ico: "ic_people_24px"
+        path: "/member"
       }
       {
         key: "events"
@@ -25,10 +25,10 @@ angular.module 'flashSloth'
         path: "/event"
       }
       {
-        key: "member"
-        name: "Membership"
-        ico: "ic_people_24px"
-        path: "/member"
+        key: "card"
+        name: "cards"
+        ico: "ic_local_play_24px"
+        path: "/card"
       }
       {
         key: "exit"
