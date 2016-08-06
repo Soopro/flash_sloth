@@ -23,6 +23,10 @@ angular.module 'flashSloth'
         'member_login': '@login'
         'member_id': '@id'
 
+    member_cards: do ->
+      supResource "#{api}/member/:member_id/cards",
+        'member_id': '@member_id'
+
     member_demand: do ->
       supResource "#{api}/member/:member_id/demand/:demand_id",
         'member_id': '@member_id'

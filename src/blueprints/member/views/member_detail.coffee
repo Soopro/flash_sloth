@@ -4,12 +4,14 @@ angular.module 'flashSloth'
   '$scope'
   '$routeParams'
   'restAgent'
+  'supChain'
   'dialog'
   'flash'
   (
     $scope
     $routeParams
     restAgent
+    supChain
     dialog
     flash
   ) ->
@@ -28,13 +30,20 @@ angular.module 'flashSloth'
         $scope.total = last_data.cursor.total
         $scope.has_more = last_data.cursor.index < last_data.cursor.total-1
 
-    $scope.member = restAgent.member.get
-      member_id: member_id
-
-    $scope.demands = restAgent.member_demand.query
-      member_id: member_id
-    , (list)->
-      process_paged(list)
+    supChain()
+    .then ->
+      $scope.member = restAgent.member.get
+        member_id: member_id
+      $scope.member.$promise
+    .then ->
+      $scope.member_cards = restAgent.member_cards.query
+        member_id: member_id
+      $scope.member_cards.$promise
+    .then ->
+      $scope.demands = restAgent.member_demand.query
+        member_id: member_id
+      , (list)->
+        process_paged(list)
 
 
     $scope.make_demand = ->

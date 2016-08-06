@@ -2,6 +2,7 @@ angular.module 'flashSloth'
 
 .controller "cardDetailCtrl", [
   '$scope'
+  '$route'
   '$routeParams'
   '$location'
   '$filter'
@@ -14,6 +15,7 @@ angular.module 'flashSloth'
   'fsv'
   (
     $scope
+    $route
     $routeParams
     $location
     $filter
@@ -142,6 +144,7 @@ angular.module 'flashSloth'
         display_card._error = true
       .finally ->
         $scope.submitted = false
+        $route.reload()
 
 
     $scope.create = ->

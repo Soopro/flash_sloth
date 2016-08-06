@@ -15,48 +15,56 @@
       <div layout-margin>
         <div>
           <img class="member-avatar"
-               ng-src="{{member.avatar}}"
-               ng-if="member.avator" />
+               ng-src="{{member.meta.avatar}}"
+               ng-if="member.meta.avatar" />
           <md-icon class="member-avatar"
                    md-svg-icon="ic_person_24px"
-                   ng-if="!member.avator">
+                   ng-if="!member.meta.avatar">
           </md-icon>
         </div>
-        <div class="input-container">
+        <div class="input-container thin">
           <label class="static-label">{{_('Full Name')}}</label>
           <p class="md-title"
              flex-order="2">
-            {{member.name}}
+            {{member.meta.name}}
           </p>
         </div>
-        <div class="input-container">
+        <div class="input-container thin">
           <label class="static-label">{{_('Account')}}</label>
           <p flex-order="2">
             {{member.login}}
           </p>
         </div>
-        <div class="input-container">
+        <div class="input-container thin">
           <label class="static-label">{{_('Member Role')}}</label>
           <p flex-order="2">
             {{member.role.title || 'No Role'}}
           </p>
         </div>
-        <div class="input-container">
+        <div class="input-container thin">
           <label class="static-label">{{_('Mobile')}}</label>
           <p flex-order="2">
-            {{member.mobile || '-'}}
+            {{member.meta.mobile || '-'}}
           </p>
         </div>
-        <div class="input-container">
+        <div class="input-container thin">
           <label class="static-label">{{_('Email')}}</label>
           <p flex-order="2">
-            {{member.email || '-'}}
+            {{member.meta.email || '-'}}
           </p>
         </div>
-        <div class="input-container">
-          <label class="static-label">{{_('Code')}}</label>
+        <div class="input-container thin">
+          <label class="static-label">{{_('Cards')}}</label>
+          <p class="text-primary"
+             ng-repeat="card in member_cards"
+             flex-order="2">
+            {{ card.code }}
+          </p>
+        </div>
+        <div class="input-container thin">
+          <label class="static-label">{{_('Entrypoint')}}</label>
           <p flex-order="2">
-            {{member.code || '-'}}
+            {{ member.entrypoint }}
           </p>
         </div>
       </div>
@@ -70,7 +78,7 @@
       <header layout-margin>
         <h2 class="md-display-1 text-nowrap"
             vw-max="80">
-          {{_('Reservations')}}
+          {{_('Event Demands')}}
         </h2>
       </header>
       <!-- demands -->
