@@ -85,7 +85,7 @@ angular.module 'flashSloth'
 
       $scope.submitted = true
       $scope.display_card = new restAgent.cardnum
-        card_id: card_id
+        id: card_id
         code: $scope.code
 
       $scope.display_card.$get()
