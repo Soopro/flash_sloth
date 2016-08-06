@@ -19,9 +19,8 @@
              ng-if="display_card.status == 0">
           {{_('Scrapped')}}
         </div>
-        <div class="md-title"
-             ng-if="display_card.status != 0"
-             layout-margin>
+        <div class="md-title md-padding"
+             ng-if="display_card.status != 0">
           <span class="text-warn"
                 ng-if="display_card._error">
             {{_('Error')}}
@@ -35,29 +34,31 @@
         <div class="md-display-1 text-break">
             {{display_card.code}}
         </div>
-        <div class="md-title text-accent"
+        <div class="md-display-1 text-accent"
              ng-if="display_card.style == 'storeCard'">
-          {{display_card.balance}}
+          {{display_card.balance | abbrnum}}
         </div>
 
-        <div ng-show="display_card.status == 1"
-             layout-margin>
+        <div class="md-padding"
+             ng-show="display_card.status == 1">
           <div ng-show="display_card.style == 'storeCard'">
             <md-input-container>
-              <label>{{_('Credit')}}{{_(': ')}}</label>
+              <label>{{_('Credit')}}</label>
               <input name="credit"
                      type="number"
                      ng-model="credit"/>
             </md-input-container>
-            <md-button class="main-nav-btn md-primary"
-                       type="submit">
-              {{credit>0?_('Charge'):_('Spend')}}
-            </md-button>
+            <div>
+              <md-button class="md-primary"
+                         type="submit">
+                {{credit>0?_('Charge'):_('Spend')}}
+              </md-button>
+            </div>
           </div>
 
           <div ng-show="display_card.style != 'storeCard'"
                layout-margin>
-            <md-button class="main-nav-btn md-primary"
+            <md-button class="md-primary"
                        type="submit">
               {{_('Use it')}}
             </md-button>
@@ -71,11 +72,12 @@
         </div>
       </form>
 
-      <div ng-show="display_card.style == 'storeCard'">
-        <md-divider></md-divider>
-        <md-button class="main-nav-btn md-warn"
+      <div class="text-right"
+           ng-show="display_card.style == 'storeCard'">
+        <md-button class="md-icon-button"
+                   aria-label="{{_('Destroy')}}"
                    ng-click="destroy(display_card)">
-          {{_('Destroy')}}
+          <md-icon md-svg-icon="ic_delete_24px"></md-icon>
         </md-button>
       </div>
 

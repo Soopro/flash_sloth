@@ -108,11 +108,13 @@ angular.module 'flashSloth'
     $scope.use = (display_card)->
       if $scope.submitted
         return
-      $scope.submitted = true
+      display_card._error = false
       new_balance = display_card.balance + $scope.credit
       if new_balance < 0
-        flash 'Card is insufficient balance.'
+        display_card._error = true
+        flash 'Card is insufficient balance.', true
         return
+      $scope.submitted = true
       display_card.balance = new_balance
       display_card.member_login = $scope.member_login
       display_card.$use()
