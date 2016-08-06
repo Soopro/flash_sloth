@@ -60,7 +60,7 @@ angular.module 'flashSloth'
         $scope.total+=1
         $scope.demands.unshift data
       .then (data)->
-        flash "Reservation has been created."
+        flash "Demand has been created."
 
 
     $scope.open = (demand)->
@@ -71,9 +71,9 @@ angular.module 'flashSloth'
           demand: demand
       .then (data)->
         if data.status isnt 1
-          flash "Reservation has been closed."
+          flash "Demand has been closed."
         else
-          flash "Reservation has been saved."
+          flash "Demand has been saved."
         return
 
 
