@@ -34,11 +34,11 @@
         <div class="md-title"
              layout-margin>
           <span class="text-primary"
-                ng-if="display_card._success">
+                ng-if="display_card._success && !display_card._error">
             {{_('Success')}}
           </span>
           <span class="text-warn"
-                ng-if="display_card._error">
+                ng-if="display_card._error && !display_card._success">
             {{_('Error')}}
           </span>
         </div>
