@@ -46,6 +46,15 @@ angular.module 'flashSloth'
         process_paged(list)
 
 
+    $scope.accept_member = (member)->
+      $scope.submitted = true
+      member.$activate()
+      .then ->
+        flash "Member has been reviewed."
+      .finally ->
+        $scope.submitted = false
+
+
     $scope.make_demand = ->
       demand_tmpl =
         member_id: member_id

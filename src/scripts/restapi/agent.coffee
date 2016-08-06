@@ -22,6 +22,8 @@ angular.module 'flashSloth'
       supResource "#{api}/member/:member_id",
         'member_login': '@login'
         'member_id': '@id'
+      ,
+        activate: method: "POST"
 
     member_cards: do ->
       supResource "#{api}/member/:member_id/cards",

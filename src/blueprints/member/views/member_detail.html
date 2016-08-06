@@ -31,7 +31,8 @@
         </div>
         <div class="input-container thin">
           <label class="static-label">{{_('Account')}}</label>
-          <p flex-order="2">
+          <p flex-order="2"
+             ng-class="{'t25': member.status == 0}">
             {{member.login}}
           </p>
         </div>
@@ -60,6 +61,11 @@
              flex-order="2">
             {{ card.code }}
           </p>
+          <p class="tip"
+             ng-if="member_cards.length == 0"
+             flex-order="2">
+            {{_('No Cards')}}
+          </p>
         </div>
         <div class="input-container thin">
           <label class="static-label">{{_('Entrypoint')}}</label>
@@ -67,6 +73,12 @@
             {{ member.entrypoint }}
           </p>
         </div>
+        <md-input-container ng-if="member.status == 0">
+          <md-button class="md-raised"
+                     ng-click="accept_member(member)">
+            {{_('Accept Member')}}
+          </md-button>
+        </md-input-container>
       </div>
     </section>
 
