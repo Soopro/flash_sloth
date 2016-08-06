@@ -116,8 +116,14 @@
           <md-input-container>
             <label>{{_('Avatar')}}</label>
             <input name="avatar"
-                   type="text"
+                   type="url"
                    ng-model="new.meta.avatar"/>
+            <ng-messages ng-if="new_member_form.avatar.$touched"
+                         for="new_member_form.avatar.$error">
+              <ng-message when="url">
+                {{ _('Must be an URL.') }}
+              </ng-message>
+            </ng-messages>
           </md-input-container>
 
           <md-input-container>

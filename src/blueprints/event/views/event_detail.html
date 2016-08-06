@@ -11,17 +11,8 @@
         </header>
         <!-- event -->
         <div layout-margin>
-          <p>
-            {{_('Time:')}}
-            {{event.time || '-'}}
-          </p>
-          <p>
-            {{_('Location:')}}
-            {{event.location || '-'}}
-          </p>
-          <p>
-            {{_('Description:')}}
-            {{event.description}}
+          <p class="md-caption">
+            {{event.meta.description}}
           </p>
         </div>
 
