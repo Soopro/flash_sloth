@@ -12,8 +12,7 @@
     </md-icon>
     <md-card-content ng-show="card.slug">
       <form name="use_form"
-            layout="column"
-            layout-align="start center"
+            class="text-center"
             ng-submit="use(display_card)"
             novalidate>
         <div class="md-caption text-warn"
@@ -50,12 +49,10 @@
                      type="number"
                      ng-model="credit"/>
             </md-input-container>
-            <div class="text-center">
-              <md-button class="main-nav-btn md-primary"
-                         type="submit">
-                {{credit>0?_('Charge'):_('Spend')}}
-              </md-button>
-            </div>
+            <md-button class="main-nav-btn md-primary"
+                       type="submit">
+              {{credit>0?_('Charge'):_('Spend')}}
+            </md-button>
           </div>
 
           <div ng-show="display_card.style != 'storeCard'"
@@ -67,12 +64,20 @@
           </div>
         </div>
 
-        <div>
+        <div class="md-padding">
           <p class="md-caption tip">
             {{display_card.updated | dateformat}}
           </p>
         </div>
       </form>
+
+      <div ng-show="display_card.style == 'storeCard'">
+        <md-divider></md-divider>
+        <md-button class="main-nav-btn md-warn"
+                   ng-click="destroy(display_card)">
+          {{_('Destroy')}}
+        </md-button>
+      </div>
 
     </md-card-content>
   </md-card>

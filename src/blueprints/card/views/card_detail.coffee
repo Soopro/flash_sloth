@@ -128,6 +128,19 @@ angular.module 'flashSloth'
       .finally ->
         $scope.submitted = false
 
+    $scope.destroy = (display_card)->
+      if $scope.submitted
+        return
+      $scope.submitted = true
+      display_card.$remove()
+      .then (data)->
+        flash 'Card has been deleted.'
+        return
+      .catch (error)->
+        display_card._error = true
+      .finally ->
+        $scope.submitted = false
+
 
     $scope.create = ->
       if $scope.submitted
