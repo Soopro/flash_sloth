@@ -109,13 +109,15 @@ angular.module 'flashSloth'
       if $scope.submitted
         return
       $scope.submitted = true
+      new_balance = display_card.balance + $scope.credit
+      if new_balance < 0
+        flash 'Card is insufficient balance.'
+        return
+      display_card.balance = new_balance
       display_card.member_login = $scope.member_login
-      display_card.balance = $scope.add_point
-
       display_card.$use()
       .then (data)->
-        $scope.add_point = 0
-        display_card._success = true
+        $scope.credit = 0
         $scope.card.amount = data.amount
         $scope.card.duration = data.duration
         $scope.card.count = data.count
@@ -180,7 +182,7 @@ angular.module 'flashSloth'
 
     create_one = (member_login)->
       cardnum = new restAgent.cardnum
-        card_id: card_id
+        id: card_id
         member_login: member_login
 
       cardnum.$create()
