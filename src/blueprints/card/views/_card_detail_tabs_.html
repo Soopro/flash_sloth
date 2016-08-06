@@ -6,7 +6,7 @@
       <!-- find card code -->
       <div layout-padding>
         <h3 class="md-title">
-          {{_('Find Card Number')}}
+          {{_('Find Card')}}
         </h3>
         <form name="find_form"
               layout="column"
@@ -14,18 +14,19 @@
               novalidate>
           <md-input-container>
             <label>{{_('Card Number')}}</label>
-            <input name="cardnum"
+            <input name="code"
                    type="text"
-                   ng-model="cardnum"
+                   ng-model="code"
                    required/>
-            <ng-messages ng-if="find_form.cardnum.$touched"
-                         for="find_form.cardnum.$error">
+            <ng-messages for="find_form.code.$error"
+                         ng-if="find_form.code.$dirty">
               <ng-message when="required">
                 {{ _('Card Number is required.') }}
               </ng-message>
             </ng-messages>
           </md-input-container>
-          <div layout="row">
+          <div layout="row"
+               layout-align="space-between center">
             <md-button class="md-raised"
                        type="submit"
                        ng-disabled="submitted">
@@ -55,7 +56,7 @@
       <!-- create card code -->
       <div layout-padding>
         <h3 class="md-title">
-          {{_('Create Card Number')}}
+          {{_('Create Card')}}
         </h3>
         <form name="create_form"
               layout="column"
@@ -68,7 +69,7 @@
                    ng-model="assign_member_login" />
           </md-input-container>
           <div layout="row"
-               layout-align="space-between">
+               layout-align="space-between center">
             <md-button class="md-raised"
                        type="submit"
                        ng-disabled="submitted">

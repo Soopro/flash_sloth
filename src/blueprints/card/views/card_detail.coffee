@@ -28,14 +28,11 @@ angular.module 'flashSloth'
     card_id = $routeParams.card_id
     code = $routeParams.code
 
-    $scope.code = code
-    $scope.promo_loaded = false
-    $scope.code_loaded = false
     $scope.submitted = false
+
     $scope.gen_mode = false
-    $scope.promocode = {}
-    $scope.new_codes = []
-    $scope.add_point = 0
+    $scope.display_card = {}
+    $scope.generated = []
 
     $scope.cardstyles = ConfigCard.cardstyles
 
@@ -67,8 +64,6 @@ angular.module 'flashSloth'
     $scope.scan_code = ->
       if not $scope.has_scanner or $scope.submitted
         return
-      $scope.submitted = true
-
       QRScanner.scan()
       .then (data)->
         if data.result
@@ -77,36 +72,32 @@ angular.module 'flashSloth'
             $location path
           else
             $scope.code = data.result
-            $scope.submitted = false
             $scope.find_code(true)
           return
       .catch (error)->
         console.error error
-      .finally ->
-        $scope.submitted = false
 
 
     $scope.find_code = (skip_form)->
+      return if $scope.submitted
       if not fsv($scope.find_form, ['code']) and not skip_form
         return
-      if $scope.submitted
-        return
+
       $scope.submitted = true
-      $scope.cardnum = new restAgent.cardnum
-        id: card_id
+      $scope.display_card = new restAgent.cardnum
+        card_id: card_id
         code: $scope.code
 
-      $scope.promocode.$get()
+      $scope.display_card.$get()
       .catch (error)->
-        $scope.promocode =
+        $scope.display_card =
           _error: true
       .finally ->
-        $scope.code_loaded = true
         $scope.submitted = false
 
     $scope.reset_code = ->
       $scope.code = null
-      $scope.cardnum = {}
+      $scope.display_card = {}
       $scope.find_form.$setPristine()
       $scope.find_form.$setUntouched()
 
@@ -114,24 +105,24 @@ angular.module 'flashSloth'
       $scope.gen_mode = mode
 
 
-    $scope.use_code = ->
+    $scope.use = (display_card)->
       if $scope.submitted
         return
       $scope.submitted = true
-      $scope.promocode.member_login = $scope.member_login
-      $scope.promocode.add_point = $scope.add_point
-      $scope.add_point = 0
-      $scope.promocode.$use()
+      display_card.member_login = $scope.member_login
+      display_card.balance = $scope.add_point
+
+      display_card.$use()
       .then (data)->
-        $scope.promocode._success = true
-        $scope.promo.amount = data.amount
-        $scope.promo.duration = data.duration
-        $scope.promo.remain = data.remain
-        $scope.promo.count = data.count
-        flash 'Promo code has been used.'
+        $scope.add_point = 0
+        display_card._success = true
+        $scope.card.amount = data.amount
+        $scope.card.duration = data.duration
+        $scope.card.count = data.count
+        flash 'Card has been used.'
         return
       .catch (error)->
-        $scope.promocode._error = true
+        display_card._error = true
       .finally ->
         $scope.submitted = false
 
@@ -142,7 +133,7 @@ angular.module 'flashSloth'
       $scope.submitted = true
       create_one($scope.assign_member_login)
       .then ->
-        flash 'Promo code has been created.'
+        flash 'Card has been created.'
         return
       .finally ->
         $scope.submitted = false
@@ -155,19 +146,19 @@ angular.module 'flashSloth'
       $scope.submitted = true
       dialog.show
         controller: 'batchCreateCodeCtrl'
-        templateUrl: 'blueprints/promo/views/batch_create_code.tmpl.html'
+        templateUrl: 'blueprints/card/views/batch_create_code.tmpl.html'
         fullscreen: false
       .then (create_count)->
         batch_create(create_count)
       .then ->
-        flash 'Promo codes have been created.'
+        flash 'Cards have been created.'
         return
       .finally ->
         $scope.submitted = false
 
 
     batch_create = (create_count, retry)->
-      amount = $scope.promo.amount
+      amount = $scope.card.amount
       if amount isnt null
         create_count = Math.min amount, create_count
       if create_count <= 0
@@ -188,14 +179,14 @@ angular.module 'flashSloth'
 
 
     create_one = (member_login)->
-      new_promocode = new restAgent.promocode
-        id: promo_id
+      cardnum = new restAgent.cardnum
+        card_id: card_id
         member_login: member_login
 
-      new_promocode.$create()
+      cardnum.$create()
       .then (data)->
         data.member_login = member_login
-        $scope.new_codes.push(data)
-        $scope.promo.count = data.count
+        $scope.card.count = data.count
+        $scope.generated.push(data)
 
 ]

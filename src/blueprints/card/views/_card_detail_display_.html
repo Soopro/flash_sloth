@@ -1,0 +1,85 @@
+<div class="anim-fade noleave"
+     ng-show="!gen_mode"
+     layout-margin>
+
+  <md-card class="card"
+           layout-padding>
+    <img ng-src="{{card.meta.sticker}}"
+         ng-show="card.meta.sticker" />
+    <md-icon class="s120"
+             md-svg-icon="ic_local_play_24px"
+             ng-show="!card.meta.sticker">
+    </md-icon>
+    <md-card-content ng-show="card.slug">
+      <form name="use_form"
+            layout="column"
+            layout-align="start center"
+            ng-submit="use(display_card)"
+            novalidate>
+        <div class="md-caption text-warn"
+             ng-if="display_card.status == 0">
+          {{_('Scrapped')}}
+        </div>
+        <div class="md-display-1 text-break">
+            {{display_card.code}}
+        </div>
+        <div class="md-caption"
+             ng-if="cardcode.member_assigned">
+          {{_('For Member only')}}
+        </div>
+        <div class="md-headline"
+             ng-if="display_card.style == 'storeCard'">
+          {{display_card.balance}}
+        </div>
+        <div class="md-title"
+             layout-margin>
+          <span class="text-primary"
+                ng-if="display_card._success">
+            {{_('Success')}}
+          </span>
+          <span class="text-warn"
+                ng-if="display_card._error">
+            {{_('Error')}}
+          </span>
+        </div>
+
+        <div ng-show="display_card.member_assigned"
+             layout-margin>
+          <md-input-container>
+            <label>{{_('Member Account ID:')}}</label>
+            <input name="member_login"
+                   type="text"
+                   ng-model="member_login"
+                   ng-disabled="display_card.status != 1" />
+          </md-input-container>
+        </div>
+
+        <div ng-show="display_card.style == 'storeCard'"
+             layout-margin>
+          <md-input-container>
+            <label>{{_('Point')}}{{_(': ')}}</label>
+            <input name="point"
+                   type="number"
+                   ng-model="point"
+                   ng-disabled="display_card.status != 1"/>
+          </md-input-container>
+        </div>
+
+        <div ng-show="display_card.status == 1"
+             layout-margin>
+          <md-button class="main-nav-btn md-primary"
+                     type="submit">
+            {{_('Use this code')}}
+          </md-button>
+        </div>
+
+        <div>
+          <p class="md-caption tip">
+            {{cardcode.updated | dateformat}}
+          </p>
+        </div>
+      </form>
+
+    </md-card-content>
+  </md-card>
+</div>

@@ -21,138 +21,19 @@
     <!-- column -->
     <section flex-gt-sm="45"
              offset-gt-sm="5"
-             ng-show="card_loaded"
+             ng-show="card.slug"
              layout-padding>
       <!-- section header -->
       <header layout-margin>
         <h2 class="md-display-1 text-nowrap"
             vw-max="80">
-            {{gen_mode?_('Generated Codes'):_('Use Code')}}
+            {{gen_mode?_('Generated Cards'):_('Display Card')}}
         </h2>
       </header>
-      <!-- display card code -->
-      <div class="anim-fade"
-           ng-show="!gen_mode"
-           layout-margin>
-        <!-- code card -->
-        <md-card class="card"
-                 layout-padding>
-          <img ng-src="{{card.meta.sticker}}"
-               ng-show="card.meta.sticker" />
-          <md-icon class="s120"
-                   md-svg-icon="ic_local_play_24px"
-                   ng-show="!card.meta.sticker">
-          </md-icon>
-          <md-card-content ng-show="code_loaded">
-            <form name="use_form"
-                  layout="column"
-                  layout-align="start center"
-                  ng-submit="use_code()"
-                  novalidate>
-              <div class="md-caption text-warn"
-                   ng-if="cardcode.consumed">
-                {{_('Consumed')}}
-              </div>
-              <div class="md-display-1 text-break">
-                  {{cardcode.code}}
-              </div>
-              <div class="md-caption"
-                   ng-if="cardcode.member_assigned">
-                {{_('For Member only')}}
-              </div>
-              <div class="md-headline"
-                   ng-if="card_type_point(cardcode.type)">
-                {{cardcode.point}} / {{card.upper}}
-              </div>
-              <div class="md-title"
-                   layout-margin>
-                <span class="text-primary"
-                      ng-if="cardcode._success && !cardcode._error">
-                  {{_('Success')}}
-                </span>
-                <span class="text-warn"
-                      ng-if="!cardcode._success && cardcode._error">
-                  {{_('Error')}}
-                </span>
-              </div>
-
-              <div ng-show="cardcode.member_assigned"
-                   layout-margin>
-                <md-input-container>
-                  <label>{{_('Member Account ID:')}}</label>
-                  <input name="member_login"
-                         type="text"
-                         ng-model="member_login"
-                         ng-disabled="cardcode.consumed" />
-                </md-input-container>
-              </div>
-
-              <div ng-show="card_type_point(cardcode.type)"
-                   layout-margin>
-                <md-input-container>
-                  <label>{{_('Point:')}}</label>
-                  <input name="point"
-                         type="number"
-                         ng-model="add_point"
-                         ng-disabled="cardcode.consumed" />
-                </md-input-container>
-              </div>
-
-              <div ng-show="cardcode.status == 1"
-                   layout-margin>
-                <md-button class="main-nav-btn md-primary"
-                           type="submit">
-                  {{_('Use this code')}}
-                </md-button>
-              </div>
-
-              <div>
-                <p class="md-caption tip">
-                  {{cardcode.updated | dateformat}}
-                </p>
-              </div>
-            </form>
-
-          </md-card-content>
-        </md-card>
-      </div>
-      <!-- gen card code -->
-      <div class="anim-fade"
-           ng-show="gen_mode"
-           layout-margin>
-        <md-list>
-          <md-subheader class="md-no-sticky">
-            <span ng-bind-html="_('You have <span class=text-primary>'+
-             '%s</span> codes, <span class=text-primary>%s</span> '+
-              'have been used', card.count.total, card.count.used)">
-            </span>
-          </md-subheader>
-          <md-divider></md-divider>
-          <!-- items -->
-          <div class="anim-item"
-               ng-repeat="code in new_codes">
-            <md-list-item class="md-2-line">
-              <div class="md-list-item-text"
-                   layout="column">
-                <h3 class="text-break">
-                  {{ code.code }}
-                </h3>
-                <p class="text-break"
-                   ng-if="code.member_login">
-                  {{ code.member_login}}
-                </p>
-              </div>
-              <md-icon md-svg-icon="ic_local_play_24px"
-                       ng-if="!code.member_assigned">
-              </md-icon>
-              <md-icon class="md-accent"
-                       md-svg-icon="ic_people_24px"
-                       ng-if="code.member_assigned">
-              </md-icon>
-            </md-list-item>
-          </div>
-        </md-list>
-      </div>
+      <!-- display card -->
+      {% include '_card_detail_display_.html' %}
+      <!-- generated cardnum -->
+      {% include '_card_detail_generated_.html' %}
     </section>
   </div>
 </div>

@@ -1,0 +1,33 @@
+<div class="anim-fade noleave"
+     ng-show="gen_mode"
+     layout-margin>
+  <md-list>
+    <md-subheader class="md-no-sticky">
+      {{_('You have %s card have been generated.', card.count)}}
+    </md-subheader>
+    <md-divider></md-divider>
+    <!-- items -->
+    <div class="anim-item"
+         ng-repeat="cardnum in generated">
+      <md-list-item class="md-2-line">
+        <div class="md-list-item-text"
+             layout="column">
+          <h3 class="text-break">
+            {{ cardnum.code }}
+          </h3>
+          <p class="text-break"
+             ng-if="cardnum.member_login">
+            {{ cardnum.member_login}}
+          </p>
+        </div>
+        <md-icon md-svg-icon="ic_local_play_24px"
+                 ng-if="!code.member_assigned">
+        </md-icon>
+        <md-icon class="md-accent"
+                 md-svg-icon="ic_people_24px"
+                 ng-if="code.member_assigned">
+        </md-icon>
+      </md-list-item>
+    </div>
+  </md-list>
+</div>
