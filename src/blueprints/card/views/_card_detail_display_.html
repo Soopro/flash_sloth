@@ -26,7 +26,7 @@
         </div>
         <div class="md-headline text-accent"
              ng-if="display_card.style == 'storeCard'">
-          {{display_card.balance | abbrnum}}
+          {{display_card.balance|number}}
         </div>
         <div class="md-caption text-warn"
              ng-if="display_card.status == 0">
@@ -51,15 +51,16 @@
 
           <div ng-show="display_card.style == 'storeCard'">
             <md-input-container>
-              <label>{{_('Credit')}}</label>
-              <input name="credit"
+              <label>{{_('Point')}}</label>
+              <input name="point"
                      type="number"
-                     ng-model="credit"/>
+                     ng-model="point">
             </md-input-container>
             <div>
               <md-button class="md-primary"
-                         type="submit">
-                {{credit>0?_('Charge'):_('Spend')}}
+                         type="submit"
+                         ng-disabled="!point">
+                {{point>0?_('Charge'):_('Spend')}}
               </md-button>
             </div>
           </div>
