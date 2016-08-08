@@ -17,63 +17,11 @@ sup.localizedDict['zh_CN'] = [
     'msgstr': '&copy; 宿朴信息科技。'
   }
   {
+    'msgid': 'Toggle main nav'
+    'msgstr': ''
+  }
+  {
     'msgid': '404 Not Found'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Sorry! We can not find the page.'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Language'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Back'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Menu'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Reload'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Exit'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Check in'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Username'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Username is required.'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Passcode'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Enter'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Scrapped'
-    'msgstr': ''
-  }
-  {
-    'msgid': '%s Hours Remain'
-    'msgstr': ''
-  }
-  {
-    'msgid': '%s in Stock'
     'msgstr': ''
   }
   {
@@ -93,9 +41,18 @@ sup.localizedDict['zh_CN'] = [
     'msgstr': ''
   }
   {
-    'msgid': 'Destroy'
+    'msgid': 'Sorry! We can not find the page.'
     'msgstr': ''
   }
+  {
+    'msgid': '%s Hours Remain'
+    'msgstr': ''
+  }
+  {
+    'msgid': '%s in Stock'
+    'msgstr': ''
+  }
+
   {
     'msgid': 'You have %s card have been generated.'
     'msgstr': ''
@@ -106,6 +63,18 @@ sup.localizedDict['zh_CN'] = [
   }
   {
     'msgid': 'Style'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Check in'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Username'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Passcode'
     'msgstr': ''
   }
   {
@@ -137,18 +106,6 @@ sup.localizedDict['zh_CN'] = [
     'msgstr': ''
   }
   {
-    'msgid': 'Find'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Scan'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Refresh'
-    'msgstr': ''
-  }
-  {
     'msgid': 'Find Card'
     'msgstr': ''
   }
@@ -165,31 +122,11 @@ sup.localizedDict['zh_CN'] = [
     'msgstr': ''
   }
   {
-    'msgid': 'Create'
-    'msgstr': ''
-  }
-  {
     'msgid': 'Create Card'
     'msgstr': ''
   }
   {
     'msgid': 'Assign to Member'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Batch'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Batch Create'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Close'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Count'
     'msgstr': ''
   }
   {
@@ -205,15 +142,47 @@ sup.localizedDict['zh_CN'] = [
     'msgstr': ''
   }
   {
-    'msgid': 'Dashboard'
-    'msgstr': ''
-  }
-  {
     'msgid': 'Member'
     'msgstr': ''
   }
   {
     'msgid': 'Members'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Member Account'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Member Role'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Accept Member'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Find Member'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Create New Member'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Set new password'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Full Name'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Entrypoint'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'No Cards'
     'msgstr': ''
   }
   {
@@ -229,106 +198,6 @@ sup.localizedDict['zh_CN'] = [
     'msgstr': ''
   }
   {
-    'msgid': 'Canceled'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Closed'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Subject'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Member Account'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Memo'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Done'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Ok'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Okay!'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Save'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'You have %s demands, %s displayed.'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'More'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'You have %s events.'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Find Member'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Account'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Create New Member'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Set new password'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Name'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Mobile'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Email'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Avatar'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Full Name'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Member Role'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Entrypoint'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'No Cards'
-    'msgstr': ''
-  }
-  {
-    'msgid': 'Accept Member'
-    'msgstr': ''
-  }
-  {
     'msgid': 'Event Demands'
     'msgstr': ''
   }
@@ -337,27 +206,11 @@ sup.localizedDict['zh_CN'] = [
     'msgstr': ''
   }
   {
-    'msgid': 'Toggle main nav'
+    'msgid': 'You have %s demands, %s displayed.'
     'msgstr': ''
   }
   {
-    'msgid': ''
-    'msgstr': ''
-  }
-  {
-    'msgid': ''
-    'msgstr': ''
-  }
-  {
-    'msgid': ''
-    'msgstr': ''
-  }
-  {
-    'msgid': ''
-    'msgstr': ''
-  }
-  {
-    'msgid': ''
+    'msgid': 'You have %s events.'
     'msgstr': ''
   }
 
@@ -417,6 +270,143 @@ sup.localizedDict['zh_CN'] = [
   }
   {
     'msgid': 'Must be an URL.'
+    'msgstr': ''
+  }
+  # common
+  {
+    'msgid': 'Language'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Back'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Menu'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Reload'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Exit'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Enter'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Scrapped'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Delete'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Remove'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Destroy'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Find'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Scan'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Refresh'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Create'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Batch'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Batch Create'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Close'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Count'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Cancel'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Canceled'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Closed'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Done'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Ok'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Okay!'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Save'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'More'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Subject'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Account'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Name'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Mobile'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Email'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Avatar'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Memo'
+    'msgstr': ''
+  }
+  {
+    'msgid': 'Dashboard'
     'msgstr': ''
   }
 ]
