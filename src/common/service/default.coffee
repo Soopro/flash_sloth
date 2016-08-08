@@ -26,7 +26,7 @@ angular.module 'flashSloth'
       }
       {
         key: "card"
-        name: "cards"
+        name: "Cards"
         ico: "ic_local_play_24px"
         path: "/card"
       }

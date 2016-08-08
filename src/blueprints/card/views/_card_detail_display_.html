@@ -46,7 +46,7 @@
                ng-if="display_card.amount != null && display_card.common"
                ng-class="{'text-warn': display_card.amount <= 0,
                           'text-accent': display_card.amount > 0}">
-            {{_('%s in Stock', display_card.amount)}}
+            {{_('%s Stocks Remain', display_card.amount)}}
           </div>
 
           <div ng-show="display_card.style == 'storeCard'">
@@ -60,7 +60,7 @@
               <md-button class="md-primary"
                          type="submit"
                          ng-disabled="!point">
-                {{point>0?_('Charge'):_('Spend')}}
+                {{point>0?_('Charge Point'):_('Spend Point')}}
               </md-button>
             </div>
           </div>
