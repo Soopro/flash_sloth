@@ -26,7 +26,7 @@
             <ng-messages ng-if="member_form.login.$touched"
                          for="member_form.login.$error">
               <ng-message when="required">
-                {{ _('Account is required.') }}
+                {{ _('This is required.') }}
               </ng-message>
             </ng-messages>
           </md-input-container>
@@ -67,13 +67,13 @@
             <ng-messages ng-if="new_member_form.login.$touched"
                          for="new_member_form.login.$error">
               <ng-message when="required">
-                {{ _('Account is required.') }}
+                {{ _('This is required.') }}
               </ng-message>
             </ng-messages>
           </md-input-container>
 
           <md-input-container>
-            <label>{{_('New Password')}}</label>
+            <label>{{_('Set new password')}}</label>
             <input name="passwd"
                    type="text"
                    ng-model="new.passwd"
@@ -81,7 +81,7 @@
             <ng-messages ng-if="new_member_form.passwd.$touched"
                          for="new_member_form.passwd.$error">
               <ng-message when="required">
-                {{ _('New Password is required.') }}
+                {{ _('This is required.') }}
               </ng-message>
             </ng-messages>
           </md-input-container>

@@ -14,15 +14,15 @@
     {{card.common?_('Common'):_('Distribution')}}
   </h3>
   <p ng-if="card.duration != undefined">
-    {{_('Remain')}}{{_(': ')}}
+    {{_('Remain Hours')}}{{_(': ')}}
     {{card.duration}}
   </p>
   <p ng-if="card.amount != undefined">
-    {{_('Amount')}}{{_(': ')}}
+    {{_('Remain Stock')}}{{_(': ')}}
     {{card.amount}}
   </p>
   <p ng-if="!card.common">
-    {{_('Count')}}{{_(': ')}}
+    {{_('Total Distribution')}}{{_(': ')}}
     {{card.count}}
   </p>
   <p>
