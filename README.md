@@ -1,4 +1,4 @@
-# Bolt: The Front-end of Soopro Manage
+# Flash Sloth: The CRM Agent of Soopro
 
 ### Server side config
 There is a server_conf.js in /src.
@@ -19,10 +19,8 @@ each server might have different config.
   }
 
   sup.server = {
-    host: "http://127.0.0.1:9000",
     api: "http://api.sup.farm",
-    ext: "http://ext.sup.farm",
-    web: "http://sup.farm"
+    self: "http://sloth.sup.farm"
   }
 ```
 
